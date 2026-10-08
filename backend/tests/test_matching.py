@@ -493,3 +493,15 @@ def test_strict_catalogue_names_all_resolvable():
     for e in json.loads(nbh.CATALOGUE.read_text())["entries"]:
         if not e.get("generic"):
             assert nbh.usable_aliases(e) or e["kind"] == "local_committee", e["id"]
+
+
+def test_strict_role_filler_not_a_content_term(conn):
+    import_records(conn, "k", [post("stan", title="Trnje: tražim stan", record_kind="live_imported"),
+                               post("bike", title="Trnje: tražim bicikl", record_kind="live_imported"),
+                               post("like", title="Trnje: volim knjige", record_kind="live_imported")])
+    ix = retrieval.indexed(conn, "k", _strict(text="Ja sam student. Volim knjige. Traži stan. Nudi Trnje."), NOW)
+    assert "trazi" not in ix["terms"] and "volim" not in ix["terms"] and "voli" not in ix["terms"]
+    assert {r["external_id"] for r in ix["candidates"]} == {"stan", "like"}   # stan + knjige only, never "bike"
+    assert "bike" not in {r["external_id"] for r in retrieval.indexed(conn, "k", _strict(text="traži stan"), NOW)["candidates"]}
+    # default (non strict) retrieval keeps old tokenisation
+    assert "trazi" in retrieval.indexed(conn, "k", Query(kind="request", text="traži stan"), NOW)["terms"]

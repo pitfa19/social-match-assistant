@@ -11,6 +11,9 @@ from .text import fold, tokens
 CATALOGUE = Path(__file__).resolve().parents[3] / "shared" / "zagreb-neighbourhoods.json"
 # Words that wrap a place name without being part of it. Dropped from the lexical query in strict mode.
 LOCATION_NOISE = {"zagreb", "zagrebu", "kvart", "kvartu", "kvarta"}
+# Strict-only role/biography filler produced by profile extraction. Never content words for a post match.
+ROLE_NOISE = {"trazi", "trazim", "trazimo", "nudi", "nudim", "nudimo", "voli", "volim", "zeli", "zelim", "zelimo",
+              "treba", "trebam", "zanima", "zanimaju", "ja", "sam", "je", "student", "studentica", "student", "mi", "me"}
 
 
 @lru_cache(maxsize=1)
@@ -64,7 +67,7 @@ def evidence_regex(place: dict[str, Any]) -> str | None:
 
 def strip_location_terms(text: str, place: dict[str, Any]) -> str:
     """Remove the selected area's own name tokens (and city/filler) so they cannot make every area post a candidate."""
-    drop = set(LOCATION_NOISE)
+    drop = set(LOCATION_NOISE) | ROLE_NOISE
     for key in {" ".join(tokens(a)) for a in [place["name"], *place.get("aliases", []), *place.get("curatedAliases", [])]}:
         drop.update(key.split())
     return " ".join(t for t in tokens(text) if t not in drop)
