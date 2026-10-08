@@ -49,7 +49,7 @@ from . import reddit  # noqa: E402
 async def _unknown_job(_, exc):
     return JSONResponse(status_code=409, content={"error": {
         "code": "unknown_job",
-        "message": "Job not started by this backend process (or the backend restarted). Re-run the POST."}})
+        "message": "Job context is unavailable in this backend process. Check the existing job in Mindcase before starting another billed run."}})
 
 
 @app.exception_handler(reddit.ParentNotQualified)
