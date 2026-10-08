@@ -1,0 +1,50 @@
+// Profile extraction is explicitly stubbed to avoid paid calls. Matching API and local backend are real.
+import { chromium, expect } from '@playwright/test';
+
+const browser = await chromium.launch({ headless: true, ...(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {}) });
+const profile = [
+  { text: 'Gradski treper', topic: 'none', role: 'description' },
+  { text: 'Zanima me glazba', topic: 'glazba', role: 'interest' },
+  { text: 'Tražim nekoga tko će mi prošetat psa i popraviti cijev u stanu', topic: 'none', role: 'request' },
+];
+try {
+  const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+  const errors = [];
+  page.on('pageerror', e => errors.push(e.message));
+  let stubbedProfileCalls = 0;
+  await page.route('**/api/zagreb/profile', async route => {
+    const { step } = route.request().postDataJSON();
+    stubbedProfileCalls++;
+    await route.fulfill({ json: { status: 'ok', items: [profile[step]], coverage: [step] } });
+  });
+  await page.goto(process.env.APP_URL || 'http://localhost:3000', { waitUntil: 'networkidle' });
+  for (let step = 0; step < 3; step++) {
+    await expect(page.getByTestId('onboarding-step')).toHaveAttribute('data-step', String(step));
+    await page.getByRole('textbox').fill(profile[step].text);
+    await page.getByRole('button', { name: 'Dalje', exact: true }).click();
+  }
+  await expect(page.getByTestId('onboarding-step')).toHaveAttribute('data-step', '3');
+  await page.getByRole('textbox').fill('Trešnjevka');
+  const matching = page.waitForResponse(r => r.url().endsWith('/api/zagreb/matches') && r.request().method() === 'POST');
+  await page.getByRole('button', { name: 'Idemo', exact: true }).click();
+  const response = await matching;
+  if (response.status() !== 200) throw new Error(`Matching API status ${response.status()}`);
+  const data = await response.json();
+  const demos = data.results.filter(r => r.source === 'demo');
+  if (demos.length !== 2 || demos.some(r => r.recordKind !== 'synthetic' || r.area !== 'tresnjevka' || r.url !== null)) throw new Error('Expected exactly two labelled local demo offers');
+  const section = page.getByTestId('indexed-results');
+  await expect(section).toHaveAttribute('aria-busy', 'false');
+  const cards = section.getByTestId('matched-post').filter({ hasText: 'Demo · Izmišljeni oglas' });
+  await expect(cards).toHaveCount(2);
+  for (const width of [1440, 375, 320]) {
+    await page.setViewportSize({ width, height: 1000 });
+    await cards.first().scrollIntoViewIfNeeded();
+    await expect(cards.first()).toBeVisible();
+    await expect(cards.last()).toBeVisible();
+    if (await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)) throw new Error(`Overflow at ${width}`);
+  }
+  if (errors.length) throw new Error(errors.join('; '));
+  console.log(JSON.stringify({ check: 'local-demo-offers-browser', profileExtraction: 'stubbed', stubbedProfileCalls,
+    matching: 'real-local-api', backendAvailable: data.indexAvailable, demoIds: demos.map(r => r.id),
+    demoTitles: demos.map(r => r.title), widths: [1440, 375, 320], errors }, null, 2));
+} finally { await browser.close(); }

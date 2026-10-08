@@ -98,24 +98,51 @@ test("URLs and synthetic benchmark records cannot masquerade as live results", (
 test("input cannot choose corpus, endpoint, unbounded facts or invalid geography", () => {
   const base = { areaId: "maksimir", cityWide: false, facts: [] };
   assert.ok(validateMatchInput(base));
-  for (const d of [{ ...base, corpus: "fixture" }, { ...base, areaId: "fake" }, { ...base, facts: Array(25).fill({ text: "x", role: "offer" }) }]) assert.equal(validateMatchInput(d), null);
+  for (const d of [{ ...base, cityWide: true }, { ...base, corpus: "fixture" }, { ...base, areaId: "fake" }, { ...base, facts: Array(25).fill({ text: "x", role: "offer" }) }]) assert.equal(validateMatchInput(d), null);
 });
 test("fixed indexed bridge makes bounded parallel reads, dedupes and never sends a scoring/collection request", async () => {
   const calls: Array<{ url: string; body: any }> = [];
   const mock = (async (url: URL, init: RequestInit) => {
     calls.push({ url: String(url), body: init.body ? JSON.parse(String(init.body)) : null });
-    return Response.json(String(url).includes("/sources") ? { sources: [] } : { mode: "indexed", truncated: false,
-      results: [{ id: 37, record_kind: "live_imported", source: "reddit", title: "Pranje tepiha", body: "content", unknown_fields: ["neighbourhood"] }] });
+    return Response.json({ mode: "indexed", truncated: false, neighbourhood_evidence: { required: true, id: "maksimir" },
+      results: [{ id: 37, record_kind: "live_imported", source: "reddit", title: "Pranje tepiha", body: "content", unknown_fields: ["neighbourhood"],
+        neighbourhood_match: { id: "maksimir", basis: "explicit_text" } }] });
   }) as typeof fetch;
   const r = await fetchIndexedMatches({ areaId: "maksimir", cityWide: false, facts: [{ text: "traži tepih", role: "request" }, { text: "nudi pranje tepiha", role: "offer" }] },
     { base: "http://backend.test", token: "test" }, new AbortController().signal, mock);
-  assert.equal(calls.length, 3); assert.equal(r.results.length, 1);
+  assert.equal(calls.length, 2); assert.equal(r.results.length, 1);
+  assert.ok(calls.every((c) => c.url.endsWith("/matching/retrieve")));
   assert.ok(r.indexAvailable && r.sourcesAvailable);
-  assert.ok(calls.filter((c) => c.body).every((c) => c.body.mode === "indexed" && c.body.max_candidates === 12 && c.body.query.neighbourhood_id === "maksimir"));
+  assert.ok(calls.every((c) => c.body.mode === "indexed" && c.body.max_candidates === 12 && c.body.query.neighbourhood_id === "maksimir" && c.body.query.require_neighbourhood_evidence === true));
 });
 test("partial upstream failure is not a fake empty success", async () => {
   const mock = (async (url: URL) => String(url).includes("sources") ? Response.json({ sources: [] }) : new Response("fail", { status: 503 })) as typeof fetch;
-  const r = await fetchIndexedMatches({ areaId: "maksimir", cityWide: true, facts: [{ text: "stan", role: "request" }] },
+  const r = await fetchIndexedMatches({ areaId: "maksimir", cityWide: false, facts: [{ text: "stan", role: "request" }] },
     { base: "http://backend.test", token: "test" }, new AbortController().signal, mock);
   assert.equal(r.indexAvailable, false); assert.equal(r.sourcesAvailable, true);
+});
+
+test("strict result parser rejects stale backends, wrong-area and unsupported evidence", () => {
+  const row = { id: 1, title: "Stan", source: "facebook", record_kind: "live_imported", neighbourhood_id: null };
+  const response = { mode: "indexed", truncated: false, results: [row] };
+  assert.equal(parseIndexResults(response, "maksimir"), null);
+  const strict = { ...response, neighbourhood_evidence: { required: true, id: "maksimir" }, results: [
+    row,
+    { ...row, id: 2, neighbourhood_match: { id: "trnje", basis: "explicit_text" } },
+    { ...row, id: 3, neighbourhood_match: { id: "maksimir", basis: "group_name" } },
+    { ...row, id: 4, neighbourhood_match: { id: "maksimir", basis: "explicit_text" } },
+  ] };
+  const parsed = parseIndexResults(strict, "maksimir")!;
+  assert.deepEqual(parsed.results.map((r) => r.id), ["4"]);
+  assert.equal(parsed.results[0].area, "maksimir");
+  assert.equal(parsed.results[0].areaBasis, "explicit_text");
+});
+
+test("empty or negated profile makes no backend or source-directory calls", async () => {
+  const mock = (async () => { throw new Error("must not fetch"); }) as typeof fetch;
+  const r = await fetchIndexedMatches({ areaId: "maksimir", cityWide: false, facts: [{ text: "ne volim sport", role: "interest" }] },
+    { base: "http://backend.test", token: "test" }, new AbortController().signal, mock);
+  assert.equal(r.searched, false);
+  assert.deepEqual(r.results, []);
+  assert.equal(r.indexAvailable, true);
 });

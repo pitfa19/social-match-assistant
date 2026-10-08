@@ -1,11 +1,11 @@
-import { buildIndexedQueries, parseIndexResults, parseSources, type SearchFact, type MatchResponse } from "../indexedSearch.ts";
+import { buildIndexedQueries, parseIndexResults, type SearchFact, type MatchResponse } from "../indexedSearch.ts";
 import { findNeighbourhood } from "../neighbourhoods.ts";
 
 export type MatchInput = { areaId: string; cityWide: boolean; facts: SearchFact[] };
 export function validateMatchInput(raw: unknown): MatchInput | null {
   const d = raw as Record<string, unknown> | null;
   if (!d || typeof d !== "object" || Object.keys(d).some((k) => !["areaId", "cityWide", "facts"].includes(k)) ||
-      typeof d.areaId !== "string" || !findNeighbourhood(d.areaId) || typeof d.cityWide !== "boolean" ||
+      typeof d.areaId !== "string" || !findNeighbourhood(d.areaId) || d.cityWide !== false ||
       !Array.isArray(d.facts) || d.facts.length > 24) return null;
   const facts: SearchFact[] = [];
   for (const f of d.facts) {
@@ -20,7 +20,7 @@ export function validateMatchInput(raw: unknown): MatchInput | null {
 export async function fetchIndexedMatches(input: MatchInput, config: { base: string; token: string; corpus?: string },
   signal: AbortSignal, fetcher: typeof fetch = fetch): Promise<MatchResponse> {
   const area = findNeighbourhood(input.areaId)!;
-  const queries = buildIndexedQueries(input.facts, input.cityWide ? null : area.id);
+  const queries = buildIndexedQueries(input.facts, area.id);
   const headers = { authorization: `Bearer ${config.token}`, "content-type": "application/json" };
   const read = async (path: string, body?: unknown): Promise<unknown | null> => {
     try {
@@ -30,15 +30,12 @@ export async function fetchIndexedMatches(input: MatchInput, config: { base: str
     } catch { return null; }
   };
   const corpus = config.corpus && /^[a-z0-9_.-]{1,60}$/.test(config.corpus) ? config.corpus : "main";
-  const [indexRows, sourceRows] = await Promise.all([
-    Promise.all(queries.map(async (query) => parseIndexResults(await read("/matching/retrieve", {
-      corpus, mode: "indexed", max_candidates: 12, query,
-    })))),
-    read(`/matching/sources?area=${encodeURIComponent(area.name)}&include_general=true`).then(parseSources),
-  ]);
+  const indexRows = await Promise.all(queries.map(async (query) => parseIndexResults(await read("/matching/retrieve", {
+    corpus, mode: "indexed", max_candidates: 12, query: { ...query, require_neighbourhood_evidence: true },
+  }), area.id)));
   const found = indexRows.flatMap((r) => r?.results ?? []);
   const unique = [...new Map(found.map((r) => [r.id, r])).values()];
-  return { results: unique.slice(0, 12), sources: sourceRows ?? [],
+  return { results: unique.slice(0, 12), sources: [],
     truncated: unique.length > 12 || indexRows.some((r) => r?.truncated), searched: queries.length > 0,
-    indexAvailable: indexRows.every((r) => r !== null), sourcesAvailable: sourceRows !== null };
+    indexAvailable: indexRows.every((r) => r !== null), sourcesAvailable: true };
 }

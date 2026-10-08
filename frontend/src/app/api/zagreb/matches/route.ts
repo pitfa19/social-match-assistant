@@ -1,5 +1,6 @@
 import { json, rateLimited, readCapped, sameOriginOnly, TooLarge } from "../../../../features/zagreb/server/guard";
 import { fetchIndexedMatches, validateMatchInput } from "../../../../features/zagreb/server/indexedMatches";
+import { withLocalDemoOffers } from "../../../../features/zagreb/server/devDemoMatches";
 
 export const runtime = "nodejs";
 export async function POST(request: Request): Promise<Response> {
@@ -14,5 +15,5 @@ export async function POST(request: Request): Promise<Response> {
   if (!base || !token) return json({ error: "Pretraga trenutačno nije dostupna." }, 503);
   const result = await fetchIndexedMatches(input, { base, token, corpus: process.env.MATCHING_CORPUS },
     AbortSignal.any([request.signal, AbortSignal.timeout(8000)]));
-  return json(result);
+  return json(withLocalDemoOffers(input, result, process.env));
 }

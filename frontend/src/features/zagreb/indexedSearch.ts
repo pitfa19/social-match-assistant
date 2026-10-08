@@ -2,7 +2,7 @@ import { isNegated, normalize, type Note, type FactRole } from "./profileLogic.t
 
 export type SearchFact = { text: string; role: FactRole };
 export type IndexedQuery = { kind: "request" | "offer"; text: string; city: "Zagreb"; neighbourhood_id: string | null };
-export type IndexedCandidate = { id: string; title: string; body: string; source: string; url: string | null; area: string | null; unknown: string[] };
+export type IndexedCandidate = { id: string; title: string; body: string; source: string; url: string | null; area: string | null; areaBasis: "explicit_text" | "structured" | null; unknown: string[] };
 export type CommunitySource = { id: string; name: string; platform: string; url: string | null; status: string };
 export type MatchResponse = {
   results: IndexedCandidate[]; sources: CommunitySource[]; truncated: boolean;
@@ -40,17 +40,24 @@ export function safeExternalUrl(value: unknown): string | null {
   } catch { return null; }
 }
 
-export function parseIndexResults(raw: unknown): { results: IndexedCandidate[]; truncated: boolean } | null {
+export function parseIndexResults(raw: unknown, requiredArea?: string): { results: IndexedCandidate[]; truncated: boolean } | null {
   const d = raw as Record<string, unknown> | null;
   if (!d || d.mode !== "indexed" || !Array.isArray(d.results) || typeof d.truncated !== "boolean") return null;
+  // A stale backend must fail closed rather than pretend strict filtering ran.
+  const evidence = d.neighbourhood_evidence as { required?: unknown; id?: unknown } | undefined;
+  if (requiredArea && (evidence?.required !== true || evidence.id !== requiredArea)) return null;
   const results: IndexedCandidate[] = [];
   for (const r of d.results.slice(0, 12)) {
     // Synthetic benchmark content must never leak into the actual user's results.
     if (!r || r.record_kind === "synthetic" || !["live_imported", "user_contributed"].includes(r.record_kind) ||
         !["string", "number"].includes(typeof r.id) || typeof r.title !== "string") continue;
+    const match = r.neighbourhood_match;
+    const areaBasis = match && ["explicit_text", "structured"].includes(match.basis) ? match.basis as "explicit_text" | "structured" : null;
+    if (requiredArea && (match?.id !== requiredArea || !areaBasis)) continue;
     results.push({ id: String(r.id), title: r.title.slice(0, 300), body: typeof r.body === "string" ? r.body.slice(0, 300) : "",
       source: ["reddit", "facebook", "user"].includes(r.source) ? r.source : "unknown", url: safeExternalUrl(r.url),
-      area: typeof r.neighbourhood_id === "string" ? r.neighbourhood_id : null,
+      area: areaBasis && typeof match.id === "string" ? match.id : typeof r.neighbourhood_id === "string" ? r.neighbourhood_id : null,
+      areaBasis,
       unknown: Array.isArray(r.unknown_fields) ? r.unknown_fields.filter((v: unknown) => typeof v === "string").slice(0, 6) : [],
     });
   }
