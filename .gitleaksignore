@@ -1,0 +1,4 @@
+# These exact historical findings are the same literal fake key in httpx.MockTransport tests.
+# No real provider credential, path-wide exclusion, or API-key rule is allowlisted.
+cae51cd63fe41a25977b4cd0857a3c53ebaf8033:backend/tests/test_reddit.py:generic-api-key:13
+ae828237cf7c7bfe02762938ba45acb5a6e395d3:backend/tests/test_api.py:generic-api-key:12
