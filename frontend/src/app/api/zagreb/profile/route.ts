@@ -1,10 +1,10 @@
 import { genericError, json, rateLimited, readCapped, sameOriginOnly, TooLarge } from "../../../../features/zagreb/server/guard";
 import { MAX_ANSWER_LEN, PROFILE_STEPS } from "../../../../features/zagreb/profileLogic";
-import { buildRequest, parseProfileResponse } from "../../../../features/zagreb/server/semanticProfile";
+import { buildRequest, parseAdaptiveResponse } from "../../../../features/zagreb/server/semanticProfile";
 
 export const runtime = "nodejs";
 
-const MAX_BODY = 2048;
+const MAX_BODY = 8192;
 
 // POST { step: 0|1|2, text: string }
 //  -> 200 { status: "ok", items: [{ text, topic }] }   text is a concise Croatian semantic fact grounded in a verified evidence quote, topic is a fixed id or "none"
@@ -42,9 +42,9 @@ export async function POST(request: Request): Promise<Response> {
     });
     if (!res.ok) return genericError();
     // Refusal, incomplete or schema-invalid output is an error (retryable), never a silent empty success.
-    const items = parseProfileResponse(await res.json(), text);
-    if (!items) return genericError();
-    return json({ status: items.length ? "ok" : "empty", items });
+    const result = parseAdaptiveResponse(await res.json(), text);
+    if (!result) return genericError();
+    return json({ status: result.items.length ? "ok" : "empty", ...result });
   } catch {
     return genericError();
   }

@@ -5,8 +5,9 @@ import { ZagrebMap, type MapTarget } from "./ZagrebMap";
 import { findNeighbourhood } from "./neighbourhoods";
 import { useRealtimeVoice } from "./useRealtimeVoice";
 import { useLayoutMotion } from "./useLayoutMotion";
+import { IndexedResults } from "./IndexedResults";
 import {
-  applyAnswer, finish, initialState, isBlank, PROFILE_STEPS, QUESTIONS, removeNote,
+  applyAnswer, finish, initialState, isBlank, MAX_ANSWER_LEN, PROFILE_STEPS, QUESTIONS, removeNote,
   type Extracted, type ProfileState,
 } from "./profileLogic";
 import styles from "./Zagreb.module.css";
@@ -46,8 +47,8 @@ export function ZagrebHome() {
     const text = raw.trim();
     if (isBlank(text)) { setNotice("Upiši ili reci odgovor."); return; }
     const forStep = profileRef.current.step;
-    if (text.length > (forStep < PROFILE_STEPS ? 400 : 200)) {
-      setTyped(text.slice(0, forStep < PROFILE_STEPS ? 400 : 200));
+    if (text.length > (forStep < PROFILE_STEPS ? MAX_ANSWER_LEN : 200)) {
+      setTyped(text.slice(0, forStep < PROFILE_STEPS ? MAX_ANSWER_LEN : 200));
       setNotice("Odgovor je predug. Skrati ga i pošalji ponovno.");
       return;
     }
@@ -66,7 +67,7 @@ export function ZagrebHome() {
         headers: { "content-type": "application/json" },
         body: JSON.stringify(isProfile ? { step: forStep, text } : { text }),
       });
-      const data = (await res.json()) as { status?: string; items?: Extracted[]; id?: string; error?: string };
+      const data = (await res.json()) as { status?: string; items?: Extracted[]; coverage?: number[]; neighbourhoodId?: string; id?: string; error?: string };
       if (ac.signal.aborted || profileRef.current.step !== forStep) return;
       if (!res.ok) {
         setNotice(data.error || "Pokušaj ponovno ili upiši odgovor.");
@@ -77,7 +78,17 @@ export function ZagrebHome() {
         if (!["ok", "empty"].includes(data.status ?? "") || !Array.isArray(data.items)) {
           throw new Error("Invalid profile response");
         }
-        setProfileBoth(applyAnswer(profileRef.current, forStep, data.items));
+        const area = data.neighbourhoodId ? findNeighbourhood(data.neighbourhoodId) : undefined;
+        const next = applyAnswer(profileRef.current, forStep, data.items, data.coverage, area?.id);
+        if (next.step === forStep) setNotice("Još mi reci odgovor na ovo pitanje. Ostale detalje sam zabilježio.");
+        if (next.step > PROFILE_STEPS && next.neighbourhoodId) {
+          const hit = findNeighbourhood(next.neighbourhoodId);
+          if (hit) {
+            setPlaceName(hit.name); setSelectedId(hit.id);
+            setTarget({ lat: hit.lat, lng: hit.lng, zoom: hit.zoom });
+          }
+        }
+        setProfileBoth(next);
       } else {
         const hit = data.status === "selected" && data.id ? findNeighbourhood(data.id) : undefined;
         if (!hit) {
@@ -168,7 +179,7 @@ export function ZagrebHome() {
             </ul>
             <p className={styles.notesHint}>Samo ono što si podijelio. Klikni bilješku da je ukloniš.</p>
           </section>}
-          {mapShown ? (
+          {mapShown ? (<>
             <div className={styles.mapCol} data-layout-key="map">
               {questionBlock}
               <p className={styles.mapIntro}>Tvoj dio grada. Odaberi područje i pogledaj susjedstvo.</p>
@@ -179,7 +190,8 @@ export function ZagrebHome() {
                 }} />
               </div>
             </div>
-          ) : (
+            <IndexedResults areaId={selectedId} notes={profile.notes} />
+          </>) : (
             <div className={styles.content} data-layout-key="conversation">
               <div className={styles.orbArea}>
               <button type="button" className={styles.orb}
@@ -206,7 +218,7 @@ export function ZagrebHome() {
                 void submit(typed);
               }}>
                 <input id="odgovor" ref={inputRef} aria-label="Tvoj odgovor" className={styles.input}
-                  value={typed} maxLength={step < PROFILE_STEPS ? 400 : 200} autoComplete="off"
+                  value={typed} maxLength={step < PROFILE_STEPS ? MAX_ANSWER_LEN : 200} autoComplete="off"
                   placeholder="ili upiši ovdje" onChange={(e) => setTyped(e.target.value)} disabled={busy} />
                 <button type="submit" className={styles.go} disabled={busy || !typed.trim()}>
                   {step < PROFILE_STEPS ? "Dalje" : "Idemo"}

@@ -30,7 +30,7 @@ export function topicLabel(id: string): string | undefined {
 
 export const MAX_CLAUSES = 6;
 export const MAX_CLAUSE_LEN = 400;
-export const MAX_ANSWER_LEN = 400;
+export const MAX_ANSWER_LEN = 1200;
 
 const NEGATION = /(^|[^\p{L}])(ne|nisam|nisi|nije|nismo|nemam|nemoj|neću|ne\s?mogu|nikad|nikada|nitko|ništa|nista|bez|nimalo|ni)(?=$|[^\p{L}])/iu;
 
@@ -68,8 +68,9 @@ export function candidateClauses(answer: string): string[] {
 }
 
 export type NoteKind = "fact" | "topic";
-export type Note = { key: string; kind: NoteKind; text: string };
-export type Extracted = { text: string; topic: string };
+export type FactRole = "description" | "interest" | "request" | "offer";
+export type Note = { key: string; kind: NoteKind; text: string; role?: FactRole };
+export type Extracted = { text: string; topic: string; role?: FactRole };
 
 export function noteKey(kind: NoteKind, value: string): string {
   return kind === "fact" ? `f:${normalize(value)}` : `t:${value}`;
@@ -79,6 +80,8 @@ export type ProfileState = {
   step: number; // 0..3, 4 = done
   notes: Note[];
   removed: string[]; // keys the user deleted. Never re-added, even by later answers.
+  covered?: number[]; // Future questions explicitly answered, independent of the current prompt.
+  neighbourhoodId?: string; // Grounded early location, retained until remaining questions are answered.
 };
 
 export const initialState: ProfileState = { step: 0, notes: [], removed: [] };
@@ -89,22 +92,28 @@ export function isBlank(answer: string): boolean {
 }
 
 /** Apply extracted items for `step`. Ignores stale steps, removed keys and duplicates; advances the step. */
-export function applyAnswer(state: ProfileState, step: number, items: Extracted[]): ProfileState {
-  if (step !== state.step || step >= PROFILE_STEPS) return state;
+export function applyAnswer(state: ProfileState, step: number, items: Extracted[], coverage?: number[], neighbourhoodId?: string): ProfileState {
+  if (step !== state.step || step > PROFILE_STEPS) return state;
   const removed = new Set(state.removed);
   const have = new Set(state.notes.map((n) => n.key));
   const next = [...state.notes];
-  const add = (kind: NoteKind, key: string, text: string) => {
+  const add = (kind: NoteKind, key: string, text: string, role?: FactRole) => {
     if (removed.has(key) || have.has(key)) return;
     have.add(key);
-    next.push({ key, kind, text });
+    next.push({ key, kind, text, ...(role ? { role } : {}) });
   };
   for (const it of items) {
     if (!it.text || (it.topic !== NONE_TOPIC && !TOPIC_IDS.includes(it.topic))) continue;
-    add("fact", noteKey("fact", it.text), it.text);
+    add("fact", noteKey("fact", it.text), it.text, it.role);
     if (it.topic !== NONE_TOPIC) add("topic", noteKey("topic", it.topic), topicLabel(it.topic) as string);
   }
-  return { ...state, step: state.step + 1, notes: next };
+  const covered = new Set([...(state.covered ?? []), ...Array.from({ length: step }, (_, i) => i)]);
+  // Legacy responses have no coverage field. Adaptive responses never infer progress from the prompt alone.
+  if (coverage === undefined && step < PROFILE_STEPS) covered.add(step);
+  for (const n of coverage ?? []) if (Number.isInteger(n) && n >= 0 && n < PROFILE_STEPS) covered.add(n);
+  const area = neighbourhoodId || state.neighbourhoodId;
+  const nextStep = [0, 1, 2].find((n) => !covered.has(n)) ?? (area ? 4 : 3);
+  return { ...state, step: nextStep, notes: next, covered: [...covered].sort(), ...(area ? { neighbourhoodId: area } : {}) };
 }
 
 export function removeNote(state: ProfileState, key: string): ProfileState {
