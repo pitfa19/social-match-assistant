@@ -2,7 +2,9 @@
 
 Private, setup-only repository for a Croatia-first match-and-post assistant.
 
-**Status:** repository and MOZAK onboarding only. No application, live integrations, deployment or provider activation exists yet.
+**Status:** private repository created and pushed, local MOZAK onboarding validated, and project registered as `social-match-assistant`. No application, live integrations, deployment or provider activation exists yet.
+
+Fresh-agent entry point: `mozak project context social-match-assistant`. Setup completion evidence is in `.mozak/evidence/repo-onboarding-2026-10-08/checkpoint-v2.json`.
 
 ## Product
 

@@ -1,0 +1,15 @@
+{
+  "sequence_id": "repo-onboarding-2026-10-08",
+  "contract_sha256": "42060332a98c33b33489db9ea3b28b0b9bc5a128f94e72f5b98376afa396091c",
+  "state": "COMPLETE: setup and registration only",
+  "supersedes": "checkpoint-v1.json",
+  "observed_at": "2026-10-08T10:13:44Z",
+  "requirements": [
+    {"id": "local-onboarding", "status": "verified", "checks": [{"id": "mozak-validation", "passed": true, "observation": "real", "evidence": "mozak project validate /home/pitfa/Documents/social-match-assistant returned state valid after registration on 2026-10-08. Earlier credential and private-data ignore checks passed."}]},
+    {"id": "private-github", "status": "verified", "checks": [{"id": "remote-private-and-pushed", "passed": true, "observation": "real", "evidence": "gh repo view pitfa19/social-match-assistant returned isPrivate true and default branch main. Before this completion-record commit, local HEAD and ls-remote main both d4ac4ca2d4de7ee567d4ad383bc5bcf3b67bde1e and git status was clean on 2026-10-08T10:13:44Z."}]},
+    {"id": "mozak-registration", "status": "verified", "checks": [{"id": "fresh-registered-context", "passed": true, "observation": "real", "evidence": "Owner approved the exact displayed registration-only review at 2026-10-08T10:12:27.804Z. project refresh accepted proposal f2b65212221284e501c45e156fdddf839faaf22ba65dde7918f019ef8c7b175c, returned refreshed true, one addition, zero removals and zero changed pins, preserving 18 existing registrations. Fresh project context social-match-assistant returned state ready, valid foundation and KB, no drift, configured owner pitfa and the exact local root."}]}
+  ],
+  "registration_receipt": {"proposal_digest": "f2b65212221284e501c45e156fdddf839faaf22ba65dde7918f019ef8c7b175c", "previous_config_sha256": "64a4a229531ef55a926f5bd9a8b2d17a162bdad7509c3c04a5fbf674d095bdb5", "config_sha256": "efed5d2d6cd8f8dadd274cfcc54cf7ebe19d5cb517a084c94cd9374896080c50", "project_count": 19, "additions": 1, "removals": 0, "changed_pins": 0, "trust_transfer": false},
+  "limitations": ["No accepted implementation plan or ready goals exist yet.", "The CLI-generated manifest revision remains the zero placeholder, not a source revision attestation.", "Research reports remain proposal-only and no live provider integration was tested."],
+  "next_boundary": "Further application implementation, provider activation, paid API use, deployment and live social-data ingestion require separate approval."
+}
