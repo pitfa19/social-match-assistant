@@ -1,0 +1,86 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "width": 320,
+      "scroll": 320,
+      "position": "relative",
+      "voiceTop": 148.71875,
+      "notesTop": 644.40625
+    },
+    {
+      "width": 390,
+      "scroll": 390,
+      "position": "relative",
+      "voiceTop": 154.78125,
+      "notesTop": 530.359375
+    },
+    {
+      "width": 1440,
+      "scroll": 1440,
+      "position": "relative",
+      "voiceTop": 262.65625,
+      "notesTop": 164.234375
+    }
+  ],
+  "permissionDenied": true,
+  "profile": [
+    {
+      "status": "ok",
+      "items": [
+        {
+          "text": "radi kao programer",
+          "topic": "tehnologija"
+        },
+        {
+          "text": "voli miran život",
+          "topic": "none"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "items": [
+        {
+          "text": "ne voli nogomet",
+          "topic": "none"
+        },
+        {
+          "text": "voli čitati knjige",
+          "topic": "knjige"
+        }
+      ]
+    },
+    {
+      "status": "ok",
+      "items": [
+        {
+          "text": "nudi pomoć s računalima susjedima",
+          "topic": "tehnologija"
+        }
+      ]
+    }
+  ],
+  "neighbourhood": {
+    "status": "selected",
+    "id": "mo-brezovica"
+  },
+  "map": {
+    "id": "mo-brezovica",
+    "zoom": "13.00",
+    "lat": "45.7243",
+    "lng": "15.9041"
+  },
+  "guard": [
+    {
+      "path": "realtime-token",
+      "status": 403
+    },
+    {
+      "path": "profile",
+      "status": 403
+    }
+  ],
+  "providerFailureRetainsAnswer": true,
+  "latePermissionCancelled": true
+}
