@@ -19,7 +19,7 @@ test("visibleTiles: covers viewport and centre tile is present", () => {
 test("neighbourhoods: unique ids and all inside greater Zagreb", () => {
   assert.equal(new Set(NEIGHBOURHOODS.map((n) => n.id)).size, NEIGHBOURHOODS.length);
   for (const n of NEIGHBOURHOODS) {
-    assert.ok(n.lat > 45.7 && n.lat < 45.9 && n.lng > 15.85 && n.lng < 16.2, n.id);
+    assert.ok(n.lat > 45.6 && n.lat < 46.0 && n.lng > 15.75 && n.lng < 16.25, n.id);
   }
 });
 

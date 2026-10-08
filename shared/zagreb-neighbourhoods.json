@@ -1,0 +1,6082 @@
+{
+ "schemaVersion": 1,
+ "title": "Zagreb administrative geography: city districts, local committees, colloquial groups",
+ "counts": {
+  "district": 17,
+  "local_committee": 218,
+  "colloquial_group": 3,
+  "total": 238
+ },
+ "kinds": {
+  "district": "Gradska četvrt, official 17 units of local self-government",
+  "local_committee": "Mjesni odbor, official 218 units of local self-government nested in districts",
+  "colloquial_group": "Common colloquial area made of official districts. Not an official unit."
+ },
+ "provenance": {
+  "generatedBy": "shared/scripts/build-zagreb-neighbourhoods.py",
+  "publisher": "Grad Zagreb, Portal otvorenih podataka (data.zagreb.hr)",
+  "licence": "Otvorena dozvola (OD)",
+  "retrievedAt": "2026-10-08T13:11:07Z",
+  "sources": [
+   {
+    "role": "district geometries",
+    "dataset": "https://data.zagreb.hr/dataset/gradske-cetvrti-prostorna-jedinica-mjesne-samouprave-za-podrucje-grada-zagreba",
+    "resource": "https://data.zagreb.hr/dataset/9c52e229-09bf-4569-8e01-37f338070d02/resource/f2406ad9-34bf-4235-aa24-d71a08ae2863/download/rpj_gc.zip",
+    "sha256": "6d7bb86716184ca1860ca578d37de6d6cf1bcc176bec2b56095e2d5a893042b5",
+    "format": "SHP",
+    "crs": "EPSG:3765 HTRS96/Croatia TM",
+    "recordDate": "2025-02-03",
+    "records": 17
+   },
+   {
+    "role": "local committee geometries",
+    "dataset": "https://data.zagreb.hr/dataset/mjesni-odbori-prostorna-jedinica-mjesne-samouprave-za-podrucje-grada-zagreba",
+    "resource": "https://data.zagreb.hr/dataset/37fa6630-0a87-4084-b62d-ff5edab3610b/resource/482b7289-d397-4c38-9929-5d0410ad0e16/download/rpj_mo.zip",
+    "sha256": "f11c1c0c44f2557b502685697709a9be6e3f048aef52471ac24af062d756efb5",
+    "format": "SHP",
+    "crs": "EPSG:3765 HTRS96/Croatia TM",
+    "recordDate": "2025-02-03",
+    "records": 218
+   },
+   {
+    "role": "district membership cross-check",
+    "dataset": "https://data.zagreb.hr/dataset/mjesni-odbori",
+    "resource": "https://data.zagreb.hr/dataset/4dc300c3-ab50-454d-98d1-47cd739b1132/resource/de825f7b-9d87-4159-9500-475651e0acb3/download/mjesniodborii.csv",
+    "sha256": "eaa3f907f2df2092b5b5249161f5c10764da22f9d533e622cef1b80303e1ef74",
+    "format": "CSV",
+    "records": 218,
+    "note": "Older 2024 table. 215 local committees matched by name and agree on district, 3 have no same-named row (renamed or split since): Donja Kustošija, Janko Matko, Vugrovec. Used only as a cross-check, never as source of names or coordinates."
+   }
+  ],
+  "method": "Anchors are the polygon centroid in EPSG:3765, or a representative point inside the polygon when the centroid falls outside it, transformed to WGS84. bbox is the polygon bounding box. Zoom is derived from bbox for a ~900x560 viewport, except legacy ids which keep their earlier zoom. districtId of a local committee is the district with the largest polygon overlap and was cross-checked against the official CSV with zero mismatches. Colloquial groups use the union of member district polygons.",
+  "limitations": [
+   "Boundaries reflect the 2025-02-03 official record. Later changes to mjesna samouprava are not reflected until regenerated.",
+   "Only official districts and local committees come from official data. Colloquial groups and curated aliases are a small hand-written list and are not an exhaustive list of informal names, neighbourhood nicknames, streets, landmarks or settlements.",
+   "Geographic availability is not source coverage. A location being selectable says nothing about whether any Facebook group, Reddit thread or user request exists there. Group presence is never inferred.",
+   "Frontend highlight remains an approximate circle around the anchor, not the administrative boundary.",
+   "Polygon geometry is not stored here, only anchor and bounding box."
+  ]
+ },
+ "ambiguousTerms": {
+  "brezovica": [
+   "brezovica",
+   "mo-brezovica"
+  ],
+  "donja dubrava": [
+   "donja-dubrava",
+   "mo-donja-dubrava"
+  ],
+  "gornja dubrava": [
+   "gornja-dubrava",
+   "mo-gornja-dubrava"
+  ],
+  "gornji grad": [
+   "gornji-grad-medvescak",
+   "mo-gornji-grad"
+  ],
+  "maksimir": [
+   "maksimir",
+   "mo-maksimir"
+  ],
+  "pescenica": [
+   "mo-pescenica",
+   "pescenica-zitnjak"
+  ],
+  "trnje": [
+   "mo-trnje",
+   "trnje"
+  ]
+ },
+ "entries": [
+  {
+   "id": "brezovica",
+   "name": "Brezovica",
+   "kind": "district",
+   "districtId": "brezovica",
+   "officialCode": "00051",
+   "lat": 45.68994,
+   "lng": 15.88555,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.77444,
+    45.61316,
+    15.98398,
+    45.75209
+   ],
+   "zoom": 12.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Brezovica",
+    "Gradska četvrt Brezovica",
+    "GČ Brezovica"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "crnomerec",
+   "name": "Črnomerec",
+   "kind": "district",
+   "districtId": "crnomerec",
+   "officialCode": "00094",
+   "lat": 45.84423,
+   "lng": 15.92956,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.90029,
+    45.80874,
+    15.95877,
+    45.88974
+   ],
+   "zoom": 14.4,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Črnomerec",
+    "Gradska četvrt Črnomerec",
+    "GČ Črnomerec"
+   ],
+   "legacyIds": [
+    "crnomerec"
+   ]
+  },
+  {
+   "id": "donja-dubrava",
+   "name": "Donja Dubrava",
+   "kind": "district",
+   "districtId": "donja-dubrava",
+   "officialCode": "00108",
+   "lat": 45.81559,
+   "lng": 16.06891,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.03667,
+    45.79981,
+    16.10146,
+    45.82976
+   ],
+   "zoom": 13.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Donja Dubrava",
+    "Gradska četvrt Donja Dubrava",
+    "GČ Donja Dubrava"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "donji-grad",
+   "name": "Donji grad",
+   "kind": "district",
+   "districtId": "donji-grad",
+   "officialCode": "00116",
+   "lat": 45.80906,
+   "lng": 15.97969,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.95698,
+    45.80233,
+    16.00336,
+    45.81486
+   ],
+   "zoom": 15.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Donji grad",
+    "Gradska četvrt Donji grad",
+    "GČ Donji grad"
+   ],
+   "legacyIds": [
+    "donji-grad"
+   ]
+  },
+  {
+   "id": "gornja-dubrava",
+   "name": "Gornja Dubrava",
+   "kind": "district",
+   "districtId": "gornja-dubrava",
+   "officialCode": "00132",
+   "lat": 45.8704,
+   "lng": 16.05893,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.02294,
+    45.82371,
+    16.09935,
+    45.93794
+   ],
+   "zoom": 12.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Gornja Dubrava",
+    "Gradska četvrt Gornja Dubrava",
+    "GČ Gornja Dubrava"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "gornji-grad-medvescak",
+   "name": "Gornji grad - Medveščak",
+   "kind": "district",
+   "districtId": "gornji-grad-medvescak",
+   "officialCode": "00159",
+   "lat": 45.82917,
+   "lng": 15.97423,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.95326,
+    45.81197,
+    15.99692,
+    45.85302
+   ],
+   "zoom": 15.8,
+   "generic": false,
+   "curatedAliases": [
+    "Gornji Grad Medveščak",
+    "Gornji grad",
+    "Medveščak Gornji grad"
+   ],
+   "aliases": [
+    "Gornji grad - Medveščak",
+    "Gornji grad",
+    "Gradska četvrt Gornji grad - Medveščak",
+    "GČ Gornji grad - Medveščak",
+    "Medveščak Gornji grad"
+   ],
+   "legacyIds": [
+    "gornji-grad"
+   ]
+  },
+  {
+   "id": "maksimir",
+   "name": "Maksimir",
+   "kind": "district",
+   "districtId": "maksimir",
+   "officialCode": "00329",
+   "lat": 45.83529,
+   "lng": 16.00921,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.98025,
+    45.81153,
+    16.0384,
+    45.86074
+   ],
+   "zoom": 14.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Maksimir",
+    "Gradska četvrt Maksimir",
+    "GČ Maksimir"
+   ],
+   "legacyIds": [
+    "maksimir"
+   ]
+  },
+  {
+   "id": "novi-zagreb-istok",
+   "name": "Novi Zagreb - istok",
+   "kind": "district",
+   "districtId": "novi-zagreb-istok",
+   "officialCode": "00426",
+   "lat": 45.76194,
+   "lng": 16.00393,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.97976,
+    45.73256,
+    16.03858,
+    45.78919
+   ],
+   "zoom": 13.0,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Novi Zagreb - istok",
+    "Gradska četvrt Novi Zagreb - istok",
+    "GČ Novi Zagreb - istok"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "novi-zagreb-zapad",
+   "name": "Novi Zagreb - zapad",
+   "kind": "district",
+   "districtId": "novi-zagreb-zapad",
+   "officialCode": "00434",
+   "lat": 45.75645,
+   "lng": 15.92887,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.82243,
+    45.70961,
+    16.01821,
+    45.81151
+   ],
+   "zoom": 12.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Novi Zagreb - zapad",
+    "Gradska četvrt Novi Zagreb - zapad",
+    "GČ Novi Zagreb - zapad"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "pescenica-zitnjak",
+   "name": "Peščenica - Žitnjak",
+   "kind": "district",
+   "districtId": "pescenica-zitnjak",
+   "officialCode": "00442",
+   "lat": 45.78997,
+   "lng": 16.05565,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.00021,
+    45.75781,
+    16.12874,
+    45.81828
+   ],
+   "zoom": 14.2,
+   "generic": false,
+   "curatedAliases": [
+    "Peščenica",
+    "Peščenica Žitnjak"
+   ],
+   "aliases": [
+    "Peščenica - Žitnjak",
+    "Gradska četvrt Peščenica - Žitnjak",
+    "GČ Peščenica - Žitnjak",
+    "Peščenica"
+   ],
+   "legacyIds": [
+    "pescenica"
+   ]
+  },
+  {
+   "id": "podsljeme",
+   "name": "Podsljeme",
+   "kind": "district",
+   "districtId": "podsljeme",
+   "officialCode": "00493",
+   "lat": 45.88856,
+   "lng": 15.99349,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.92287,
+    45.83793,
+    16.05121,
+    45.93959
+   ],
+   "zoom": 12.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Podsljeme",
+    "Gradska četvrt Podsljeme",
+    "GČ Podsljeme"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "podsused-vrapce",
+   "name": "Podsused - Vrapče",
+   "kind": "district",
+   "districtId": "podsused-vrapce",
+   "officialCode": "00507",
+   "lat": 45.8362,
+   "lng": 15.87412,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.82222,
+    45.79715,
+    15.91886,
+    45.88787
+   ],
+   "zoom": 12.6,
+   "generic": false,
+   "curatedAliases": [
+    "Podsused Vrapče"
+   ],
+   "aliases": [
+    "Podsused - Vrapče",
+    "Gradska četvrt Podsused - Vrapče",
+    "GČ Podsused - Vrapče"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "sesvete",
+   "name": "Sesvete",
+   "kind": "district",
+   "districtId": "sesvete",
+   "officialCode": "00566",
+   "lat": 45.87664,
+   "lng": 16.1411,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.0528,
+    45.77684,
+    16.23897,
+    45.96942
+   ],
+   "zoom": 14.0,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Sesvete",
+    "Gradska četvrt Sesvete",
+    "GČ Sesvete"
+   ],
+   "legacyIds": [
+    "sesvete"
+   ]
+  },
+  {
+   "id": "stenjevec",
+   "name": "Stenjevec",
+   "kind": "district",
+   "districtId": "stenjevec",
+   "officialCode": "00612",
+   "lat": 45.80094,
+   "lng": 15.88304,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.84781,
+    45.78331,
+    15.92962,
+    45.81429
+   ],
+   "zoom": 13.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Stenjevec",
+    "Gradska četvrt Stenjevec",
+    "GČ Stenjevec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "tresnjevka-jug",
+   "name": "Trešnjevka - jug",
+   "kind": "district",
+   "districtId": "tresnjevka-jug",
+   "officialCode": "00663",
+   "lat": 45.78613,
+   "lng": 15.9235,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.88704,
+    45.77208,
+    15.95896,
+    45.79764
+   ],
+   "zoom": 13.8,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Trešnjevka - jug",
+    "Gradska četvrt Trešnjevka - jug",
+    "GČ Trešnjevka - jug"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "tresnjevka-sjever",
+   "name": "Trešnjevka - sjever",
+   "kind": "district",
+   "districtId": "tresnjevka-sjever",
+   "officialCode": "00671",
+   "lat": 45.80171,
+   "lng": 15.93997,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.90873,
+    45.79393,
+    15.96604,
+    45.81091
+   ],
+   "zoom": 14.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Trešnjevka - sjever",
+    "Gradska četvrt Trešnjevka - sjever",
+    "GČ Trešnjevka - sjever"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "trnje",
+   "name": "Trnje",
+   "kind": "district",
+   "districtId": "trnje",
+   "officialCode": "00680",
+   "lat": 45.79615,
+   "lng": 15.9849,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.95288,
+    45.78377,
+    16.01689,
+    45.80883
+   ],
+   "zoom": 14.8,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Trnje",
+    "Gradska četvrt Trnje",
+    "GČ Trnje"
+   ],
+   "legacyIds": [
+    "trnje"
+   ]
+  },
+  {
+   "id": "mo-30-svibnja-1990",
+   "name": "30. svibnja 1990.",
+   "kind": "local_committee",
+   "districtId": "donja-dubrava",
+   "officialCode": "47848",
+   "lat": 45.82407,
+   "lng": 16.05763,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.05329,
+    45.81946,
+    16.06297,
+    45.82961
+   ],
+   "zoom": 15.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "30. svibnja 1990.",
+    "MO 30. svibnja 1990.",
+    "Mjesni odbor 30. svibnja 1990."
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-adamovec",
+   "name": "Adamovec",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48062",
+   "lat": 45.90309,
+   "lng": 16.16484,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.14382,
+    45.88531,
+    16.18434,
+    45.92531
+   ],
+   "zoom": 13.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Adamovec",
+    "MO Adamovec",
+    "Mjesni odbor Adamovec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-andrija-medulic",
+   "name": "Andrija Medulić",
+   "kind": "local_committee",
+   "districtId": "donji-grad",
+   "officialCode": "46329",
+   "lat": 45.81138,
+   "lng": 15.96682,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.96341,
+    45.80916,
+    15.97026,
+    45.81323
+   ],
+   "zoom": 16.8,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Andrija Medulić",
+    "MO Andrija Medulić",
+    "Mjesni odbor Andrija Medulić"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-antun-mihanovic",
+   "name": "Antun Mihanović",
+   "kind": "local_committee",
+   "districtId": "tresnjevka-sjever",
+   "officialCode": "47341",
+   "lat": 45.79974,
+   "lng": 15.96001,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.95541,
+    45.79435,
+    15.96607,
+    45.80688
+   ],
+   "zoom": 15.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Antun Mihanović",
+    "MO Antun Mihanović",
+    "Mjesni odbor Antun Mihanović"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-august-cesarec",
+   "name": "August Cesarec",
+   "kind": "local_committee",
+   "districtId": "gornji-grad-medvescak",
+   "officialCode": "46477",
+   "lat": 45.81523,
+   "lng": 15.97859,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.97553,
+    45.81207,
+    15.98331,
+    45.8213
+   ],
+   "zoom": 15.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "August Cesarec",
+    "MO August Cesarec",
+    "Mjesni odbor August Cesarec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-august-senoa",
+   "name": "August Šenoa",
+   "kind": "local_committee",
+   "districtId": "donji-grad",
+   "officialCode": "46337",
+   "lat": 45.80653,
+   "lng": 15.98057,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.9773,
+    45.8035,
+    15.98416,
+    45.80965
+   ],
+   "zoom": 16.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "August Šenoa",
+    "MO August Šenoa",
+    "Mjesni odbor August Šenoa"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-ban-keglevic",
+   "name": "Ban Keglević",
+   "kind": "local_committee",
+   "districtId": "crnomerec",
+   "officialCode": "47511",
+   "lat": 45.81122,
+   "lng": 15.95331,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.94854,
+    45.80898,
+    15.95768,
+    45.81366
+   ],
+   "zoom": 16.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Ban Keglević",
+    "MO Ban Keglević",
+    "Mjesni odbor Ban Keglević"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-bartol-kasic",
+   "name": "Bartol Kašić",
+   "kind": "local_committee",
+   "districtId": "crnomerec",
+   "officialCode": "47520",
+   "lat": 45.8125,
+   "lng": 15.94018,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.93005,
+    45.80942,
+    15.94905,
+    45.81773
+   ],
+   "zoom": 15.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Bartol Kašić",
+    "MO Bartol Kašić",
+    "Mjesni odbor Bartol Kašić"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-belovar",
+   "name": "Belovar",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48089",
+   "lat": 45.88078,
+   "lng": 16.17618,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.15766,
+    45.86527,
+    16.19038,
+    45.89286
+   ],
+   "zoom": 14.0,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Belovar",
+    "MO Belovar",
+    "Mjesni odbor Belovar"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-blagusa",
+   "name": "Blaguša",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48097",
+   "lat": 45.93815,
+   "lng": 16.12466,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.10817,
+    45.9042,
+    16.1419,
+    45.96865
+   ],
+   "zoom": 12.8,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Blaguša",
+    "MO Blaguša",
+    "Mjesni odbor Blaguša"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-blato",
+   "name": "Blato",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-zapad",
+   "officialCode": "47171",
+   "lat": 45.76336,
+   "lng": 15.91661,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.89773,
+    45.7459,
+    15.9356,
+    45.77809
+   ],
+   "zoom": 13.8,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Blato",
+    "MO Blato",
+    "Mjesni odbor Blato"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-borongaj-lugovi",
+   "name": "Borongaj - Lugovi",
+   "kind": "local_committee",
+   "districtId": "pescenica-zitnjak",
+   "officialCode": "46876",
+   "lat": 45.80768,
+   "lng": 16.03912,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.02721,
+    45.79813,
+    16.04897,
+    45.81799
+   ],
+   "zoom": 14.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Borongaj - Lugovi",
+    "MO Borongaj - Lugovi",
+    "Mjesni odbor Borongaj - Lugovi"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-botinec",
+   "name": "Botinec",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-zapad",
+   "officialCode": "47180",
+   "lat": 45.74299,
+   "lng": 15.93678,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.91982,
+    45.72318,
+    15.95423,
+    45.76051
+   ],
+   "zoom": 13.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Botinec",
+    "MO Botinec",
+    "Mjesni odbor Botinec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-branovec-jalsevec",
+   "name": "Branovec - Jalševec",
+   "kind": "local_committee",
+   "districtId": "gornja-dubrava",
+   "officialCode": "47619",
+   "lat": 45.86956,
+   "lng": 16.07832,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.06626,
+    45.84872,
+    16.09594,
+    45.88384
+   ],
+   "zoom": 13.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Branovec - Jalševec",
+    "MO Branovec - Jalševec",
+    "Mjesni odbor Branovec - Jalševec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-brezovica",
+   "name": "Brezovica",
+   "kind": "local_committee",
+   "districtId": "brezovica",
+   "officialCode": "48585",
+   "lat": 45.72427,
+   "lng": 15.90407,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.87358,
+    45.6954,
+    15.9295,
+    45.75183
+   ],
+   "zoom": 13.0,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Brezovica",
+    "MO Brezovica",
+    "Mjesni odbor Brezovica"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-bruno-busic",
+   "name": "Bruno Bušić",
+   "kind": "local_committee",
+   "districtId": "pescenica-zitnjak",
+   "officialCode": "46884",
+   "lat": 45.81188,
+   "lng": 16.02611,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.01397,
+    45.80726,
+    16.03425,
+    45.81599
+   ],
+   "zoom": 15.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Bruno Bušić",
+    "MO Bruno Bušić",
+    "Mjesni odbor Bruno Bušić"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-budenec",
+   "name": "Budenec",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48119",
+   "lat": 45.8346,
+   "lng": 16.17718,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.16362,
+    45.82299,
+    16.19198,
+    45.84496
+   ],
+   "zoom": 14.3,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Budenec",
+    "MO Budenec",
+    "Mjesni odbor Budenec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-bukovac",
+   "name": "Bukovac",
+   "kind": "local_committee",
+   "districtId": "maksimir",
+   "officialCode": "46752",
+   "lat": 45.84016,
+   "lng": 16.00983,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.99827,
+    45.82688,
+    16.01971,
+    45.85062
+   ],
+   "zoom": 14.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Bukovac",
+    "MO Bukovac",
+    "Mjesni odbor Bukovac"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-buzin",
+   "name": "Buzin",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-istok",
+   "officialCode": "47040",
+   "lat": 45.74891,
+   "lng": 15.99838,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.9797,
+    45.73882,
+    16.02531,
+    45.75762
+   ],
+   "zoom": 14.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Buzin",
+    "MO Buzin",
+    "Mjesni odbor Buzin"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-cehi",
+   "name": "Čehi",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-zapad",
+   "officialCode": "47198",
+   "lat": 45.73994,
+   "lng": 15.95724,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.93868,
+    45.71901,
+    15.98396,
+    45.75309
+   ],
+   "zoom": 13.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Čehi",
+    "MO Čehi",
+    "Mjesni odbor Čehi"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-centar",
+   "name": "Centar",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48127",
+   "lat": 45.82508,
+   "lng": 16.11323,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.10265,
+    45.82165,
+    16.12289,
+    45.82791
+   ],
+   "zoom": 15.6,
+   "generic": true,
+   "curatedAliases": [],
+   "aliases": [
+    "Centar",
+    "Centar Sesvete",
+    "MO Centar",
+    "MO Centar Sesvete",
+    "Mjesni odbor Centar",
+    "Mjesni odbor Centar Sesvete"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-cerje-sesvete",
+   "name": "Cerje - Sesvete",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48135",
+   "lat": 45.82894,
+   "lng": 16.19157,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.18074,
+    45.82242,
+    16.20455,
+    45.83539
+   ],
+   "zoom": 15.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Cerje - Sesvete",
+    "MO Cerje - Sesvete",
+    "Mjesni odbor Cerje - Sesvete"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-ciglenica",
+   "name": "Ciglenica",
+   "kind": "local_committee",
+   "districtId": "tresnjevka-sjever",
+   "officialCode": "47350",
+   "lat": 45.80704,
+   "lng": 15.94256,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.9353,
+    45.80348,
+    15.95106,
+    45.81049
+   ],
+   "zoom": 16.0,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Ciglenica",
+    "MO Ciglenica",
+    "Mjesni odbor Ciglenica"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-cucerje",
+   "name": "Čučerje",
+   "kind": "local_committee",
+   "districtId": "gornja-dubrava",
+   "officialCode": "47627",
+   "lat": 45.90673,
+   "lng": 16.05685,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.0352,
+    45.87998,
+    16.07999,
+    45.93787
+   ],
+   "zoom": 12.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Čučerje",
+    "MO Čučerje",
+    "Mjesni odbor Čučerje"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-culinec",
+   "name": "Čulinec",
+   "kind": "local_committee",
+   "districtId": "donja-dubrava",
+   "officialCode": "47783",
+   "lat": 45.81702,
+   "lng": 16.06681,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.06148,
+    45.81166,
+    16.07186,
+    45.82125
+   ],
+   "zoom": 15.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Čulinec",
+    "MO Čulinec",
+    "Mjesni odbor Čulinec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-cvjetni-trg",
+   "name": "Cvjetni trg",
+   "kind": "local_committee",
+   "districtId": "donji-grad",
+   "officialCode": "46345",
+   "lat": 45.81127,
+   "lng": 15.97364,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.96961,
+    45.80908,
+    15.97731,
+    45.81327
+   ],
+   "zoom": 16.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Cvjetni trg",
+    "MO Cvjetni trg",
+    "Mjesni odbor Cvjetni trg"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-cvjetnica",
+   "name": "Cvjetnica",
+   "kind": "local_committee",
+   "districtId": "trnje",
+   "officialCode": "46612",
+   "lat": 45.79665,
+   "lng": 15.96291,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.95919,
+    45.7944,
+    15.96584,
+    45.79937
+   ],
+   "zoom": 16.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Cvjetnica",
+    "MO Cvjetnica",
+    "Mjesni odbor Cvjetnica"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-cvjetno-naselje",
+   "name": "Cvjetno naselje",
+   "kind": "local_committee",
+   "districtId": "trnje",
+   "officialCode": "46639",
+   "lat": 45.79128,
+   "lng": 15.97062,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.96208,
+    45.78647,
+    15.97943,
+    45.79516
+   ],
+   "zoom": 15.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Cvjetno naselje",
+    "MO Cvjetno naselje",
+    "Mjesni odbor Cvjetno naselje"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-dankovec",
+   "name": "Dankovec",
+   "kind": "local_committee",
+   "districtId": "gornja-dubrava",
+   "officialCode": "47635",
+   "lat": 45.87752,
+   "lng": 16.059,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.03632,
+    45.8605,
+    16.08305,
+    45.89626
+   ],
+   "zoom": 13.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Dankovec",
+    "MO Dankovec",
+    "Mjesni odbor Dankovec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-demerje",
+   "name": "Demerje",
+   "kind": "local_committee",
+   "districtId": "brezovica",
+   "officialCode": "48593",
+   "lat": 45.71866,
+   "lng": 15.86796,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.8295,
+    45.70121,
+    15.89622,
+    45.74061
+   ],
+   "zoom": 13.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Demerje",
+    "MO Demerje",
+    "Mjesni odbor Demerje"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-dinko-simunovic",
+   "name": "Dinko Šimunović",
+   "kind": "local_committee",
+   "districtId": "maksimir",
+   "officialCode": "46779",
+   "lat": 45.82261,
+   "lng": 15.99642,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.98924,
+    45.81522,
+    16.00228,
+    45.83242
+   ],
+   "zoom": 14.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Dinko Šimunović",
+    "MO Dinko Šimunović",
+    "Mjesni odbor Dinko Šimunović"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-djurdjekovec",
+   "name": "Đurđekovec",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48178",
+   "lat": 45.87171,
+   "lng": 16.12237,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.11204,
+    45.85655,
+    16.13438,
+    45.88764
+   ],
+   "zoom": 13.8,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Đurđekovec",
+    "MO Đurđekovec",
+    "Mjesni odbor Đurđekovec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-dobri-dol",
+   "name": "Dobri Dol",
+   "kind": "local_committee",
+   "districtId": "maksimir",
+   "officialCode": "46787",
+   "lat": 45.82355,
+   "lng": 16.0033,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.99715,
+    45.81736,
+    16.01243,
+    45.82864
+   ],
+   "zoom": 15.3,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Dobri Dol",
+    "MO Dobri Dol",
+    "Mjesni odbor Dobri Dol"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-dobrodol",
+   "name": "Dobrodol",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48143",
+   "lat": 45.85509,
+   "lng": 16.10613,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.08184,
+    45.83865,
+    16.12796,
+    45.86999
+   ],
+   "zoom": 13.8,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Dobrodol",
+    "MO Dobrodol",
+    "Mjesni odbor Dobrodol"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-donja-dubrava",
+   "name": "Donja Dubrava",
+   "kind": "local_committee",
+   "districtId": "donja-dubrava",
+   "officialCode": "47791",
+   "lat": 45.82143,
+   "lng": 16.04282,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.03653,
+    45.81676,
+    16.04964,
+    45.82662
+   ],
+   "zoom": 15.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Donja Dubrava",
+    "MO Donja Dubrava",
+    "Mjesni odbor Donja Dubrava"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-donja-kustosija",
+   "name": "Donja Kustošija",
+   "kind": "local_committee",
+   "districtId": "stenjevec",
+   "officialCode": "47872",
+   "lat": 45.80885,
+   "lng": 15.92222,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.91702,
+    45.80617,
+    15.92965,
+    45.81132
+   ],
+   "zoom": 16.3,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Donja Kustošija",
+    "MO Donja Kustošija",
+    "Mjesni odbor Donja Kustošija"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-donje-svetice",
+   "name": "Donje Svetice",
+   "kind": "local_committee",
+   "districtId": "pescenica-zitnjak",
+   "officialCode": "46892",
+   "lat": 45.80684,
+   "lng": 16.01222,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.00334,
+    45.802,
+    16.02003,
+    45.81186
+   ],
+   "zoom": 15.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Donje Svetice",
+    "MO Donje Svetice",
+    "Mjesni odbor Donje Svetice"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-dotrscina",
+   "name": "Dotrščina",
+   "kind": "local_committee",
+   "districtId": "maksimir",
+   "officialCode": "46795",
+   "lat": 45.8487,
+   "lng": 16.014,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.99337,
+    45.83456,
+    16.03249,
+    45.86072
+   ],
+   "zoom": 14.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Dotrščina",
+    "MO Dotrščina",
+    "Mjesni odbor Dotrščina"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-dr-ante-starcevic",
+   "name": "Dr. Ante Starčević",
+   "kind": "local_committee",
+   "districtId": "tresnjevka-sjever",
+   "officialCode": "47368",
+   "lat": 45.80485,
+   "lng": 15.93033,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.92451,
+    45.79805,
+    15.93564,
+    45.81076
+   ],
+   "zoom": 15.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Dr. Ante Starčević",
+    "MO Dr. Ante Starčević",
+    "Mjesni odbor Dr. Ante Starčević"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-dragonozec",
+   "name": "Dragonožec",
+   "kind": "local_committee",
+   "districtId": "brezovica",
+   "officialCode": "48607",
+   "lat": 45.6638,
+   "lng": 15.94743,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.92549,
+    45.62945,
+    15.9678,
+    45.69027
+   ],
+   "zoom": 12.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Dragonožec",
+    "MO Dragonožec",
+    "Mjesni odbor Dragonožec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-drencec",
+   "name": "Drenčec",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48151",
+   "lat": 45.8367,
+   "lng": 16.20377,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.19114,
+    45.82902,
+    16.21748,
+    45.84404
+   ],
+   "zoom": 14.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Drenčec",
+    "MO Drenčec",
+    "Mjesni odbor Drenčec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-dubec",
+   "name": "Dubec",
+   "kind": "local_committee",
+   "districtId": "gornja-dubrava",
+   "officialCode": "47643",
+   "lat": 45.83174,
+   "lng": 16.07888,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.07326,
+    45.827,
+    16.08446,
+    45.83674
+   ],
+   "zoom": 15.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Dubec",
+    "MO Dubec",
+    "Mjesni odbor Dubec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-dubrava-srediste",
+   "name": "Dubrava - središte",
+   "kind": "local_committee",
+   "districtId": "gornja-dubrava",
+   "officialCode": "47651",
+   "lat": 45.8299,
+   "lng": 16.04275,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.03381,
+    45.82375,
+    16.05259,
+    45.83745
+   ],
+   "zoom": 15.0,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Dubrava - središte",
+    "MO Dubrava - središte",
+    "Mjesni odbor Dubrava - središte"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-dugave",
+   "name": "Dugave",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-istok",
+   "officialCode": "47058",
+   "lat": 45.76444,
+   "lng": 15.99736,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.9899,
+    45.75962,
+    16.00747,
+    45.76831
+   ],
+   "zoom": 15.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Dugave",
+    "MO Dugave",
+    "Mjesni odbor Dugave"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-dumovec",
+   "name": "Dumovec",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48160",
+   "lat": 45.8016,
+   "lng": 16.15967,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.144,
+    45.78918,
+    16.17414,
+    45.81526
+   ],
+   "zoom": 14.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Dumovec",
+    "MO Dumovec",
+    "Mjesni odbor Dumovec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-eugen-kvaternik",
+   "name": "Eugen Kvaternik",
+   "kind": "local_committee",
+   "districtId": "maksimir",
+   "officialCode": "46809",
+   "lat": 45.81416,
+   "lng": 16.0009,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.99622,
+    45.8116,
+    16.00478,
+    45.81653
+   ],
+   "zoom": 16.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Eugen Kvaternik",
+    "MO Eugen Kvaternik",
+    "Mjesni odbor Eugen Kvaternik"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-ferenscica",
+   "name": "Ferenščica",
+   "kind": "local_committee",
+   "districtId": "pescenica-zitnjak",
+   "officialCode": "46906",
+   "lat": 45.80029,
+   "lng": 16.02276,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.01104,
+    45.79674,
+    16.03662,
+    45.80442
+   ],
+   "zoom": 15.3,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Ferenščica",
+    "MO Ferenščica",
+    "Mjesni odbor Ferenščica"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-folnegovicevo-naselje",
+   "name": "Folnegovićevo naselje",
+   "kind": "local_committee",
+   "districtId": "pescenica-zitnjak",
+   "officialCode": "46914",
+   "lat": 45.79324,
+   "lng": 16.00798,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.00263,
+    45.78934,
+    16.01442,
+    45.79632
+   ],
+   "zoom": 16.0,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Folnegovićevo naselje",
+    "MO Folnegovićevo naselje",
+    "Mjesni odbor Folnegovićevo naselje"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-gajec",
+   "name": "Gajec",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48186",
+   "lat": 45.88327,
+   "lng": 16.14717,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.13302,
+    45.87513,
+    16.159,
+    45.89099
+   ],
+   "zoom": 14.8,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Gajec",
+    "MO Gajec",
+    "Mjesni odbor Gajec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-gajevo",
+   "name": "Gajevo",
+   "kind": "local_committee",
+   "districtId": "tresnjevka-jug",
+   "officialCode": "47457",
+   "lat": 45.78898,
+   "lng": 15.93396,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.92919,
+    45.78229,
+    15.93851,
+    45.79454
+   ],
+   "zoom": 15.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Gajevo",
+    "MO Gajevo",
+    "Mjesni odbor Gajevo"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-gajisce",
+   "name": "Gajišće",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48194",
+   "lat": 45.83619,
+   "lng": 16.11939,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.10912,
+    45.82405,
+    16.13086,
+    45.85058
+   ],
+   "zoom": 14.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Gajišće",
+    "MO Gajišće",
+    "Mjesni odbor Gajišće"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-gajnice",
+   "name": "Gajnice",
+   "kind": "local_committee",
+   "districtId": "podsused-vrapce",
+   "officialCode": "47945",
+   "lat": 45.81641,
+   "lng": 15.8744,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.86928,
+    45.81329,
+    15.88038,
+    45.81945
+   ],
+   "zoom": 16.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Gajnice",
+    "MO Gajnice",
+    "Mjesni odbor Gajnice"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-glavnica-donja",
+   "name": "Glavnica Donja",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48208",
+   "lat": 45.94667,
+   "lng": 16.14286,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.11808,
+    45.92333,
+    16.16347,
+    45.96922
+   ],
+   "zoom": 13.3,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Glavnica Donja",
+    "MO Glavnica Donja",
+    "Mjesni odbor Glavnica Donja"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-glavnica-gornja",
+   "name": "Glavnica Gornja",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48216",
+   "lat": 45.94144,
+   "lng": 16.13519,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.11685,
+    45.92349,
+    16.15556,
+    45.96909
+   ],
+   "zoom": 13.3,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Glavnica Gornja",
+    "MO Glavnica Gornja",
+    "Mjesni odbor Glavnica Gornja"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-glavnicica",
+   "name": "Glavničica",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48224",
+   "lat": 45.84888,
+   "lng": 16.21358,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.19634,
+    45.83567,
+    16.23946,
+    45.86437
+   ],
+   "zoom": 14.0,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Glavničica",
+    "MO Glavničica",
+    "Mjesni odbor Glavničica"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-goranec",
+   "name": "Goranec",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48232",
+   "lat": 45.89939,
+   "lng": 16.0802,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.06958,
+    45.88614,
+    16.09274,
+    45.91388
+   ],
+   "zoom": 14.0,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Goranec",
+    "MO Goranec",
+    "Mjesni odbor Goranec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-gornja-dubrava",
+   "name": "Gornja Dubrava",
+   "kind": "local_committee",
+   "districtId": "gornja-dubrava",
+   "officialCode": "47660",
+   "lat": 45.83983,
+   "lng": 16.03839,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.02852,
+    45.83081,
+    16.04696,
+    45.84924
+   ],
+   "zoom": 14.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Gornja Dubrava",
+    "MO Gornja Dubrava",
+    "Mjesni odbor Gornja Dubrava"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-gornja-kustosija",
+   "name": "Gornja Kustošija",
+   "kind": "local_committee",
+   "districtId": "crnomerec",
+   "officialCode": "47538",
+   "lat": 45.83288,
+   "lng": 15.91869,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.90024,
+    45.81362,
+    15.93563,
+    45.85484
+   ],
+   "zoom": 13.4,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Gornja Kustošija",
+    "MO Gornja Kustošija",
+    "Mjesni odbor Gornja Kustošija"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-gornje-vrapce",
+   "name": "Gornje Vrapče",
+   "kind": "local_committee",
+   "districtId": "podsused-vrapce",
+   "officialCode": "47953",
+   "lat": 45.85567,
+   "lng": 15.89904,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.88187,
+    45.82398,
+    15.91886,
+    45.88787
+   ],
+   "zoom": 12.8,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Gornje Vrapče",
+    "MO Gornje Vrapče",
+    "Mjesni odbor Gornje Vrapče"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-gornji-grad",
+   "name": "Gornji grad",
+   "kind": "local_committee",
+   "districtId": "gornji-grad-medvescak",
+   "officialCode": "46485",
+   "lat": 45.82356,
+   "lng": 15.97389,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.96924,
+    45.81292,
+    15.9773,
+    45.83849
+   ],
+   "zoom": 14.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Gornji grad",
+    "MO Gornji grad",
+    "Mjesni odbor Gornji grad"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-gornji-stenjevec",
+   "name": "Gornji Stenjevec",
+   "kind": "local_committee",
+   "districtId": "podsused-vrapce",
+   "officialCode": "47961",
+   "lat": 45.83636,
+   "lng": 15.87173,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.8566,
+    45.81355,
+    15.8857,
+    45.86537
+   ],
+   "zoom": 13.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Gornji Stenjevec",
+    "MO Gornji Stenjevec",
+    "Mjesni odbor Gornji Stenjevec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-gracani",
+   "name": "Gračani",
+   "kind": "local_committee",
+   "districtId": "podsljeme",
+   "officialCode": "48011",
+   "lat": 45.87571,
+   "lng": 15.97133,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.94506,
+    45.84191,
+    16.0023,
+    45.90754
+   ],
+   "zoom": 12.8,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Gračani",
+    "MO Gračani",
+    "Mjesni odbor Gračani"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-granesina",
+   "name": "Granešina",
+   "kind": "local_committee",
+   "districtId": "gornja-dubrava",
+   "officialCode": "47678",
+   "lat": 45.85261,
+   "lng": 16.05186,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.04454,
+    45.84137,
+    16.06136,
+    45.86467
+   ],
+   "zoom": 14.3,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Granešina",
+    "MO Granešina",
+    "Mjesni odbor Granešina"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-granesinski-novaki",
+   "name": "Granešinski Novaki",
+   "kind": "local_committee",
+   "districtId": "gornja-dubrava",
+   "officialCode": "47686",
+   "lat": 45.85035,
+   "lng": 16.03659,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.02788,
+    45.84305,
+    16.04856,
+    45.85752
+   ],
+   "zoom": 14.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Granešinski Novaki",
+    "MO Granešinski Novaki",
+    "Mjesni odbor Granešinski Novaki"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-gupceva-zvijezda",
+   "name": "Gupčeva zvijezda",
+   "kind": "local_committee",
+   "districtId": "gornji-grad-medvescak",
+   "officialCode": "46493",
+   "lat": 45.83956,
+   "lng": 15.98129,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.9694,
+    45.82745,
+    15.99412,
+    45.853
+   ],
+   "zoom": 14.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Gupčeva zvijezda",
+    "MO Gupčeva zvijezda",
+    "Mjesni odbor Gupčeva zvijezda"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-havidici",
+   "name": "Havidići",
+   "kind": "local_committee",
+   "districtId": "brezovica",
+   "officialCode": "48615",
+   "lat": 45.62356,
+   "lng": 15.92521,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.9078,
+    45.61393,
+    15.94201,
+    45.63496
+   ],
+   "zoom": 14.4,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Havidići",
+    "MO Havidići",
+    "Mjesni odbor Havidići"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-horvati",
+   "name": "Horvati",
+   "kind": "local_committee",
+   "districtId": "brezovica",
+   "officialCode": "48623",
+   "lat": 45.70969,
+   "lng": 15.80537,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.77355,
+    45.68221,
+    15.85242,
+    45.73851
+   ],
+   "zoom": 13.0,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Horvati",
+    "MO Horvati",
+    "Mjesni odbor Horvati"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-horvati-srednjaci",
+   "name": "Horvati - Srednjaci",
+   "kind": "local_committee",
+   "districtId": "tresnjevka-jug",
+   "officialCode": "47465",
+   "lat": 45.78692,
+   "lng": 15.94322,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.93692,
+    45.7797,
+    15.95183,
+    45.79449
+   ],
+   "zoom": 14.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Horvati - Srednjaci",
+    "MO Horvati - Srednjaci",
+    "Mjesni odbor Horvati - Srednjaci"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-hrasce",
+   "name": "Hrašće",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-zapad",
+   "officialCode": "47201",
+   "lat": 45.72544,
+   "lng": 16.00549,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.98627,
+    45.71615,
+    16.01884,
+    45.73743
+   ],
+   "zoom": 14.4,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Hrašće",
+    "MO Hrašće",
+    "Mjesni odbor Hrašće"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-hrelic",
+   "name": "Hrelić",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-istok",
+   "officialCode": "47066",
+   "lat": 45.75754,
+   "lng": 16.00707,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.98837,
+    45.75168,
+    16.02749,
+    45.76473
+   ],
+   "zoom": 14.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Hrelić",
+    "MO Hrelić",
+    "Mjesni odbor Hrelić"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-hrvatski-leskovac",
+   "name": "Hrvatski Leskovac",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-zapad",
+   "officialCode": "47210",
+   "lat": 45.74729,
+   "lng": 15.89282,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.87774,
+    45.7367,
+    15.90902,
+    45.75692
+   ],
+   "zoom": 14.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Hrvatski Leskovac",
+    "MO Hrvatski Leskovac",
+    "Mjesni odbor Hrvatski Leskovac"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-hrvatski-narodni-vladari",
+   "name": "Hrvatski narodni vladari",
+   "kind": "local_committee",
+   "districtId": "donji-grad",
+   "officialCode": "46353",
+   "lat": 45.81154,
+   "lng": 15.98556,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.98249,
+    45.80891,
+    15.98955,
+    45.81408
+   ],
+   "zoom": 16.4,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Hrvatski narodni vladari",
+    "MO Hrvatski narodni vladari",
+    "Mjesni odbor Hrvatski narodni vladari"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-ivan-kukuljevic-sakcinski",
+   "name": "Ivan Kukuljević - Sakcinski",
+   "kind": "local_committee",
+   "districtId": "gornji-grad-medvescak",
+   "officialCode": "46507",
+   "lat": 45.82092,
+   "lng": 15.96381,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.96062,
+    45.81249,
+    15.96787,
+    45.82551
+   ],
+   "zoom": 15.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Ivan Kukuljević - Sakcinski",
+    "MO Ivan Kukuljević - Sakcinski",
+    "Mjesni odbor Ivan Kukuljević - Sakcinski"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-ivan-mazuranic",
+   "name": "Ivan Mažuranić",
+   "kind": "local_committee",
+   "districtId": "donja-dubrava",
+   "officialCode": "47805",
+   "lat": 45.82378,
+   "lng": 16.05085,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.04601,
+    45.81862,
+    16.05467,
+    45.82915
+   ],
+   "zoom": 15.4,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Ivan Mažuranić",
+    "MO Ivan Mažuranić",
+    "Mjesni odbor Ivan Mažuranić"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-ivanja-reka",
+   "name": "Ivanja Reka",
+   "kind": "local_committee",
+   "districtId": "pescenica-zitnjak",
+   "officialCode": "46949",
+   "lat": 45.79573,
+   "lng": 16.11417,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.10046,
+    45.78621,
+    16.12882,
+    45.80587
+   ],
+   "zoom": 14.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Ivanja Reka",
+    "MO Ivanja Reka",
+    "Mjesni odbor Ivanja Reka"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-jakusevec",
+   "name": "Jakuševec",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-istok",
+   "officialCode": "47074",
+   "lat": 45.76657,
+   "lng": 16.01836,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.00186,
+    45.75459,
+    16.03862,
+    45.78452
+   ],
+   "zoom": 13.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Jakuševec",
+    "MO Jakuševec",
+    "Mjesni odbor Jakuševec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-janko-matko",
+   "name": "Janko Matko",
+   "kind": "local_committee",
+   "districtId": "pescenica-zitnjak",
+   "officialCode": "46922",
+   "lat": 45.79442,
+   "lng": 16.00285,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.99991,
+    45.79163,
+    16.00586,
+    45.79599
+   ],
+   "zoom": 16.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Janko Matko",
+    "MO Janko Matko",
+    "Mjesni odbor Janko Matko"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-jarun",
+   "name": "Jarun",
+   "kind": "local_committee",
+   "districtId": "tresnjevka-jug",
+   "officialCode": "47473",
+   "lat": 45.78142,
+   "lng": 15.92553,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.90622,
+    45.77218,
+    15.94693,
+    45.79531
+   ],
+   "zoom": 14.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Jarun",
+    "MO Jarun",
+    "Mjesni odbor Jarun"
+   ],
+   "legacyIds": [
+    "jarun"
+   ]
+  },
+  {
+   "id": "mo-jelenovac",
+   "name": "Jelenovac",
+   "kind": "local_committee",
+   "districtId": "crnomerec",
+   "officialCode": "47546",
+   "lat": 45.82725,
+   "lng": 15.95323,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.94743,
+    45.81312,
+    15.95921,
+    45.84441
+   ],
+   "zoom": 13.8,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Jelenovac",
+    "MO Jelenovac",
+    "Mjesni odbor Jelenovac"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-jelkovec",
+   "name": "Jelkovec",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48259",
+   "lat": 45.80924,
+   "lng": 16.11944,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.10053,
+    45.7994,
+    16.13707,
+    45.82344
+   ],
+   "zoom": 14.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Jelkovec",
+    "MO Jelkovec",
+    "Mjesni odbor Jelkovec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-jesenovec",
+   "name": "Jesenovec",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48267",
+   "lat": 45.91588,
+   "lng": 16.14704,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.13534,
+    45.90582,
+    16.1584,
+    45.92732
+   ],
+   "zoom": 14.4,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Jesenovec",
+    "MO Jesenovec",
+    "Mjesni odbor Jesenovec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-jezdovec",
+   "name": "Ježdovec",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-zapad",
+   "officialCode": "47228",
+   "lat": 45.78028,
+   "lng": 15.85198,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.82179,
+    45.76327,
+    15.88853,
+    45.81089
+   ],
+   "zoom": 13.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Ježdovec",
+    "MO Ježdovec",
+    "Mjesni odbor Ježdovec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-kajzerica",
+   "name": "Kajzerica",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-zapad",
+   "officialCode": "47236",
+   "lat": 45.78147,
+   "lng": 15.9647,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.94131,
+    45.77358,
+    15.98042,
+    45.78895
+   ],
+   "zoom": 14.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Kajzerica",
+    "MO Kajzerica",
+    "Mjesni odbor Kajzerica"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-kanal",
+   "name": "Kanal",
+   "kind": "local_committee",
+   "districtId": "trnje",
+   "officialCode": "46647",
+   "lat": 45.80425,
+   "lng": 16.00109,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.99248,
+    45.80073,
+    16.01093,
+    45.8088
+   ],
+   "zoom": 15.8,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Kanal",
+    "MO Kanal",
+    "Mjesni odbor Kanal"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-kasina",
+   "name": "Kašina",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48275",
+   "lat": 45.92821,
+   "lng": 16.11389,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.08536,
+    45.89735,
+    16.13573,
+    45.95866
+   ],
+   "zoom": 12.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Kašina",
+    "MO Kašina",
+    "Mjesni odbor Kašina"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-kasinska-sopnica",
+   "name": "Kašinska Sopnica",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48283",
+   "lat": 45.9139,
+   "lng": 16.10611,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.09093,
+    45.90479,
+    16.11792,
+    45.92173
+   ],
+   "zoom": 14.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Kašinska Sopnica",
+    "MO Kašinska Sopnica",
+    "Mjesni odbor Kašinska Sopnica"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-klaka",
+   "name": "Klaka",
+   "kind": "local_committee",
+   "districtId": "gornja-dubrava",
+   "officialCode": "47694",
+   "lat": 45.83827,
+   "lng": 16.05117,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.04389,
+    45.82878,
+    16.05654,
+    45.84709
+   ],
+   "zoom": 14.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Klaka",
+    "MO Klaka",
+    "Mjesni odbor Klaka"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-knez-mislav",
+   "name": "Knez Mislav",
+   "kind": "local_committee",
+   "districtId": "donji-grad",
+   "officialCode": "46361",
+   "lat": 45.80718,
+   "lng": 15.98561,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.98298,
+    45.80411,
+    15.98885,
+    45.80989
+   ],
+   "zoom": 16.3,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Knez Mislav",
+    "MO Knez Mislav",
+    "Mjesni odbor Knez Mislav"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-knezija",
+   "name": "Knežija",
+   "kind": "local_committee",
+   "districtId": "tresnjevka-jug",
+   "officialCode": "47481",
+   "lat": 45.79051,
+   "lng": 15.95117,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.94456,
+    45.78269,
+    15.95898,
+    45.79477
+   ],
+   "zoom": 15.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Knežija",
+    "MO Knežija",
+    "Mjesni odbor Knežija"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-kobiljak",
+   "name": "Kobiljak",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48291",
+   "lat": 45.82278,
+   "lng": 16.15868,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.14714,
+    45.81261,
+    16.17157,
+    45.8318
+   ],
+   "zoom": 14.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Kobiljak",
+    "MO Kobiljak",
+    "Mjesni odbor Kobiljak"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-kozari-bok",
+   "name": "Kozari Bok",
+   "kind": "local_committee",
+   "districtId": "pescenica-zitnjak",
+   "officialCode": "46957",
+   "lat": 45.79611,
+   "lng": 16.04303,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.01826,
+    45.79138,
+    16.06337,
+    45.80232
+   ],
+   "zoom": 14.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Kozari Bok",
+    "MO Kozari Bok",
+    "Mjesni odbor Kozari Bok"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-kozari-putevi",
+   "name": "Kozari putevi",
+   "kind": "local_committee",
+   "districtId": "pescenica-zitnjak",
+   "officialCode": "46965",
+   "lat": 45.78854,
+   "lng": 16.0461,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.02884,
+    45.78087,
+    16.05807,
+    45.79366
+   ],
+   "zoom": 15.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Kozari putevi",
+    "MO Kozari putevi",
+    "Mjesni odbor Kozari putevi"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-kozjak",
+   "name": "Kozjak",
+   "kind": "local_committee",
+   "districtId": "maksimir",
+   "officialCode": "46817",
+   "lat": 45.8348,
+   "lng": 15.99521,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.98826,
+    45.8269,
+    16.0045,
+    45.84357
+   ],
+   "zoom": 14.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Kozjak",
+    "MO Kozjak",
+    "Mjesni odbor Kozjak"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-kralj-petar-svacic",
+   "name": "Kralj Petar Svačić",
+   "kind": "local_committee",
+   "districtId": "donji-grad",
+   "officialCode": "46370",
+   "lat": 45.807,
+   "lng": 15.97474,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.97104,
+    45.80407,
+    15.97793,
+    45.80962
+   ],
+   "zoom": 16.3,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Kralj Petar Svačić",
+    "MO Kralj Petar Svačić",
+    "Mjesni odbor Kralj Petar Svačić"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-kralj-zvonimir",
+   "name": "Kralj Zvonimir",
+   "kind": "local_committee",
+   "districtId": "donji-grad",
+   "officialCode": "46388",
+   "lat": 45.80902,
+   "lng": 15.99679,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.99123,
+    45.80568,
+    16.00339,
+    45.81184
+   ],
+   "zoom": 16.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Kralj Zvonimir",
+    "MO Kralj Zvonimir",
+    "Mjesni odbor Kralj Zvonimir"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-kraljevec",
+   "name": "Kraljevec",
+   "kind": "local_committee",
+   "districtId": "gornji-grad-medvescak",
+   "officialCode": "46515",
+   "lat": 45.83436,
+   "lng": 15.96639,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.96159,
+    45.82469,
+    15.97037,
+    45.84351
+   ],
+   "zoom": 14.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Kraljevec",
+    "MO Kraljevec",
+    "Mjesni odbor Kraljevec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-kraljevecki-novaki",
+   "name": "Kraljevečki Novaki",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48305",
+   "lat": 45.83142,
+   "lng": 16.14753,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.13849,
+    45.82184,
+    16.15815,
+    45.84005
+   ],
+   "zoom": 14.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Kraljevečki Novaki",
+    "MO Kraljevečki Novaki",
+    "Mjesni odbor Kraljevečki Novaki"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-kucilovina",
+   "name": "Kučilovina",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48313",
+   "lat": 45.91032,
+   "lng": 16.08956,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.07338,
+    45.90131,
+    16.10773,
+    45.92022
+   ],
+   "zoom": 14.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Kučilovina",
+    "MO Kučilovina",
+    "Mjesni odbor Kučilovina"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-kupinecki-kraljevec-centar",
+   "name": "Kupinečki Kraljevec - centar",
+   "kind": "local_committee",
+   "districtId": "brezovica",
+   "officialCode": "48631",
+   "lat": 45.67686,
+   "lng": 15.85207,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.82705,
+    45.65873,
+    15.8768,
+    45.6935
+   ],
+   "zoom": 13.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Kupinečki Kraljevec - centar",
+    "MO Kupinečki Kraljevec - centar",
+    "Mjesni odbor Kupinečki Kraljevec - centar"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-kupinecki-kraljevec-i",
+   "name": "Kupinečki Kraljevec I.",
+   "kind": "local_committee",
+   "districtId": "brezovica",
+   "officialCode": "48640",
+   "lat": 45.67949,
+   "lng": 15.87788,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.8374,
+    45.642,
+    15.90402,
+    45.70511
+   ],
+   "zoom": 12.8,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Kupinečki Kraljevec I.",
+    "MO Kupinečki Kraljevec I.",
+    "Mjesni odbor Kupinečki Kraljevec I."
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-kupinecki-kraljevec-ii",
+   "name": "Kupinečki Kraljevec II.",
+   "kind": "local_committee",
+   "districtId": "brezovica",
+   "officialCode": "48658",
+   "lat": 45.68676,
+   "lng": 15.82551,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.80231,
+    45.67002,
+    15.8454,
+    45.70637
+   ],
+   "zoom": 13.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Kupinečki Kraljevec II.",
+    "MO Kupinečki Kraljevec II.",
+    "Mjesni odbor Kupinečki Kraljevec II."
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-kustosija-centar",
+   "name": "Kustošija - centar",
+   "kind": "local_committee",
+   "districtId": "crnomerec",
+   "officialCode": "47554",
+   "lat": 45.81429,
+   "lng": 15.92318,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.9132,
+    45.81037,
+    15.93564,
+    45.82015
+   ],
+   "zoom": 15.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Kustošija - centar",
+    "MO Kustošija - centar",
+    "Mjesni odbor Kustošija - centar"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-laniste",
+   "name": "Lanište",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-zapad",
+   "officialCode": "47244",
+   "lat": 45.77381,
+   "lng": 15.94849,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.94331,
+    45.77068,
+    15.95313,
+    45.7764
+   ],
+   "zoom": 16.3,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Lanište",
+    "MO Lanište",
+    "Mjesni odbor Lanište"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-lipnica",
+   "name": "Lipnica",
+   "kind": "local_committee",
+   "districtId": "brezovica",
+   "officialCode": "48666",
+   "lat": 45.6298,
+   "lng": 15.91739,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.89849,
+    45.61807,
+    15.93442,
+    45.64063
+   ],
+   "zoom": 14.3,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Lipnica",
+    "MO Lipnica",
+    "Mjesni odbor Lipnica"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-ljubljanica",
+   "name": "Ljubljanica",
+   "kind": "local_committee",
+   "districtId": "tresnjevka-sjever",
+   "officialCode": "47376",
+   "lat": 45.79753,
+   "lng": 15.93352,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.93021,
+    45.79403,
+    15.93671,
+    45.80078
+   ],
+   "zoom": 16.0,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Ljubljanica",
+    "MO Ljubljanica",
+    "Mjesni odbor Ljubljanica"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-lucko",
+   "name": "Lučko",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-zapad",
+   "officialCode": "47252",
+   "lat": 45.76901,
+   "lng": 15.88749,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.86522,
+    45.75064,
+    15.90606,
+    45.78709
+   ],
+   "zoom": 13.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Lučko",
+    "MO Lučko",
+    "Mjesni odbor Lučko"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-luka",
+   "name": "Luka",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48321",
+   "lat": 45.8328,
+   "lng": 16.10801,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.10508,
+    45.82717,
+    16.11138,
+    45.83905
+   ],
+   "zoom": 15.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Luka",
+    "MO Luka",
+    "Mjesni odbor Luka"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-luzan",
+   "name": "Lužan",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48330",
+   "lat": 45.87189,
+   "lng": 16.20102,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.18112,
+    45.85353,
+    16.22774,
+    45.89391
+   ],
+   "zoom": 13.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Lužan",
+    "MO Lužan",
+    "Mjesni odbor Lužan"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-maksimir",
+   "name": "Maksimir",
+   "kind": "local_committee",
+   "districtId": "maksimir",
+   "officialCode": "46825",
+   "lat": 45.82985,
+   "lng": 16.01615,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.99848,
+    45.81898,
+    16.02896,
+    45.83992
+   ],
+   "zoom": 14.4,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Maksimir",
+    "MO Maksimir",
+    "Mjesni odbor Maksimir"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-maksimirska-naselja",
+   "name": "Maksimirska naselja",
+   "kind": "local_committee",
+   "districtId": "maksimir",
+   "officialCode": "46833",
+   "lat": 45.82165,
+   "lng": 16.02703,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.01261,
+    45.81314,
+    16.03861,
+    45.83581
+   ],
+   "zoom": 14.3,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Maksimirska naselja",
+    "MO Maksimirska naselja",
+    "Mjesni odbor Maksimirska naselja"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-mala-mlaka",
+   "name": "Mala Mlaka",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-zapad",
+   "officialCode": "47279",
+   "lat": 45.72973,
+   "lng": 15.97196,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.95186,
+    45.71297,
+    15.98806,
+    45.75331
+   ],
+   "zoom": 13.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Mala Mlaka",
+    "MO Mala Mlaka",
+    "Mjesni odbor Mala Mlaka"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-malesnica",
+   "name": "Malešnica",
+   "kind": "local_committee",
+   "districtId": "stenjevec",
+   "officialCode": "47864",
+   "lat": 45.80928,
+   "lng": 15.89988,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.89289,
+    45.80591,
+    15.90671,
+    45.81267
+   ],
+   "zoom": 16.0,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Malešnica",
+    "MO Malešnica",
+    "Mjesni odbor Malešnica"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-marin-drzic",
+   "name": "Marin Držić",
+   "kind": "local_committee",
+   "districtId": "trnje",
+   "officialCode": "46655",
+   "lat": 45.79943,
+   "lng": 15.99226,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.98531,
+    45.79512,
+    15.9991,
+    45.80572
+   ],
+   "zoom": 15.4,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Marin Držić",
+    "MO Marin Držić",
+    "Mjesni odbor Marin Držić"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-markusevec",
+   "name": "Markuševec",
+   "kind": "local_committee",
+   "districtId": "podsljeme",
+   "officialCode": "48020",
+   "lat": 45.8908,
+   "lng": 16.00446,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.96878,
+    45.84136,
+    16.03415,
+    45.93058
+   ],
+   "zoom": 12.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Markuševec",
+    "MO Markuševec",
+    "Mjesni odbor Markuševec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-martinovka",
+   "name": "Martinovka",
+   "kind": "local_committee",
+   "districtId": "trnje",
+   "officialCode": "46663",
+   "lat": 45.80189,
+   "lng": 15.97696,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.96223,
+    45.79916,
+    15.99163,
+    45.80541
+   ],
+   "zoom": 15.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Martinovka",
+    "MO Martinovka",
+    "Mjesni odbor Martinovka"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-masiceva",
+   "name": "Mašićeva",
+   "kind": "local_committee",
+   "districtId": "maksimir",
+   "officialCode": "46841",
+   "lat": 45.81939,
+   "lng": 16.0075,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.0,
+    45.81648,
+    16.01326,
+    45.82278
+   ],
+   "zoom": 16.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Mašićeva",
+    "MO Mašićeva",
+    "Mjesni odbor Mašićeva"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-matko-laginja",
+   "name": "Matko Laginja",
+   "kind": "local_committee",
+   "districtId": "donji-grad",
+   "officialCode": "46396",
+   "lat": 45.81212,
+   "lng": 15.9918,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.98984,
+    45.81019,
+    15.9938,
+    45.81405
+   ],
+   "zoom": 16.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Matko Laginja",
+    "MO Matko Laginja",
+    "Mjesni odbor Matko Laginja"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-medvedgrad",
+   "name": "Medvedgrad",
+   "kind": "local_committee",
+   "districtId": "crnomerec",
+   "officialCode": "47562",
+   "lat": 45.86132,
+   "lng": 15.92649,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.90538,
+    45.8315,
+    15.94447,
+    45.88967
+   ],
+   "zoom": 12.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Medvedgrad",
+    "MO Medvedgrad",
+    "Mjesni odbor Medvedgrad"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-medvescak",
+   "name": "Medveščak",
+   "kind": "local_committee",
+   "districtId": "gornji-grad-medvescak",
+   "officialCode": "46523",
+   "lat": 45.82231,
+   "lng": 15.98215,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.9785,
+    45.81696,
+    15.98652,
+    45.8301
+   ],
+   "zoom": 15.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Medveščak",
+    "MO Medveščak",
+    "Mjesni odbor Medveščak"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-mimara",
+   "name": "Mimara",
+   "kind": "local_committee",
+   "districtId": "donji-grad",
+   "officialCode": "46400",
+   "lat": 45.80665,
+   "lng": 15.96795,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.9619,
+    45.80235,
+    15.974,
+    45.81093
+   ],
+   "zoom": 15.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Mimara",
+    "MO Mimara",
+    "Mjesni odbor Mimara"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-miramare",
+   "name": "Miramare",
+   "kind": "local_committee",
+   "districtId": "trnje",
+   "officialCode": "46671",
+   "lat": 45.7973,
+   "lng": 15.97479,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.97055,
+    45.79456,
+    15.97899,
+    45.8
+   ],
+   "zoom": 16.4,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Miramare",
+    "MO Miramare",
+    "Mjesni odbor Miramare"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-mirosevec",
+   "name": "Miroševec",
+   "kind": "local_committee",
+   "districtId": "gornja-dubrava",
+   "officialCode": "47708",
+   "lat": 45.86715,
+   "lng": 16.03739,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.02269,
+    45.85229,
+    16.04821,
+    45.88196
+   ],
+   "zoom": 13.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Miroševec",
+    "MO Miroševec",
+    "Mjesni odbor Miroševec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-mlinovi",
+   "name": "Mlinovi",
+   "kind": "local_committee",
+   "districtId": "podsljeme",
+   "officialCode": "48038",
+   "lat": 45.84705,
+   "lng": 15.96337,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.95381,
+    45.8423,
+    15.97365,
+    45.85149
+   ],
+   "zoom": 15.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Mlinovi",
+    "MO Mlinovi",
+    "Mjesni odbor Mlinovi"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-moravce",
+   "name": "Moravče",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48348",
+   "lat": 45.94364,
+   "lng": 16.15987,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.1376,
+    45.91031,
+    16.18022,
+    45.96916
+   ],
+   "zoom": 12.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Moravče",
+    "MO Moravče",
+    "Mjesni odbor Moravče"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-nadbiskup-antun-bauer",
+   "name": "Nadbiskup Antun Bauer",
+   "kind": "local_committee",
+   "districtId": "donji-grad",
+   "officialCode": "46418",
+   "lat": 45.81229,
+   "lng": 15.98881,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.98695,
+    45.81017,
+    15.991,
+    45.81402
+   ],
+   "zoom": 16.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Nadbiskup Antun Bauer",
+    "MO Nadbiskup Antun Bauer",
+    "Mjesni odbor Nadbiskup Antun Bauer"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-nikola-tesla",
+   "name": "Nikola Tesla",
+   "kind": "local_committee",
+   "districtId": "tresnjevka-sjever",
+   "officialCode": "47384",
+   "lat": 45.80112,
+   "lng": 15.94685,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.94308,
+    45.79782,
+    15.95351,
+    45.80488
+   ],
+   "zoom": 16.0,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Nikola Tesla",
+    "MO Nikola Tesla",
+    "Mjesni odbor Nikola Tesla"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-nova-ves",
+   "name": "Nova Ves",
+   "kind": "local_committee",
+   "districtId": "gornji-grad-medvescak",
+   "officialCode": "46531",
+   "lat": 45.82432,
+   "lng": 15.97769,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.9758,
+    45.81808,
+    15.98006,
+    45.83139
+   ],
+   "zoom": 15.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Nova Ves",
+    "MO Nova Ves",
+    "Mjesni odbor Nova Ves"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-novi-jelkovec",
+   "name": "Novi Jelkovec",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48356",
+   "lat": 45.81135,
+   "lng": 16.10829,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.10102,
+    45.80959,
+    16.11529,
+    45.81307
+   ],
+   "zoom": 16.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Novi Jelkovec",
+    "MO Novi Jelkovec",
+    "Mjesni odbor Novi Jelkovec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-novi-retkovec",
+   "name": "Novi Retkovec",
+   "kind": "local_committee",
+   "districtId": "donja-dubrava",
+   "officialCode": "47813",
+   "lat": 45.82559,
+   "lng": 16.06656,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.05785,
+    45.82078,
+    16.07542,
+    45.82955
+   ],
+   "zoom": 15.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Novi Retkovec",
+    "MO Novi Retkovec",
+    "Mjesni odbor Novi Retkovec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-novo-brestje",
+   "name": "Novo Brestje",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48364",
+   "lat": 45.82916,
+   "lng": 16.08849,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.0812,
+    45.8249,
+    16.09826,
+    45.83421
+   ],
+   "zoom": 15.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Novo Brestje",
+    "MO Novo Brestje",
+    "Mjesni odbor Novo Brestje"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-novoselec",
+   "name": "Novoselec",
+   "kind": "local_committee",
+   "districtId": "gornja-dubrava",
+   "officialCode": "47716",
+   "lat": 45.8512,
+   "lng": 16.08413,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.06974,
+    45.83671,
+    16.09986,
+    45.86691
+   ],
+   "zoom": 13.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Novoselec",
+    "MO Novoselec",
+    "Mjesni odbor Novoselec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-odra",
+   "name": "Odra",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-zapad",
+   "officialCode": "47287",
+   "lat": 45.72906,
+   "lng": 15.98985,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.97346,
+    45.71041,
+    16.00647,
+    45.74395
+   ],
+   "zoom": 13.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Odra",
+    "MO Odra",
+    "Mjesni odbor Odra"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-odranski-obrez",
+   "name": "Odranski Obrež",
+   "kind": "local_committee",
+   "districtId": "brezovica",
+   "officialCode": "48674",
+   "lat": 45.70297,
+   "lng": 15.94415,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.90898,
+    45.6725,
+    15.98414,
+    45.73398
+   ],
+   "zoom": 12.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Odranski Obrež",
+    "MO Odranski Obrež",
+    "Mjesni odbor Odranski Obrež"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-odranski-strmec",
+   "name": "Odranski Strmec",
+   "kind": "local_committee",
+   "districtId": "brezovica",
+   "officialCode": "48682",
+   "lat": 45.69432,
+   "lng": 15.91137,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.88877,
+    45.66904,
+    15.93151,
+    45.72212
+   ],
+   "zoom": 13.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Odranski Strmec",
+    "MO Odranski Strmec",
+    "Mjesni odbor Odranski Strmec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-oporovec",
+   "name": "Oporovec",
+   "kind": "local_committee",
+   "districtId": "gornja-dubrava",
+   "officialCode": "47724",
+   "lat": 45.85493,
+   "lng": 16.06416,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.05473,
+    45.83893,
+    16.07554,
+    45.87113
+   ],
+   "zoom": 13.8,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Oporovec",
+    "MO Oporovec",
+    "Mjesni odbor Oporovec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-paruzevina",
+   "name": "Paruževina",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48372",
+   "lat": 45.87808,
+   "lng": 16.13105,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.11775,
+    45.85964,
+    16.14421,
+    45.9026
+   ],
+   "zoom": 13.4,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Paruževina",
+    "MO Paruževina",
+    "Mjesni odbor Paruževina"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-pavao-subic",
+   "name": "Pavao Šubić",
+   "kind": "local_committee",
+   "districtId": "donji-grad",
+   "officialCode": "46426",
+   "lat": 45.81254,
+   "lng": 15.99599,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.99308,
+    45.81046,
+    15.99993,
+    45.81485
+   ],
+   "zoom": 16.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Pavao Šubić",
+    "MO Pavao Šubić",
+    "Mjesni odbor Pavao Šubić"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-perjavica-borcec",
+   "name": "Perjavica - Borčec",
+   "kind": "local_committee",
+   "districtId": "podsused-vrapce",
+   "officialCode": "47970",
+   "lat": 45.83035,
+   "lng": 15.8852,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.87274,
+    45.81489,
+    15.89647,
+    45.85165
+   ],
+   "zoom": 13.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Perjavica - Borčec",
+    "MO Perjavica - Borčec",
+    "Mjesni odbor Perjavica - Borčec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-pescenica",
+   "name": "Peščenica",
+   "kind": "local_committee",
+   "districtId": "pescenica-zitnjak",
+   "officialCode": "46973",
+   "lat": 45.81245,
+   "lng": 16.00916,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.00022,
+    45.80888,
+    16.01908,
+    45.81538
+   ],
+   "zoom": 15.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Peščenica",
+    "MO Peščenica",
+    "Mjesni odbor Peščenica"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-petar-kresimir-iv",
+   "name": "Petar Krešimir IV.",
+   "kind": "local_committee",
+   "districtId": "donji-grad",
+   "officialCode": "46434",
+   "lat": 45.80739,
+   "lng": 15.99012,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.98769,
+    45.80489,
+    15.99315,
+    45.81028
+   ],
+   "zoom": 16.4,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Petar Krešimir IV.",
+    "MO Petar Krešimir IV.",
+    "Mjesni odbor Petar Krešimir IV."
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-petar-zrinski",
+   "name": "Petar Zrinski",
+   "kind": "local_committee",
+   "districtId": "donji-grad",
+   "officialCode": "46442",
+   "lat": 45.81066,
+   "lng": 15.96044,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.95693,
+    45.80754,
+    15.96394,
+    45.81325
+   ],
+   "zoom": 16.3,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Petar Zrinski",
+    "MO Petar Zrinski",
+    "Mjesni odbor Petar Zrinski"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-petrova",
+   "name": "Petrova",
+   "kind": "local_committee",
+   "districtId": "gornji-grad-medvescak",
+   "officialCode": "46540",
+   "lat": 45.81556,
+   "lng": 15.99283,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.98747,
+    45.814,
+    15.99724,
+    45.8175
+   ],
+   "zoom": 16.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Petrova",
+    "MO Petrova",
+    "Mjesni odbor Petrova"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-petrusevec",
+   "name": "Petruševec",
+   "kind": "local_committee",
+   "districtId": "pescenica-zitnjak",
+   "officialCode": "46981",
+   "lat": 45.7719,
+   "lng": 16.04678,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.02909,
+    45.75793,
+    16.07032,
+    45.78976
+   ],
+   "zoom": 13.8,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Petruševec",
+    "MO Petruševec",
+    "Mjesni odbor Petruševec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-planina-donja",
+   "name": "Planina Donja",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48399",
+   "lat": 45.92673,
+   "lng": 16.08511,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.06166,
+    45.91625,
+    16.10596,
+    45.93582
+   ],
+   "zoom": 14.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Planina Donja",
+    "MO Planina Donja",
+    "Mjesni odbor Planina Donja"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-planina-gornja",
+   "name": "Planina Gornja",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48402",
+   "lat": 45.94268,
+   "lng": 16.07717,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.05156,
+    45.93086,
+    16.10153,
+    45.95648
+   ],
+   "zoom": 14.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Planina Gornja",
+    "MO Planina Gornja",
+    "Mjesni odbor Planina Gornja"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-podsused",
+   "name": "Podsused",
+   "kind": "local_committee",
+   "districtId": "podsused-vrapce",
+   "officialCode": "47988",
+   "lat": 45.82822,
+   "lng": 15.8476,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.82222,
+    45.79715,
+    15.87605,
+    45.85564
+   ],
+   "zoom": 12.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Podsused",
+    "MO Podsused",
+    "Mjesni odbor Podsused"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-poljanice",
+   "name": "Poljanice",
+   "kind": "local_committee",
+   "districtId": "gornja-dubrava",
+   "officialCode": "47732",
+   "lat": 45.83043,
+   "lng": 16.06771,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.05853,
+    45.82761,
+    16.07642,
+    45.8333
+   ],
+   "zoom": 15.8,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Poljanice",
+    "MO Poljanice",
+    "Mjesni odbor Poljanice"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-pongracevo",
+   "name": "Pongračevo",
+   "kind": "local_committee",
+   "districtId": "tresnjevka-sjever",
+   "officialCode": "47392",
+   "lat": 45.79922,
+   "lng": 15.93976,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.93542,
+    45.79407,
+    15.94417,
+    45.80452
+   ],
+   "zoom": 15.4,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Pongračevo",
+    "MO Pongračevo",
+    "Mjesni odbor Pongračevo"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-popovec",
+   "name": "Popovec",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48429",
+   "lat": 45.85015,
+   "lng": 16.1379,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.12491,
+    45.83802,
+    16.15009,
+    45.8613
+   ],
+   "zoom": 14.3,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Popovec",
+    "MO Popovec",
+    "Mjesni odbor Popovec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-precko",
+   "name": "Prečko",
+   "kind": "local_committee",
+   "districtId": "tresnjevka-jug",
+   "officialCode": "47490",
+   "lat": 45.78941,
+   "lng": 15.9008,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.88698,
+    45.77784,
+    15.9111,
+    45.79741
+   ],
+   "zoom": 14.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Prečko",
+    "MO Prečko",
+    "Mjesni odbor Prečko"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-prekvrsje",
+   "name": "Prekvršje",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48437",
+   "lat": 45.89596,
+   "lng": 16.11263,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.10384,
+    45.88301,
+    16.12356,
+    45.90773
+   ],
+   "zoom": 14.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Prekvršje",
+    "MO Prekvršje",
+    "Mjesni odbor Prekvršje"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-prepustovec",
+   "name": "Prepuštovec",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48445",
+   "lat": 45.89826,
+   "lng": 16.13773,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.12759,
+    45.89066,
+    16.14779,
+    45.90843
+   ],
+   "zoom": 14.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Prepuštovec",
+    "MO Prepuštovec",
+    "Mjesni odbor Prepuštovec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-remete",
+   "name": "Remete",
+   "kind": "local_committee",
+   "districtId": "maksimir",
+   "officialCode": "46850",
+   "lat": 45.84831,
+   "lng": 15.99455,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.98005,
+    45.83291,
+    16.0089,
+    45.859
+   ],
+   "zoom": 14.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Remete",
+    "MO Remete",
+    "Mjesni odbor Remete"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-remetinec",
+   "name": "Remetinec",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-zapad",
+   "officialCode": "47295",
+   "lat": 45.76647,
+   "lng": 15.94092,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.93303,
+    45.75718,
+    15.95177,
+    45.77557
+   ],
+   "zoom": 14.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Remetinec",
+    "MO Remetinec",
+    "Mjesni odbor Remetinec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-resnicki-gaj",
+   "name": "Resnički gaj",
+   "kind": "local_committee",
+   "districtId": "donja-dubrava",
+   "officialCode": "47821",
+   "lat": 45.8103,
+   "lng": 16.08097,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.0587,
+    45.8023,
+    16.10155,
+    45.81754
+   ],
+   "zoom": 14.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Resnički gaj",
+    "MO Resnički gaj",
+    "Mjesni odbor Resnički gaj"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-resnik",
+   "name": "Resnik",
+   "kind": "local_committee",
+   "districtId": "pescenica-zitnjak",
+   "officialCode": "46990",
+   "lat": 45.79903,
+   "lng": 16.08312,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.05774,
+    45.79299,
+    16.107,
+    45.80643
+   ],
+   "zoom": 14.3,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Resnik",
+    "MO Resnik",
+    "Mjesni odbor Resnik"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-ribnjak",
+   "name": "Ribnjak",
+   "kind": "local_committee",
+   "districtId": "gornji-grad-medvescak",
+   "officialCode": "46558",
+   "lat": 45.81576,
+   "lng": 15.98396,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.97878,
+    45.81376,
+    15.9907,
+    45.81922
+   ],
+   "zoom": 16.4,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Ribnjak",
+    "MO Ribnjak",
+    "Mjesni odbor Ribnjak"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-rudes",
+   "name": "Rudeš",
+   "kind": "local_committee",
+   "districtId": "tresnjevka-sjever",
+   "officialCode": "47406",
+   "lat": 45.79884,
+   "lng": 15.92093,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.90872,
+    45.79439,
+    15.93122,
+    45.80665
+   ],
+   "zoom": 15.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Rudeš",
+    "MO Rudeš",
+    "Mjesni odbor Rudeš"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-ruzmarinka",
+   "name": "Ružmarinka",
+   "kind": "local_committee",
+   "districtId": "maksimir",
+   "officialCode": "46868",
+   "lat": 45.81617,
+   "lng": 16.00811,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.00258,
+    45.81312,
+    16.01276,
+    45.81887
+   ],
+   "zoom": 16.3,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Ružmarinka",
+    "MO Ružmarinka",
+    "Mjesni odbor Ružmarinka"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-salata",
+   "name": "Šalata",
+   "kind": "local_committee",
+   "districtId": "gornji-grad-medvescak",
+   "officialCode": "46574",
+   "lat": 45.82692,
+   "lng": 15.98648,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.982,
+    45.81952,
+    15.9919,
+    45.83296
+   ],
+   "zoom": 15.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Šalata",
+    "MO Šalata",
+    "Mjesni odbor Šalata"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-samoborcek",
+   "name": "Samoborček",
+   "kind": "local_committee",
+   "districtId": "tresnjevka-sjever",
+   "officialCode": "47414",
+   "lat": 45.80704,
+   "lng": 15.95479,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.94862,
+    45.80402,
+    15.96154,
+    45.8096
+   ],
+   "zoom": 16.3,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Samoborček",
+    "MO Samoborček",
+    "Mjesni odbor Samoborček"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-sasinovec",
+   "name": "Šašinovec",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48518",
+   "lat": 45.84976,
+   "lng": 16.17156,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.14499,
+    45.83073,
+    16.20146,
+    45.86688
+   ],
+   "zoom": 13.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Šašinovec",
+    "MO Šašinovec",
+    "Mjesni odbor Šašinovec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-savica-sanci",
+   "name": "Savica Šanci",
+   "kind": "local_committee",
+   "districtId": "pescenica-zitnjak",
+   "officialCode": "47007",
+   "lat": 45.78339,
+   "lng": 16.0201,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.00291,
+    45.76519,
+    16.03312,
+    45.79701
+   ],
+   "zoom": 13.8,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Savica Šanci",
+    "MO Savica Šanci",
+    "Mjesni odbor Savica Šanci"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-savski-gaj",
+   "name": "Savski gaj",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-zapad",
+   "officialCode": "47309",
+   "lat": 45.77191,
+   "lng": 15.95661,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.94594,
+    45.76612,
+    15.9653,
+    45.77678
+   ],
+   "zoom": 15.4,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Savski gaj",
+    "MO Savski gaj",
+    "Mjesni odbor Savski gaj"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-savski-kuti",
+   "name": "Savski kuti",
+   "kind": "local_committee",
+   "districtId": "trnje",
+   "officialCode": "46680",
+   "lat": 45.79233,
+   "lng": 15.96055,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.95654,
+    45.79022,
+    15.96354,
+    45.79477
+   ],
+   "zoom": 16.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Savski kuti",
+    "MO Savski kuti",
+    "Mjesni odbor Savski kuti"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-sestine",
+   "name": "Šestine",
+   "kind": "local_committee",
+   "districtId": "podsljeme",
+   "officialCode": "48046",
+   "lat": 45.87131,
+   "lng": 15.9482,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.92287,
+    45.83793,
+    15.96815,
+    45.89805
+   ],
+   "zoom": 12.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Šestine",
+    "MO Šestine",
+    "Mjesni odbor Šestine"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-sestinski-dol-vrhovec",
+   "name": "Šestinski dol - Vrhovec",
+   "kind": "local_committee",
+   "districtId": "crnomerec",
+   "officialCode": "47597",
+   "lat": 45.82791,
+   "lng": 15.94609,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.93778,
+    45.81245,
+    15.95479,
+    45.84363
+   ],
+   "zoom": 13.8,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Šestinski dol - Vrhovec",
+    "MO Šestinski dol - Vrhovec",
+    "Mjesni odbor Šestinski dol - Vrhovec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-sesvetska-sela",
+   "name": "Sesvetska Sela",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48453",
+   "lat": 45.82918,
+   "lng": 16.1352,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.12227,
+    45.8151,
+    16.15224,
+    45.84434
+   ],
+   "zoom": 13.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Sesvetska Sela",
+    "MO Sesvetska Sela",
+    "Mjesni odbor Sesvetska Sela"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-sesvetska-selnica",
+   "name": "Sesvetska Selnica",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48461",
+   "lat": 45.81065,
+   "lng": 16.13741,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.12228,
+    45.79782,
+    16.1519,
+    45.82205
+   ],
+   "zoom": 14.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Sesvetska Selnica",
+    "MO Sesvetska Selnica",
+    "Mjesni odbor Sesvetska Selnica"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-sesvetska-sopnica",
+   "name": "Sesvetska Sopnica",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48470",
+   "lat": 45.82005,
+   "lng": 16.10382,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.08739,
+    45.81287,
+    16.11642,
+    45.82691
+   ],
+   "zoom": 15.0,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Sesvetska Sopnica",
+    "MO Sesvetska Sopnica",
+    "Mjesni odbor Sesvetska Sopnica"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-sesvetski-kraljevec",
+   "name": "Sesvetski Kraljevec",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48488",
+   "lat": 45.80619,
+   "lng": 16.18479,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.16133,
+    45.77722,
+    16.20462,
+    45.82709
+   ],
+   "zoom": 13.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Sesvetski Kraljevec",
+    "MO Sesvetski Kraljevec",
+    "Mjesni odbor Sesvetski Kraljevec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-sigecica",
+   "name": "Sigečica",
+   "kind": "local_committee",
+   "districtId": "trnje",
+   "officialCode": "46698",
+   "lat": 45.79867,
+   "lng": 16.00591,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.99533,
+    45.79564,
+    16.01695,
+    45.80213
+   ],
+   "zoom": 15.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Sigečica",
+    "MO Sigečica",
+    "Mjesni odbor Sigečica"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-siget",
+   "name": "Siget",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-zapad",
+   "officialCode": "47317",
+   "lat": 45.77102,
+   "lng": 15.97337,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.96435,
+    45.76385,
+    15.98115,
+    45.77732
+   ],
+   "zoom": 15.0,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Siget",
+    "MO Siget",
+    "Mjesni odbor Siget"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-silvije-strahimir-kranjcevic",
+   "name": "Silvije Strahimir Kranjčević",
+   "kind": "local_committee",
+   "districtId": "tresnjevka-sjever",
+   "officialCode": "47422",
+   "lat": 45.80347,
+   "lng": 15.95611,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.94541,
+    45.79992,
+    15.96314,
+    45.80777
+   ],
+   "zoom": 15.8,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Silvije Strahimir Kranjčević",
+    "MO Silvije Strahimir Kranjčević",
+    "Mjesni odbor Silvije Strahimir Kranjčević"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-simuncevec",
+   "name": "Šimunčevec",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48526",
+   "lat": 45.87837,
+   "lng": 16.09385,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.08303,
+    45.86358,
+    16.10313,
+    45.88886
+   ],
+   "zoom": 14.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Šimunčevec",
+    "MO Šimunčevec",
+    "Mjesni odbor Šimunčevec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-slobostina",
+   "name": "Sloboština",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-istok",
+   "officialCode": "47082",
+   "lat": 45.76642,
+   "lng": 15.98571,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.98038,
+    45.76029,
+    15.99069,
+    45.77239
+   ],
+   "zoom": 15.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Sloboština",
+    "MO Sloboština",
+    "Mjesni odbor Sloboština"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-soblinec",
+   "name": "Soblinec",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48496",
+   "lat": 45.8674,
+   "lng": 16.15078,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.14072,
+    45.85361,
+    16.16292,
+    45.8789
+   ],
+   "zoom": 14.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Soblinec",
+    "MO Soblinec",
+    "Mjesni odbor Soblinec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-sopot",
+   "name": "Sopot",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-istok",
+   "officialCode": "47104",
+   "lat": 45.77456,
+   "lng": 15.98547,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.98061,
+    45.77152,
+    15.99032,
+    45.77746
+   ],
+   "zoom": 16.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Sopot",
+    "MO Sopot",
+    "Mjesni odbor Sopot"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-spansko-jug",
+   "name": "Špansko - jug",
+   "kind": "local_committee",
+   "districtId": "stenjevec",
+   "officialCode": "47902",
+   "lat": 45.79941,
+   "lng": 15.89766,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.88587,
+    45.79586,
+    15.91103,
+    45.80278
+   ],
+   "zoom": 15.3,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Špansko - jug",
+    "MO Špansko - jug",
+    "Mjesni odbor Špansko - jug"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-spansko-sjever",
+   "name": "Špansko - sjever",
+   "kind": "local_committee",
+   "districtId": "stenjevec",
+   "officialCode": "47929",
+   "lat": 45.80417,
+   "lng": 15.8971,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.88559,
+    45.80175,
+    15.90692,
+    45.80687
+   ],
+   "zoom": 15.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Špansko - sjever",
+    "MO Špansko - sjever",
+    "Mjesni odbor Špansko - sjever"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-sredisce",
+   "name": "Središće",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-istok",
+   "officialCode": "47112",
+   "lat": 45.78295,
+   "lng": 15.98486,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.97999,
+    45.77713,
+    15.99,
+    45.78899
+   ],
+   "zoom": 15.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Središće",
+    "MO Središće",
+    "Mjesni odbor Središće"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-stara-tresnjevka",
+   "name": "Stara Trešnjevka",
+   "kind": "local_committee",
+   "districtId": "tresnjevka-sjever",
+   "officialCode": "47449",
+   "lat": 45.79694,
+   "lng": 15.9502,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.94345,
+    45.79429,
+    15.95601,
+    45.80044
+   ],
+   "zoom": 16.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Stara Trešnjevka",
+    "MO Stara Trešnjevka",
+    "Mjesni odbor Stara Trešnjevka"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-stari-retkovec",
+   "name": "Stari Retkovec",
+   "kind": "local_committee",
+   "districtId": "donja-dubrava",
+   "officialCode": "47830",
+   "lat": 45.8212,
+   "lng": 16.082,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.0656,
+    45.81456,
+    16.09827,
+    45.82797
+   ],
+   "zoom": 14.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Stari Retkovec",
+    "MO Stari Retkovec",
+    "Mjesni odbor Stari Retkovec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-staro-brestje",
+   "name": "Staro Brestje",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48500",
+   "lat": 45.83704,
+   "lng": 16.095,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.07737,
+    45.82651,
+    16.10749,
+    45.84589
+   ],
+   "zoom": 14.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Staro Brestje",
+    "MO Staro Brestje",
+    "Mjesni odbor Staro Brestje"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-staro-trnje",
+   "name": "Staro Trnje",
+   "kind": "local_committee",
+   "districtId": "trnje",
+   "officialCode": "46701",
+   "lat": 45.79142,
+   "lng": 15.98712,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.97861,
+    45.7868,
+    15.9946,
+    45.79522
+   ],
+   "zoom": 15.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Staro Trnje",
+    "MO Staro Trnje",
+    "Mjesni odbor Staro Trnje"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-stenjevec-jug",
+   "name": "Stenjevec - jug",
+   "kind": "local_committee",
+   "districtId": "stenjevec",
+   "officialCode": "47899",
+   "lat": 45.79912,
+   "lng": 15.87248,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.84781,
+    45.78331,
+    15.89406,
+    45.8141
+   ],
+   "zoom": 13.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Stenjevec - jug",
+    "MO Stenjevec - jug",
+    "Mjesni odbor Stenjevec - jug"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-stenjevec-sjever",
+   "name": "Stenjevec - sjever",
+   "kind": "local_committee",
+   "districtId": "podsused-vrapce",
+   "officialCode": "47996",
+   "lat": 45.81528,
+   "lng": 15.88596,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.87804,
+    45.81239,
+    15.89481,
+    45.81918
+   ],
+   "zoom": 15.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Stenjevec - sjever",
+    "MO Stenjevec - sjever",
+    "Mjesni odbor Stenjevec - sjever"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-stjepan-radic",
+   "name": "Stjepan Radić",
+   "kind": "local_committee",
+   "districtId": "gornji-grad-medvescak",
+   "officialCode": "46566",
+   "lat": 45.83025,
+   "lng": 15.95941,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.95326,
+    45.81229,
+    15.96478,
+    45.84703
+   ],
+   "zoom": 13.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Stjepan Radić",
+    "MO Stjepan Radić",
+    "Mjesni odbor Stjepan Radić"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-studentski-grad",
+   "name": "Studentski grad",
+   "kind": "local_committee",
+   "districtId": "gornja-dubrava",
+   "officialCode": "47759",
+   "lat": 45.83683,
+   "lng": 16.0613,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.05422,
+    45.82945,
+    16.07007,
+    45.84345
+   ],
+   "zoom": 15.0,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Studentski grad",
+    "MO Studentski grad",
+    "Mjesni odbor Studentski grad"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-sveta-klara",
+   "name": "Sveta Klara",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-zapad",
+   "officialCode": "47325",
+   "lat": 45.75967,
+   "lng": 15.96452,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.94552,
+    45.75061,
+    15.98952,
+    45.76944
+   ],
+   "zoom": 14.5,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Sveta Klara",
+    "MO Sveta Klara",
+    "Mjesni odbor Sveta Klara"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-sveti-duh",
+   "name": "Sveti Duh",
+   "kind": "local_committee",
+   "districtId": "crnomerec",
+   "officialCode": "47589",
+   "lat": 45.82678,
+   "lng": 15.93475,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.9249,
+    45.81333,
+    15.94338,
+    45.83694
+   ],
+   "zoom": 14.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Sveti Duh",
+    "MO Sveti Duh",
+    "Mjesni odbor Sveti Duh"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-travno",
+   "name": "Travno",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-istok",
+   "officialCode": "47139",
+   "lat": 45.77023,
+   "lng": 15.99778,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.99039,
+    45.76756,
+    16.00569,
+    45.77315
+   ],
+   "zoom": 16.0,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Travno",
+    "MO Travno",
+    "Mjesni odbor Travno"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-trnava",
+   "name": "Trnava",
+   "kind": "local_committee",
+   "districtId": "donja-dubrava",
+   "officialCode": "47856",
+   "lat": 45.81037,
+   "lng": 16.0556,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.04595,
+    45.79985,
+    16.06577,
+    45.82056
+   ],
+   "zoom": 14.4,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Trnava",
+    "MO Trnava",
+    "Mjesni odbor Trnava"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-trnjanska-savica",
+   "name": "Trnjanska Savica",
+   "kind": "local_committee",
+   "districtId": "trnje",
+   "officialCode": "46710",
+   "lat": 45.79045,
+   "lng": 15.99871,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.99081,
+    45.78431,
+    16.00451,
+    45.79572
+   ],
+   "zoom": 15.3,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Trnjanska Savica",
+    "MO Trnjanska Savica",
+    "Mjesni odbor Trnjanska Savica"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-trnje",
+   "name": "Trnje",
+   "kind": "local_committee",
+   "districtId": "trnje",
+   "officialCode": "46728",
+   "lat": 45.79718,
+   "lng": 15.9836,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.97878,
+    45.79446,
+    15.99066,
+    45.80023
+   ],
+   "zoom": 16.3,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Trnje",
+    "MO Trnje",
+    "Mjesni odbor Trnje"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-trnovcica",
+   "name": "Trnovčica",
+   "kind": "local_committee",
+   "districtId": "gornja-dubrava",
+   "officialCode": "47767",
+   "lat": 45.83573,
+   "lng": 16.07163,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.06498,
+    45.83232,
+    16.0775,
+    45.84013
+   ],
+   "zoom": 15.8,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Trnovčica",
+    "MO Trnovčica",
+    "Mjesni odbor Trnovčica"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-trnsko",
+   "name": "Trnsko",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-zapad",
+   "officialCode": "47333",
+   "lat": 45.77318,
+   "lng": 15.96372,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.95983,
+    45.76813,
+    15.96634,
+    45.77681
+   ],
+   "zoom": 15.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Trnsko",
+    "MO Trnsko",
+    "Mjesni odbor Trnsko"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-trpuci",
+   "name": "Trpuci",
+   "kind": "local_committee",
+   "districtId": "brezovica",
+   "officialCode": "48704",
+   "lat": 45.65627,
+   "lng": 15.91595,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.89055,
+    45.63229,
+    15.94354,
+    45.68072
+   ],
+   "zoom": 13.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Trpuci",
+    "MO Trpuci",
+    "Mjesni odbor Trpuci"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-tuskanac",
+   "name": "Tuškanac",
+   "kind": "local_committee",
+   "districtId": "gornji-grad-medvescak",
+   "officialCode": "46582",
+   "lat": 45.82773,
+   "lng": 15.96875,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.95859,
+    45.81275,
+    15.974,
+    45.84629
+   ],
+   "zoom": 13.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Tuškanac",
+    "MO Tuškanac",
+    "Mjesni odbor Tuškanac"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-utrine",
+   "name": "Utrine",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-istok",
+   "officialCode": "47147",
+   "lat": 45.77512,
+   "lng": 15.99681,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.99015,
+    45.77239,
+    16.00404,
+    45.77772
+   ],
+   "zoom": 16.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Utrine",
+    "MO Utrine",
+    "Mjesni odbor Utrine"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-veliko-polje",
+   "name": "Veliko Polje",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-istok",
+   "officialCode": "47155",
+   "lat": 45.7423,
+   "lng": 16.01188,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.00176,
+    45.73266,
+    16.02021,
+    45.75115
+   ],
+   "zoom": 14.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Veliko Polje",
+    "MO Veliko Polje",
+    "Mjesni odbor Veliko Polje"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-veslacko-naselje",
+   "name": "Veslačko naselje",
+   "kind": "local_committee",
+   "districtId": "trnje",
+   "officialCode": "46736",
+   "lat": 45.78752,
+   "lng": 15.95772,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.95288,
+    45.78377,
+    15.96208,
+    45.79081
+   ],
+   "zoom": 16.0,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Veslačko naselje",
+    "MO Veslačko naselje",
+    "Mjesni odbor Veslačko naselje"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-vidovec",
+   "name": "Vidovec",
+   "kind": "local_committee",
+   "districtId": "podsljeme",
+   "officialCode": "48054",
+   "lat": 45.91612,
+   "lng": 16.03417,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.01189,
+    45.88022,
+    16.05121,
+    45.93959
+   ],
+   "zoom": 12.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Vidovec",
+    "MO Vidovec",
+    "Mjesni odbor Vidovec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-vocarska",
+   "name": "Voćarska",
+   "kind": "local_committee",
+   "districtId": "gornji-grad-medvescak",
+   "officialCode": "46604",
+   "lat": 45.82091,
+   "lng": 15.99101,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.98609,
+    45.81593,
+    15.99614,
+    45.82764
+   ],
+   "zoom": 15.3,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Voćarska",
+    "MO Voćarska",
+    "Mjesni odbor Voćarska"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-volovcica",
+   "name": "Volovčica",
+   "kind": "local_committee",
+   "districtId": "pescenica-zitnjak",
+   "officialCode": "47015",
+   "lat": 45.80721,
+   "lng": 16.02283,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.01438,
+    45.80278,
+    16.03012,
+    45.81154
+   ],
+   "zoom": 15.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Volovčica",
+    "MO Volovčica",
+    "Mjesni odbor Volovčica"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-vrapce-centar",
+   "name": "Vrapče - centar",
+   "kind": "local_committee",
+   "districtId": "podsused-vrapce",
+   "officialCode": "48003",
+   "lat": 45.81883,
+   "lng": 15.90545,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.89443,
+    45.81113,
+    15.91678,
+    45.82892
+   ],
+   "zoom": 14.6,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Vrapče - centar",
+    "MO Vrapče - centar",
+    "Mjesni odbor Vrapče - centar"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-vrapce-jug",
+   "name": "Vrapče - jug",
+   "kind": "local_committee",
+   "districtId": "stenjevec",
+   "officialCode": "47937",
+   "lat": 45.8055,
+   "lng": 15.91254,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.90652,
+    45.79822,
+    15.92377,
+    45.81196
+   ],
+   "zoom": 15.0,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Vrapče - jug",
+    "MO Vrapče - jug",
+    "Mjesni odbor Vrapče - jug"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-vrbani",
+   "name": "Vrbani",
+   "kind": "local_committee",
+   "districtId": "tresnjevka-jug",
+   "officialCode": "47503",
+   "lat": 45.79127,
+   "lng": 15.91605,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.90832,
+    45.78526,
+    15.92324,
+    45.79584
+   ],
+   "zoom": 15.4,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Vrbani",
+    "MO Vrbani",
+    "Mjesni odbor Vrbani"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-vrbik",
+   "name": "Vrbik",
+   "kind": "local_committee",
+   "districtId": "trnje",
+   "officialCode": "46744",
+   "lat": 45.79692,
+   "lng": 15.96803,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.96462,
+    45.79436,
+    15.97119,
+    45.79959
+   ],
+   "zoom": 16.4,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Vrbik",
+    "MO Vrbik",
+    "Mjesni odbor Vrbik"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-vugrovec",
+   "name": "Vugrovec",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48534",
+   "lat": 45.87374,
+   "lng": 16.10911,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.09486,
+    45.85789,
+    16.12418,
+    45.89017
+   ],
+   "zoom": 13.8,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Vugrovec",
+    "MO Vugrovec",
+    "Mjesni odbor Vugrovec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-vugrovec-gornji",
+   "name": "Vugrovec Gornji",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48542",
+   "lat": 45.89552,
+   "lng": 16.09803,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.08725,
+    45.88666,
+    16.10744,
+    45.90754
+   ],
+   "zoom": 14.4,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Vugrovec Gornji",
+    "MO Vugrovec Gornji",
+    "Mjesni odbor Vugrovec Gornji"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-vukomerec",
+   "name": "Vukomerec",
+   "kind": "local_committee",
+   "districtId": "pescenica-zitnjak",
+   "officialCode": "47023",
+   "lat": 45.80913,
+   "lng": 16.04745,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.04459,
+    45.80589,
+    16.0501,
+    45.81224
+   ],
+   "zoom": 16.1,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Vukomerec",
+    "MO Vukomerec",
+    "Mjesni odbor Vukomerec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-vurnovec",
+   "name": "Vurnovec",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48569",
+   "lat": 45.88991,
+   "lng": 16.14138,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.1296,
+    45.8823,
+    16.15669,
+    45.89689
+   ],
+   "zoom": 14.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Vurnovec",
+    "MO Vurnovec",
+    "Mjesni odbor Vurnovec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-zaprudje",
+   "name": "Zapruđe",
+   "kind": "local_committee",
+   "districtId": "novi-zagreb-istok",
+   "officialCode": "47163",
+   "lat": 45.78213,
+   "lng": 15.99552,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.98948,
+    45.77746,
+    16.0031,
+    45.78813
+   ],
+   "zoom": 15.4,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Zapruđe",
+    "MO Zapruđe",
+    "Mjesni odbor Zapruđe"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-zeleni-brijeg",
+   "name": "Zeleni brijeg",
+   "kind": "local_committee",
+   "districtId": "gornja-dubrava",
+   "officialCode": "47775",
+   "lat": 45.85955,
+   "lng": 16.02934,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.02424,
+    45.85133,
+    16.0355,
+    45.86807
+   ],
+   "zoom": 14.7,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Zeleni brijeg",
+    "MO Zeleni brijeg",
+    "Mjesni odbor Zeleni brijeg"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-zerjavinec",
+   "name": "Žerjavinec",
+   "kind": "local_committee",
+   "districtId": "sesvete",
+   "officialCode": "48577",
+   "lat": 45.87128,
+   "lng": 16.16869,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.15504,
+    45.85958,
+    16.18725,
+    45.88114
+   ],
+   "zoom": 14.4,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Žerjavinec",
+    "MO Žerjavinec",
+    "Mjesni odbor Žerjavinec"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-zitnjak",
+   "name": "Žitnjak",
+   "kind": "local_committee",
+   "districtId": "pescenica-zitnjak",
+   "officialCode": "47031",
+   "lat": 45.78452,
+   "lng": 16.07508,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.05044,
+    45.77013,
+    16.10379,
+    45.79353
+   ],
+   "zoom": 14.2,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Žitnjak",
+    "MO Žitnjak",
+    "Mjesni odbor Žitnjak"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "mo-zrinjevac",
+   "name": "Zrinjevac",
+   "kind": "local_committee",
+   "districtId": "donji-grad",
+   "officialCode": "46469",
+   "lat": 45.81085,
+   "lng": 15.97997,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.97676,
+    45.80918,
+    15.98355,
+    45.81279
+   ],
+   "zoom": 16.9,
+   "generic": false,
+   "curatedAliases": [],
+   "aliases": [
+    "Zrinjevac",
+    "MO Zrinjevac",
+    "Mjesni odbor Zrinjevac"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "tresnjevka",
+   "name": "Trešnjevka",
+   "kind": "colloquial_group",
+   "districtId": null,
+   "memberIds": [
+    "tresnjevka-sjever",
+    "tresnjevka-jug"
+   ],
+   "lat": 45.79191,
+   "lng": 15.92961,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.88704,
+    45.77208,
+    15.96604,
+    45.81091
+   ],
+   "zoom": 13.5,
+   "generic": false,
+   "curatedAliases": [
+    "Trešnjevka"
+   ],
+   "aliases": [
+    "Trešnjevka"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "novi-zagreb",
+   "name": "Novi Zagreb",
+   "kind": "colloquial_group",
+   "districtId": null,
+   "memberIds": [
+    "novi-zagreb-istok",
+    "novi-zagreb-zapad"
+   ],
+   "lat": 45.7576,
+   "lng": 15.94456,
+   "anchorMethod": "centroid",
+   "bbox": [
+    15.82243,
+    45.70961,
+    16.03839,
+    45.8116
+   ],
+   "zoom": 12.6,
+   "generic": false,
+   "curatedAliases": [
+    "Novi Zagreb"
+   ],
+   "aliases": [
+    "Novi Zagreb"
+   ],
+   "legacyIds": []
+  },
+  {
+   "id": "dubrava",
+   "name": "Dubrava",
+   "kind": "colloquial_group",
+   "districtId": null,
+   "memberIds": [
+    "gornja-dubrava",
+    "donja-dubrava"
+   ],
+   "lat": 45.85885,
+   "lng": 16.06103,
+   "anchorMethod": "centroid",
+   "bbox": [
+    16.02314,
+    45.79976,
+    16.10068,
+    45.93794
+   ],
+   "zoom": 12.6,
+   "generic": false,
+   "curatedAliases": [
+    "Dubrava"
+   ],
+   "aliases": [
+    "Dubrava"
+   ],
+   "legacyIds": []
+  }
+ ]
+}
