@@ -1,0 +1,321 @@
+{
+  "error": "AssertionError [ERR_ASSERTION]: explicit custom intent reaches bounded search",
+  "events": [
+    {
+      "route": "/api/zagreb/profile",
+      "status": 200,
+      "input": {
+        "step": 0,
+        "text": "Ja sam programer. Nudim čišćenje tepiha. Živim u Maksimiru."
+      },
+      "body": {
+        "status": "ok",
+        "items": [
+          {
+            "text": "programer",
+            "topic": "none",
+            "role": "description"
+          },
+          {
+            "text": "nudi čišćenje tepiha",
+            "topic": "posao",
+            "role": "offer"
+          }
+        ],
+        "coverage": [
+          0,
+          2
+        ],
+        "neighbourhoodId": "maksimir"
+      }
+    },
+    {
+      "route": "/api/zagreb/profile",
+      "status": 200,
+      "input": {
+        "step": 1,
+        "text": "Volim knjige."
+      },
+      "body": {
+        "status": "ok",
+        "items": [
+          {
+            "text": "voli knjige",
+            "topic": "knjige",
+            "role": "interest"
+          }
+        ],
+        "coverage": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "route": "/api/zagreb/matches",
+      "status": 200,
+      "input": {
+        "areaId": "maksimir",
+        "cityWide": false,
+        "facts": [
+          {
+            "text": "programer",
+            "role": "description"
+          },
+          {
+            "text": "nudi čišćenje tepiha",
+            "role": "offer"
+          },
+          {
+            "text": "voli knjige",
+            "role": "interest"
+          }
+        ]
+      },
+      "body": {
+        "results": [
+          {
+            "id": "37",
+            "title": "Pranje tepiha u Zagrebu",
+            "body": "Bok, trebala bi mi preporuka gdje odnijeti tepih na pranje u Zagrebu. \n\nImam tepih manjih dimenzija 2x1.5m",
+            "source": "reddit",
+            "url": "https://www.reddit.com/r/zagreb/comments/1x0oozi/",
+            "area": null,
+            "unknown": [
+              "kind",
+              "neighbourhood",
+              "expiry"
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "id": "fb-gramofoni",
+            "name": "GRAMOFONI-Lp ploče i Singlice",
+            "platform": "Facebook",
+            "url": null,
+            "status": "missing_url"
+          },
+          {
+            "id": "fb-lost-found-zagreb",
+            "name": "IZGUBLJENO/NAĐENO (Zagreb i okolica)",
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/share/g/1EwBwK79kk/",
+            "status": "ordered_unverified"
+          },
+          {
+            "id": "fb-pomoc-siromasnima",
+            "name": "POMOĆ SIROMAŠNIMA",
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/share/g/1C715qKB3Z/",
+            "status": "ordered_unverified"
+          },
+          {
+            "id": "fb-konzole-igrice",
+            "name": "PS3, PS4, PS5, XBOX 360... IGRICE PRODAJA ZAMJENA",
+            "platform": "Facebook",
+            "url": null,
+            "status": "missing_url"
+          },
+          {
+            "id": "fb-pet-friendly-najam",
+            "name": "Pet friendly najam Zagreb",
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/share/g/1C48cKVb6r/",
+            "status": "ordered_unverified"
+          },
+          {
+            "id": "fb-pomoc-azilima",
+            "name": "Pomoć azilima i napuštenim životinjama",
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/share/g/18fHw1RwRf/",
+            "status": "ordered_unverified"
+          },
+          {
+            "id": "fb-pomoc-zivotinjama",
+            "name": "Pomoć životinjama Hrvatska",
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/share/g/1CGYm9bAv2/",
+            "status": "ordered_unverified"
+          },
+          {
+            "id": "fb-prodaja-karata",
+            "name": "Prodaja karata za koncerte/utakmice/manifestacije",
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/share/g/19vgnCero9/",
+            "status": "ordered_unverified"
+          },
+          {
+            "id": "fb-ps4-ps5",
+            "name": "Ps4/ps5 konzole, igrice i oprema",
+            "platform": "Facebook",
+            "url": null,
+            "status": "missing_url"
+          },
+          {
+            "id": "fb-stanovi-zagreb",
+            "name": "Stanovi Zagreb - NAJAM",
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/share/g/1EiwHHbtc9/",
+            "status": "ordered_unverified"
+          },
+          {
+            "id": "reddit-askcroatia",
+            "name": "r/askcroatia",
+            "platform": "Reddit",
+            "url": "https://www.reddit.com/r/askcroatia/",
+            "status": "configured"
+          },
+          {
+            "id": "reddit-zagreb",
+            "name": "r/zagreb",
+            "platform": "Reddit",
+            "url": "https://www.reddit.com/r/zagreb/",
+            "status": "configured"
+          }
+        ],
+        "truncated": false,
+        "searched": true,
+        "indexAvailable": true,
+        "sourcesAvailable": true
+      }
+    },
+    {
+      "route": "/api/zagreb/matches",
+      "status": 200,
+      "input": {
+        "areaId": "maksimir",
+        "cityWide": true,
+        "facts": [
+          {
+            "text": "programer",
+            "role": "description"
+          },
+          {
+            "text": "nudi čišćenje tepiha",
+            "role": "offer"
+          },
+          {
+            "text": "voli knjige",
+            "role": "interest"
+          }
+        ]
+      },
+      "body": {
+        "results": [
+          {
+            "id": "37",
+            "title": "Pranje tepiha u Zagrebu",
+            "body": "Bok, trebala bi mi preporuka gdje odnijeti tepih na pranje u Zagrebu. \n\nImam tepih manjih dimenzija 2x1.5m",
+            "source": "reddit",
+            "url": "https://www.reddit.com/r/zagreb/comments/1x0oozi/",
+            "area": null,
+            "unknown": [
+              "kind",
+              "expiry"
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "id": "fb-gramofoni",
+            "name": "GRAMOFONI-Lp ploče i Singlice",
+            "platform": "Facebook",
+            "url": null,
+            "status": "missing_url"
+          },
+          {
+            "id": "fb-lost-found-zagreb",
+            "name": "IZGUBLJENO/NAĐENO (Zagreb i okolica)",
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/share/g/1EwBwK79kk/",
+            "status": "ordered_unverified"
+          },
+          {
+            "id": "fb-pomoc-siromasnima",
+            "name": "POMOĆ SIROMAŠNIMA",
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/share/g/1C715qKB3Z/",
+            "status": "ordered_unverified"
+          },
+          {
+            "id": "fb-konzole-igrice",
+            "name": "PS3, PS4, PS5, XBOX 360... IGRICE PRODAJA ZAMJENA",
+            "platform": "Facebook",
+            "url": null,
+            "status": "missing_url"
+          },
+          {
+            "id": "fb-pet-friendly-najam",
+            "name": "Pet friendly najam Zagreb",
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/share/g/1C48cKVb6r/",
+            "status": "ordered_unverified"
+          },
+          {
+            "id": "fb-pomoc-azilima",
+            "name": "Pomoć azilima i napuštenim životinjama",
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/share/g/18fHw1RwRf/",
+            "status": "ordered_unverified"
+          },
+          {
+            "id": "fb-pomoc-zivotinjama",
+            "name": "Pomoć životinjama Hrvatska",
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/share/g/1CGYm9bAv2/",
+            "status": "ordered_unverified"
+          },
+          {
+            "id": "fb-prodaja-karata",
+            "name": "Prodaja karata za koncerte/utakmice/manifestacije",
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/share/g/19vgnCero9/",
+            "status": "ordered_unverified"
+          },
+          {
+            "id": "fb-ps4-ps5",
+            "name": "Ps4/ps5 konzole, igrice i oprema",
+            "platform": "Facebook",
+            "url": null,
+            "status": "missing_url"
+          },
+          {
+            "id": "fb-stanovi-zagreb",
+            "name": "Stanovi Zagreb - NAJAM",
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/share/g/1EiwHHbtc9/",
+            "status": "ordered_unverified"
+          },
+          {
+            "id": "reddit-askcroatia",
+            "name": "r/askcroatia",
+            "platform": "Reddit",
+            "url": "https://www.reddit.com/r/askcroatia/",
+            "status": "configured"
+          },
+          {
+            "id": "reddit-zagreb",
+            "name": "r/zagreb",
+            "platform": "Reddit",
+            "url": "https://www.reddit.com/r/zagreb/",
+            "status": "configured"
+          }
+        ],
+        "truncated": false,
+        "searched": true,
+        "indexAvailable": true,
+        "sourcesAvailable": true
+      }
+    }
+  ],
+  "checks": [
+    "real first answer leaves only interest question",
+    "no premature index request",
+    "real second answer uses remembered area without asking intent or place",
+    "two profile requests and zero area requests",
+    "citywide option reaches backend once",
+    "typing does not send queries"
+  ],
+  "errors": []
+}

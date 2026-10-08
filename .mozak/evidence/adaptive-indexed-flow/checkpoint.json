@@ -1,0 +1,17 @@
+{
+  "sequence_id": "adaptive-indexed-flow",
+  "contract_sha256": "c6f029dc740288b824d4fa3b4496c5f57111ffe7b82f97389da50efe6f1cbc4b",
+  "requirements": [
+    {"id":"adaptive","status":"verified","checks":[
+      {"id":"all-in-one-and-partial-skip","passed":true,"observation":"real","evidence":"public/results.json real one-answer provider flow; public-partial/results.json real two-answer flow preserves early area and asks only missing interest"},
+      {"id":"grounded-coverage-ambiguity-deletion-and-voice","passed":true,"observation":"real","evidence":"public/results.json actual-provider third-party/negative safety plus controlled application deletion edges; public-voice/results.json real streaming provider one-mic/one-extraction map flow; unit-tests.txt bounded ambiguity/quote/empty-coverage tests"}
+    ]},
+    {"id":"indexed","status":"verified","checks":[
+      {"id":"real-private-index-profile-area-flow","passed":true,"observation":"real","evidence":"browser/results.json real existing PostgreSQL record rendered; public/results.json and public-partial/results.json deployed private backend read success with truthful zero candidates; public-health/live-checks.json registry persistence"},
+      {"id":"bounded-no-duplicate-stale-results-truthful-states","passed":true,"observation":"real","evidence":"public-partial/results.json actual public query counts, citywide/custom intent and cached restore; browser/results.json and public/results.json real application with controlled delayed/error responses exercise stale-result protection and retry; unit-tests.txt fixed bounded backend calls"}
+    ]},
+    {"id":"delivery","status":"verified","checks":[
+      {"id":"tests-build-mobile-regression-and-evidence","passed":true,"observation":"real","evidence":"unit-tests.txt 98 pass; typecheck.txt exit0; build.txt success; design/results.json 37 pass; browser/results.json 30 pass; public/results.json 29 pass; public-partial/results.json 9 pass; public-voice/results.json pass; public-health/live-checks.json 8 pass; deployment-status.json SUCCESS; acceptance.md limitations and visual review"}
+    ]}
+  ]
+}

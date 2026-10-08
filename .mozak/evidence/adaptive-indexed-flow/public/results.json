@@ -1,0 +1,188 @@
+{
+  "base": "https://kvartnakvadrat.up.railway.app",
+  "checks": [
+    "no index request before completed profile",
+    "all-in-one skips three questions",
+    "one extraction and no duplicate neighbourhood request",
+    "camera reset never causes a search",
+    "late stale response cannot replace current area results",
+    "recent area result reused from bounded cache",
+    "deleting a fact refreshes matching",
+    "results layout fits 320",
+    "results layout fits 390",
+    "results layout fits 768",
+    "results layout fits 1440",
+    "partial answer asks only the missing interest",
+    "early area survives missing question completion",
+    "truthful empty index state",
+    "backend failure is not an empty-success claim",
+    "retry recovers",
+    "real semantic all-in-one selects map",
+    "real all-in-one costs one profile call",
+    "real index and source backend available",
+    "source directory starts collapsed",
+    "directory clearly distinct from collected posts",
+    "real mobile no overflow",
+    "mobile notes remain above results",
+    "real extraction does not borrow third-party location or offer",
+    "real extraction does not turn negated preference positive",
+    "invalid or injected query rejected",
+    "invalid or injected query rejected",
+    "cross-origin matching denied",
+    "no uncaught browser errors"
+  ],
+  "real": [
+    {
+      "route": "/api/zagreb/profile",
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "items": [
+          {
+            "text": "programer",
+            "topic": "none",
+            "role": "description"
+          },
+          {
+            "text": "voli knjige",
+            "topic": "knjige",
+            "role": "interest"
+          },
+          {
+            "text": "nudi čišćenje tepiha",
+            "topic": "posao",
+            "role": "offer"
+          }
+        ],
+        "coverage": [
+          0,
+          1,
+          2
+        ],
+        "neighbourhoodId": "maksimir"
+      }
+    },
+    {
+      "route": "/api/zagreb/matches",
+      "status": 200,
+      "body": {
+        "results": [],
+        "sources": [
+          {
+            "id": "fb-gramofoni",
+            "name": "GRAMOFONI-Lp ploče i Singlice",
+            "platform": "Facebook",
+            "url": null,
+            "status": "missing_url"
+          },
+          {
+            "id": "fb-lost-found-zagreb",
+            "name": "IZGUBLJENO/NAĐENO (Zagreb i okolica)",
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/share/g/1EwBwK79kk/",
+            "status": "ordered_unverified"
+          },
+          {
+            "id": "fb-pet-friendly-najam",
+            "name": "Pet friendly najam Zagreb",
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/share/g/1C48cKVb6r/",
+            "status": "ordered_unverified"
+          },
+          {
+            "id": "fb-pomoc-azilima",
+            "name": "Pomoć azilima i napuštenim životinjama",
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/share/g/18fHw1RwRf/",
+            "status": "ordered_unverified"
+          },
+          {
+            "id": "fb-pomoc-siromasnima",
+            "name": "POMOĆ SIROMAŠNIMA",
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/share/g/1C715qKB3Z/",
+            "status": "ordered_unverified"
+          },
+          {
+            "id": "fb-pomoc-zivotinjama",
+            "name": "Pomoć životinjama Hrvatska",
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/share/g/1CGYm9bAv2/",
+            "status": "ordered_unverified"
+          },
+          {
+            "id": "fb-prodaja-karata",
+            "name": "Prodaja karata za koncerte/utakmice/manifestacije",
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/share/g/19vgnCero9/",
+            "status": "ordered_unverified"
+          },
+          {
+            "id": "fb-konzole-igrice",
+            "name": "PS3, PS4, PS5, XBOX 360... IGRICE PRODAJA ZAMJENA",
+            "platform": "Facebook",
+            "url": null,
+            "status": "missing_url"
+          },
+          {
+            "id": "fb-ps4-ps5",
+            "name": "Ps4/ps5 konzole, igrice i oprema",
+            "platform": "Facebook",
+            "url": null,
+            "status": "missing_url"
+          },
+          {
+            "id": "fb-stanovi-zagreb",
+            "name": "Stanovi Zagreb - NAJAM",
+            "platform": "Facebook",
+            "url": "https://www.facebook.com/share/g/1EiwHHbtc9/",
+            "status": "ordered_unverified"
+          },
+          {
+            "id": "reddit-askcroatia",
+            "name": "r/askcroatia",
+            "platform": "Reddit",
+            "url": "https://www.reddit.com/r/askcroatia/",
+            "status": "configured"
+          },
+          {
+            "id": "reddit-zagreb",
+            "name": "r/zagreb",
+            "platform": "Reddit",
+            "url": "https://www.reddit.com/r/zagreb/",
+            "status": "configured"
+          }
+        ],
+        "truncated": false,
+        "searched": true,
+        "indexAvailable": true,
+        "sourcesAvailable": true
+      }
+    },
+    {
+      "route": "real-safety-profile",
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "items": [
+          {
+            "text": "programer",
+            "topic": "none",
+            "role": "description"
+          },
+          {
+            "text": "ne voli nogomet",
+            "topic": "none",
+            "role": "interest"
+          }
+        ],
+        "coverage": [
+          0,
+          1
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

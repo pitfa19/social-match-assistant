@@ -1,0 +1,37 @@
+
+> social-match-assistant-frontend@0.1.0 build
+> next build
+
+▲ Next.js 16.4.0 (Turbopack)
+- Environments: .env.local
+✓ Running next.config.ts took 31ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 572ms
+  Running TypeScript ...
+  Finished TypeScript in 1809ms ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/7) ...
+  Generating static pages using 7 workers (1/7) 
+  Generating static pages using 7 workers (3/7) 
+  Generating static pages using 7 workers (5/7) 
+✓ Generating static pages using 7 workers (7/7) in 181ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/health
+├ ƒ /api/sources
+├ ƒ /api/zagreb/matches
+├ ƒ /api/zagreb/neighbourhood
+├ ƒ /api/zagreb/profile
+├ ƒ /api/zagreb/realtime-token
+└ ƒ /api/zagreb/transcribe
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
