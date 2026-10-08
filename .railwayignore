@@ -1,0 +1,17 @@
+.git/
+.mozak/
+**/node_modules/
+**/.next/
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
+**/.env
+**/.env.*
+**/private-data/
+**/recordings/
+**/uploads/
+**/*.wav
+**/*.mp3
+**/*.webm
+**/*.log
+**/*.tsbuildinfo

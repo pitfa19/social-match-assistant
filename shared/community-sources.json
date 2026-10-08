@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "owner": "pitfa",
+  "approved_at": "2026-10-08T13:40:36Z",
+  "provenance": {
+    "session_id": "session_otter_1791456903831_2e6966477a3ce916",
+    "names_message_index": 698,
+    "links_message_index": 703,
+    "note": "Owner supplied 19 names followed by 16 share links. Name-to-link pairing below follows that order and is explicitly unverified. No URL is invented for the final three names. Facebook group visibility and collection permission are not established. Reddit sources are general, not kvart-specific.",
+    "original_share_query": "mibextid=wwXIfr"
+  },
+  "sources": [
+    {"id":"fb-vrbani","platform":"facebook","name":"Kvart Vrbani","scope":"neighbourhood","aliases":["Vrbani","mo-vrbani","MO Vrbani"],"neighbourhood_ids":["mo-vrbani"],"url":"https://www.facebook.com/share/g/1C9ARxeUi3/","canonical_url":null,"status":"ordered_unverified"},
+    {"id":"fb-trnsko","platform":"facebook","name":"MOJ KVART TRNSKO ❤️","scope":"neighbourhood","aliases":["Trnsko","mo-trnsko","MO Trnsko"],"neighbourhood_ids":["mo-trnsko"],"url":"https://www.facebook.com/share/g/1DSYB96spp/","canonical_url":null,"status":"ordered_unverified"},
+    {"id":"fb-ravnice","platform":"facebook","name":"Moj kvart - RAVNICE","scope":"neighbourhood","aliases":["Ravnice"],"neighbourhood_ids":[],"url":"https://www.facebook.com/share/g/195iq8kB8k/","canonical_url":null,"status":"ordered_unverified"},
+    {"id":"fb-utrina","platform":"facebook","name":"UTRINA - moj kvart","scope":"neighbourhood","aliases":["Utrina","Utrine"],"neighbourhood_ids":[],"url":"https://www.facebook.com/share/g/19ipv2EfLW/","canonical_url":null,"status":"ordered_unverified"},
+    {"id":"fb-sesvete-moj-kvart","platform":"facebook","name":"Sesvete - moj kvart","scope":"neighbourhood","aliases":["Sesvete","Gradska četvrt Sesvete"],"neighbourhood_ids":["sesvete"],"url":"https://www.facebook.com/share/g/1FZaF5FVrG/","canonical_url":null,"status":"ordered_unverified"},
+    {"id":"fb-sesvete-i-moj-kvart","platform":"facebook","name":"Sesvete i moj kvart","scope":"neighbourhood","aliases":["Sesvete","Gradska četvrt Sesvete"],"neighbourhood_ids":["sesvete"],"url":"https://www.facebook.com/share/g/1HaRPSm9Eq/","canonical_url":null,"status":"ordered_unverified"},
+    {"id":"fb-malesnica","platform":"facebook","name":"Malešnica moj kvart","scope":"neighbourhood","aliases":["Malešnica","Malesnica","mo-malesnica","MO Malešnica"],"neighbourhood_ids":["mo-malesnica"],"url":"https://www.facebook.com/share/g/1DgH7eKdQL/","canonical_url":null,"status":"ordered_unverified"},
+    {"id":"fb-sopot","platform":"facebook","name":"SOPOT U SRCU","scope":"neighbourhood","aliases":["Sopot","mo-sopot","MO Sopot"],"neighbourhood_ids":["mo-sopot"],"url":"https://www.facebook.com/share/g/1E12Ywqfsf/","canonical_url":null,"status":"ordered_unverified"},
+    {"id":"fb-poljanice","platform":"facebook","name":"Poljanice, moj kvart","scope":"neighbourhood","aliases":["Poljanice","mo-poljanice","MO Poljanice"],"neighbourhood_ids":["mo-poljanice"],"url":"https://www.facebook.com/share/g/1DCu6WN1z8/","canonical_url":null,"status":"ordered_unverified"},
+    {"id":"fb-lost-found-zagreb","platform":"facebook","name":"IZGUBLJENO/NAĐENO (Zagreb i okolica)","scope":"general","aliases":["izgubljeno","nađeno","nadeno"],"neighbourhood_ids":[],"url":"https://www.facebook.com/share/g/1EwBwK79kk/","canonical_url":null,"status":"ordered_unverified"},
+    {"id":"fb-stanovi-zagreb","platform":"facebook","name":"Stanovi Zagreb - NAJAM","scope":"general","aliases":["stanovi","najam"],"neighbourhood_ids":[],"url":"https://www.facebook.com/share/g/1EiwHHbtc9/","canonical_url":null,"status":"ordered_unverified"},
+    {"id":"fb-pet-friendly-najam","platform":"facebook","name":"Pet friendly najam Zagreb","scope":"general","aliases":["pet friendly","najam s ljubimcima"],"neighbourhood_ids":[],"url":"https://www.facebook.com/share/g/1C48cKVb6r/","canonical_url":null,"status":"ordered_unverified"},
+    {"id":"fb-pomoc-zivotinjama","platform":"facebook","name":"Pomoć životinjama Hrvatska","scope":"general","aliases":["pomoć životinjama","pomoc zivotinjama"],"neighbourhood_ids":[],"url":"https://www.facebook.com/share/g/1CGYm9bAv2/","canonical_url":null,"status":"ordered_unverified"},
+    {"id":"fb-pomoc-siromasnima","platform":"facebook","name":"POMOĆ SIROMAŠNIMA","scope":"general","aliases":["pomoć siromašnima","pomoc siromasnima"],"neighbourhood_ids":[],"url":"https://www.facebook.com/share/g/1C715qKB3Z/","canonical_url":null,"status":"ordered_unverified"},
+    {"id":"fb-pomoc-azilima","platform":"facebook","name":"Pomoć azilima i napuštenim životinjama","scope":"general","aliases":["azili","napuštene životinje"],"neighbourhood_ids":[],"url":"https://www.facebook.com/share/g/18fHw1RwRf/","canonical_url":null,"status":"ordered_unverified"},
+    {"id":"fb-prodaja-karata","platform":"facebook","name":"Prodaja karata za koncerte/utakmice/manifestacije","scope":"general","aliases":["karte","ulaznice"],"neighbourhood_ids":[],"url":"https://www.facebook.com/share/g/19vgnCero9/","canonical_url":null,"status":"ordered_unverified"},
+    {"id":"fb-ps4-ps5","platform":"facebook","name":"Ps4/ps5 konzole, igrice i oprema","scope":"general","aliases":["ps4","ps5"],"neighbourhood_ids":[],"url":null,"canonical_url":null,"status":"missing_url"},
+    {"id":"fb-konzole-igrice","platform":"facebook","name":"PS3, PS4, PS5, XBOX 360... IGRICE PRODAJA ZAMJENA","scope":"general","aliases":["konzole","igrice","xbox"],"neighbourhood_ids":[],"url":null,"canonical_url":null,"status":"missing_url"},
+    {"id":"fb-gramofoni","platform":"facebook","name":"GRAMOFONI-Lp ploče i Singlice","scope":"general","aliases":["gramofoni","ploče","singlice"],"neighbourhood_ids":[],"url":null,"canonical_url":null,"status":"missing_url"},
+    {"id":"reddit-zagreb","platform":"reddit","name":"r/zagreb","scope":"general","aliases":["r/zagreb"],"neighbourhood_ids":[],"url":"https://www.reddit.com/r/zagreb/","canonical_url":"https://www.reddit.com/r/zagreb/","status":"configured"},
+    {"id":"reddit-askcroatia","platform":"reddit","name":"r/askcroatia","scope":"general","aliases":["r/askcroatia"],"neighbourhood_ids":[],"url":"https://www.reddit.com/r/askcroatia/","canonical_url":"https://www.reddit.com/r/askcroatia/","status":"configured"}
+  ]
+}

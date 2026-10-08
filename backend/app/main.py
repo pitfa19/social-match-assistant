@@ -8,10 +8,13 @@ from .config import Settings, get_settings
 from .schemas import FacebookGroupScrape
 
 app = FastAPI(
-    title="Social match backend (local only)",
-    description="Local development service. No authentication: bind to 127.0.0.1 only.",
+    title="Social match backend",
+    description="Local loopback development or authenticated private Railway service.",
     version="0.1.0",
 )
+
+from .access import access_guard
+app.middleware('http')(access_guard)
 
 
 def get_transport():
@@ -86,3 +89,17 @@ async def reddit_comments_job(job_id: UUID, settings: Settings = Depends(get_set
 from .matching.routes import router as matching_router  # noqa: E402
 
 app.include_router(matching_router)
+
+from .matching.sources import router as sources_router
+app.include_router(sources_router)
+
+
+@app.get('/ready')
+def ready():
+    from .matching.db import connect
+    try:
+        with connect() as conn:
+            conn.execute('SELECT id FROM community_sources LIMIT 1').fetchone()
+        return {'status': 'ready'}
+    except Exception:
+        return JSONResponse({'status': 'not_ready'}, status_code=503)

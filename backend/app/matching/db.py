@@ -10,7 +10,12 @@ MIGRATIONS = Path(__file__).resolve().parents[2] / "migrations"
 
 
 def dsn() -> str:
-    return os.getenv("MATCHING_DATABASE_URL") or Cluster().dsn()
+    configured = os.getenv("MATCHING_DATABASE_URL") or os.getenv("DATABASE_URL")
+    if configured:
+        return configured
+    if os.getenv("RAILWAY_ENVIRONMENT_ID") or os.getenv("APP_REQUIRE_AUTH") == "true":
+        raise RuntimeError("A managed database URL is required in deployment")
+    return Cluster().dsn()
 
 
 def connect(conninfo: str | None = None) -> psycopg.Connection:
