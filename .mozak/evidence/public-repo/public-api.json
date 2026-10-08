@@ -1,0 +1,92 @@
+{
+  "check": "real-public-demo-api-boundaries",
+  "checks": [
+    {
+      "name": "both needs ascii",
+      "status": 200,
+      "demoIds": [
+        "demo-pipe-repair-tresnjevka",
+        "demo-dog-walking-tresnjevka"
+      ]
+    },
+    {
+      "name": "dog only",
+      "status": 200,
+      "demoIds": [
+        "demo-dog-walking-tresnjevka"
+      ]
+    },
+    {
+      "name": "pipe only",
+      "status": 200,
+      "demoIds": [
+        "demo-pipe-repair-tresnjevka"
+      ]
+    },
+    {
+      "name": "microphone only",
+      "status": 200,
+      "demoIds": [
+        "demo-microphone-rental-tresnjevka"
+      ]
+    },
+    {
+      "name": "microphone rental",
+      "status": 200,
+      "demoIds": [
+        "demo-microphone-rental-tresnjevka"
+      ]
+    },
+    {
+      "name": "three needs",
+      "status": 200,
+      "demoIds": [
+        "demo-pipe-repair-tresnjevka",
+        "demo-dog-walking-tresnjevka",
+        "demo-microphone-rental-tresnjevka"
+      ]
+    },
+    {
+      "name": "microphone purchase",
+      "status": 200,
+      "demoIds": []
+    },
+    {
+      "name": "wrong neighbourhood",
+      "status": 200,
+      "demoIds": []
+    },
+    {
+      "name": "music only",
+      "status": 200,
+      "demoIds": []
+    },
+    {
+      "name": "offer not request",
+      "status": 200,
+      "demoIds": []
+    },
+    {
+      "name": "negated",
+      "status": 200,
+      "demoIds": []
+    },
+    {
+      "name": "empty profile",
+      "status": 200,
+      "demoIds": []
+    },
+    {
+      "name": "unknown area",
+      "status": 400
+    },
+    {
+      "name": "client cannot enable demo",
+      "status": 400
+    },
+    {
+      "name": "cross-origin refused",
+      "status": 403
+    }
+  ]
+}

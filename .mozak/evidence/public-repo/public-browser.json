@@ -1,0 +1,24 @@
+{
+  "check": "local-demo-offers-browser",
+  "profileExtraction": "real-provider",
+  "stubbedProfileCalls": 0,
+  "realProfileCalls": 3,
+  "matching": "real-local-api",
+  "backendAvailable": true,
+  "demoIds": [
+    "demo-pipe-repair-tresnjevka",
+    "demo-dog-walking-tresnjevka",
+    "demo-microphone-rental-tresnjevka"
+  ],
+  "demoTitles": [
+    "Ivo nudi popravak cijevi u stanu",
+    "Maja nudi šetanje pasa u susjedstvu",
+    "Luka iznajmljuje mikrofon na Trešnjevci"
+  ],
+  "widths": [
+    1440,
+    375,
+    320
+  ],
+  "errors": []
+}
