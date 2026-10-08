@@ -80,7 +80,6 @@ export function ZagrebHome() {
         }
         const area = data.neighbourhoodId ? findNeighbourhood(data.neighbourhoodId) : undefined;
         const next = applyAnswer(profileRef.current, forStep, data.items, data.coverage, area?.id);
-        if (next.step === forStep) setNotice("Još mi reci odgovor na ovo pitanje. Ostale detalje sam zabilježio.");
         if (next.step > PROFILE_STEPS && next.neighbourhoodId) {
           const hit = findNeighbourhood(next.neighbourhoodId);
           if (hit) {

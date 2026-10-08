@@ -34,11 +34,24 @@ test("occupation/topic does not by itself imply interest or offer", () => {
   const parsed = parseAdaptiveResponse(wrap({ ...payload, items: [payload.items[0]], coverage: [payload.coverage[0]], place: null }), "Ja sam programer")!;
   assert.equal(applyAnswer(initialState, 0, parsed.items, parsed.coverage).step, 1);
 });
-test("an explicit empty coverage response does not skip the current question", () => {
+test("successful empty extraction accepts the current answer without inventing future coverage", () => {
   const first = applyAnswer(initialState, 0, [], [], "maksimir");
-  assert.equal(first.step, 0);
+  assert.equal(first.step, 1);
+  assert.deepEqual(first.notes, []);
+  assert.deepEqual(first.covered, [0]);
   assert.equal(first.neighbourhoodId, "maksimir");
-  assert.equal(applyAnswer(first, 0, [], [0, 1, 2]).step, 4);
+  assert.equal(applyAnswer(first, 1, [], [1, 2]).step, 4);
+});
+test("third question accepts uncertainty and does not loop on absent semantic coverage", () => {
+  const first = applyAnswer(initialState, 0, [], [0]);
+  const second = applyAnswer(first, 1, [], [1]);
+  const third = applyAnswer(second, 2, [], []);
+  assert.equal(third.step, 3);
+  assert.deepEqual(third.notes, []);
+  assert.deepEqual(third.covered, [0, 1, 2]);
+  assert.equal(applyAnswer({ ...second, neighbourhoodId: "maksimir" }, 2, [], []).step, 4);
+  assert.equal(applyAnswer(third, 2, [], []), third);
+  assert.equal(applyAnswer(third, 3, [], []), third);
 });
 test("coverage and area require real quoted self evidence", () => {
   const parsed = parseAdaptiveResponse(wrap({ ...payload, coverage: [{ step: 2, evidence: "not present", about_user: true },

@@ -91,9 +91,9 @@ export function isBlank(answer: string): boolean {
   return normalize(answer).length === 0;
 }
 
-/** Apply extracted items for `step`. Ignores stale steps, removed keys and duplicates; advances the step. */
+/** Consume a successfully submitted answer. Coverage only controls additional future skips, never acceptance. */
 export function applyAnswer(state: ProfileState, step: number, items: Extracted[], coverage?: number[], neighbourhoodId?: string): ProfileState {
-  if (step !== state.step || step > PROFILE_STEPS) return state;
+  if (step !== state.step || step >= PROFILE_STEPS) return state;
   const removed = new Set(state.removed);
   const have = new Set(state.notes.map((n) => n.key));
   const next = [...state.notes];
@@ -108,8 +108,9 @@ export function applyAnswer(state: ProfileState, step: number, items: Extracted[
     if (it.topic !== NONE_TOPIC) add("topic", noteKey("topic", it.topic), topicLabel(it.topic) as string);
   }
   const covered = new Set([...(state.covered ?? []), ...Array.from({ length: step }, (_, i) => i)]);
-  // Legacy responses have no coverage field. Adaptive responses never infer progress from the prompt alone.
-  if (coverage === undefined && step < PROFILE_STEPS) covered.add(step);
+  // A successful nonblank reply, including "ne znam", completes the current conversational turn.
+  // This does not create a fact or infer answers to any future question.
+  covered.add(step);
   for (const n of coverage ?? []) if (Number.isInteger(n) && n >= 0 && n < PROFILE_STEPS) covered.add(n);
   const area = neighbourhoodId || state.neighbourhoodId;
   const nextStep = [0, 1, 2].find((n) => !covered.has(n)) ?? (area ? 4 : 3);

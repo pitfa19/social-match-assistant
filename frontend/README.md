@@ -4,7 +4,7 @@ The current `/` route is the Kvart na kvadrat experience. Older demo components 
 
 ## Adaptive onboarding
 
-`POST /api/zagreb/profile` extracts grounded notes, explicit question coverage and an optional canonical neighbourhood from the entire answer in one model request. Covered questions are skipped. An early neighbourhood remains remembered while any missing question is asked. A location-only final turn uses the existing neighbourhood route. Continuous voice awaits the same submit transaction used by typing.
+`POST /api/zagreb/profile` extracts grounded notes, explicit question coverage and an optional canonical neighbourhood from the entire answer in one model request. A successfully processed nonblank reply completes the current turn, including uncertainty such as "ne znam", without inventing notes. Only explicit extracted coverage skips additional future questions. An early neighbourhood remains remembered while any missing question is asked. A location-only final turn uses the existing neighbourhood route. Continuous voice awaits the same submit transaction used by typing.
 
 ## Existing indexed backend
 
