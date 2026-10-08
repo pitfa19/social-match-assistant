@@ -33,6 +33,18 @@ test("overlay preserves backend availability truth and original real records", (
   assert.deepEqual(base.results, [real]);
 });
 
+test("hosted production demo requires its own explicit server opt-in", () => {
+  for (const env of [{ NODE_ENV: "production" }, { NODE_ENV: "production", HOSTED_DEMO_OFFERS: "0" },
+    { NODE_ENV: "production", HOSTED_DEMO_OFFERS: "true" }, { NODE_ENV: "test", HOSTED_DEMO_OFFERS: "1" },
+    { NODE_ENV: "development", HOSTED_DEMO_OFFERS: "1" }]) {
+    assert.equal(withLocalDemoOffers(input, empty, env), empty);
+  }
+  const result = withLocalDemoOffers({ ...input, facts: [...input.facts, { role: "request", text: "Tražim mikrofon" }] },
+    empty, { NODE_ENV: "production", HOSTED_DEMO_OFFERS: "1" });
+  assert.equal(result.results.length, 3);
+  assert.ok(result.results.every(r => r.source === "demo" && r.area === "tresnjevka" && r.url === null));
+});
+
 test("wrong area adds nothing and result cap remains honest", () => {
   const env = { NODE_ENV: "development", LOCAL_DEMO_OFFERS: "1" };
   assert.equal(withLocalDemoOffers({ ...input, areaId: "maksimir" }, empty, env), empty);
