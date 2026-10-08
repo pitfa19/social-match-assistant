@@ -1,0 +1,116 @@
+.root {
+  --vr-ivory: #faf6ec;
+  --vr-green: #1f4d3a;
+  --vr-green-dark: #143527;
+  --vr-warn: #8a3b12;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  color: var(--vr-green-dark);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  border: 2px solid var(--vr-green);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.button:focus-visible {
+  outline: 3px solid #e0a526;
+  outline-offset: 2px;
+}
+
+.record {
+  background: var(--vr-green);
+  color: var(--vr-ivory);
+}
+
+.record:hover:not(:disabled) {
+  background: var(--vr-green-dark);
+}
+
+.stop {
+  background: #fff;
+  color: var(--vr-green-dark);
+  border-color: #a12a1a;
+}
+
+.secondary {
+  background: transparent;
+  color: var(--vr-green);
+}
+
+.dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--vr-ivory);
+}
+
+.stopIcon {
+  width: 0.7rem;
+  height: 0.7rem;
+  background: #a12a1a;
+  border-radius: 2px;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+.audio {
+  height: 40px;
+  max-width: 100%;
+}
+
+.status {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.status:empty {
+  display: none;
+}
+
+.statusWarn {
+  color: var(--vr-warn);
+  font-weight: 600;
+}
+
+.note {
+  margin: 0;
+  font-size: 0.8rem;
+  opacity: 0.75;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+  .stopIcon {
+    animation: none;
+  }
+}

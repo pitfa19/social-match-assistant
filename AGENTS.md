@@ -2,7 +2,7 @@
 
 ## Current scope
 
-Only repository setup and MOZAK onboarding are authorised as of October 8, 2026. Do not implement or install the application, start workers, deploy, spend credits, activate providers or ingest platform data until the owner explicitly approves that work.
+The owner approved local frontend implementation on October 8, 2026 at 10:46:41 UTC and requested Claude swarm workers at 10:47:24 UTC. Approved scope: Croatian hero, introduction chat/local voice, editable confirmed profile, synthetic search and drafting, tests and local preview. Use frontend/ and reserve backend/. No paid provider activation, live ingestion or public deployment. The accepted inputs and plan under .mozak/planning/ record this bounded authority.
 
 ## MOZAK
 

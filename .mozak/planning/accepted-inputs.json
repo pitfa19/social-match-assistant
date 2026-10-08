@@ -1,0 +1,9 @@
+{
+  "contract_version": 2,
+  "id": "frontend-inputs-20261008",
+  "accepted_at": "2026-10-08T10:47:24Z",
+  "inputs": [
+    {"id":"frontend-scope","text":"Owner approved building and running the frontend locally at 2026-10-08T10:46:41.539Z. Croatian polished hero with two buttons: Predstavi se without a profile, Profil after saving, and Pretraži. Introduction opens text chat or press-to-talk. Confirm an editable textual profile before saving. Include synthetic search results, deterministic filters, contextual draft editor and local recording/playback. Keep separate frontend and backend folders. No paid APIs, live source collection, public deployment or real transcription in this phase.","retention":"constraint","provenance":{"kind":"human_decision","decision_id":"owner-frontend-approval-20261008T104641539Z","actor":"pitfa"}},
+    {"id":"claude-swarm","text":"Owner requested Claude agents in a swarm at 2026-10-08T10:47:24.096Z. Use default LOW profile, Claude Sonnet 5.5 medium workers, disjoint ownership, root integration and verification. No nested spawning.","retention":"constraint","provenance":{"kind":"human_decision","decision_id":"owner-claude-swarm-20261008T104724096Z","actor":"pitfa"}}
+  ]
+}

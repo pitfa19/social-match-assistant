@@ -1,8 +1,8 @@
 # Social Match Assistant
 
-Private, setup-only repository for a Croatia-first match-and-post assistant.
+Private repository for a Croatia-first match-and-post assistant. The app has no chosen product name yet.
 
-**Status:** private repository created and pushed, local MOZAK onboarding validated, and project registered as `social-match-assistant`. No application, live integrations, deployment or provider activation exists yet.
+**Status:** local Croatian frontend implementation is approved and in progress. The private repository is registered as `social-match-assistant`. No live integrations, public deployment or provider activation are authorised in this phase.
 
 Fresh-agent entry point: `mozak project context social-match-assistant`. Setup completion evidence is in `.mozak/evidence/repo-onboarding-2026-10-08/checkpoint-v2.json`.
 
@@ -24,6 +24,28 @@ See [concept](docs/concept.md), [stack and future folder ownership](docs/stack.m
 
 ## Work boundary
 
+The owner approved **local frontend implementation** at `2026-10-08T10:46:41.539Z` and Claude swarm workers at `2026-10-08T10:47:24.096Z`. HTML design export into a ZIP in Downloads was additionally requested at `2026-10-08T10:49:33.164Z`. Accepted planning inputs and the bounded goal are in `.mozak/planning/`.
+
+
+## Local development
+
+```sh
+cd frontend
+npm ci
+npm run dev -- --hostname 127.0.0.1 --port 3000
+```
+
+Open `http://localhost:3000`. Microphone input is local recording/playback only. ElevenLabs transcription is not connected. Chat uses preset demo prompts, matching uses deterministic local fixtures, and all opportunities are synthetic.
+
+```sh
+npm run typecheck
+npm run build
+npm test
+```
+
+`frontend/` owns the interface and browser state. `backend/` reserves future service work. The current MOZAK manifest remains the setup-control-file boundary, and its registered ownership has not been silently expanded.
+
+The HTML export is a separate, offline visual handoff. It is not a deployed application or a working provider integration.
 
 Use the current local MOZAK CLI for project context and planning. Onboarding validation does not imply registration, accepted implementation goals or proof of market demand.
 
