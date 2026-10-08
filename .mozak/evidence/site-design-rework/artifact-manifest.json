@@ -1,0 +1,319 @@
+{
+  "observedAt": "2026-10-08T14:08:27.405Z",
+  "implementationRevision": "54168887aacf73ee7a964cb2fb276b65dbbe6927",
+  "observedGitHead": "cabac6f92b55e267d2139ed21029dfe0a39319a9",
+  "buildId": "7Y57Sf86l3C_9ybp-1nxL",
+  "preview": {
+    "url": "http://127.0.0.1:3101",
+    "status": 200,
+    "htmlSha256": "e78a5c5722d3e446c9ce9d2b7a0bf9fdf53e9cf9b8e872ed6412993f86254e4f"
+  },
+  "sources": [
+    {
+      "path": "frontend/next.config.ts",
+      "sha256": "5639603dc4eb040cb621c2c77f5db634afc1f71e6bf626f0f5a6b684fd801912"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "sha256": "91ca9a0ce21e7edc5c12d374b126635461259774b576c6e8e34775d0d50f7596"
+    },
+    {
+      "path": "frontend/package.json",
+      "sha256": "021f2dcc4ccbf3a4d8cee56e05e255568261590072000d3a5b44519707328726"
+    },
+    {
+      "path": "frontend/scripts/build-svg-map.mjs",
+      "sha256": "6811247c474b2352ab18d7b15da379fd53c98ec3e88c00dc37c027912de47584"
+    },
+    {
+      "path": "frontend/scripts/verify-continuous-safety.mjs",
+      "sha256": "18f5f566a36cf2c1f1c15743e8a6b791b0038f8ac8bbc34f3cdc27501f7d6eaa"
+    },
+    {
+      "path": "frontend/scripts/verify-continuous-voice.mjs",
+      "sha256": "8adf10647d18d3332b5d5c44da77459ed6b31e39f3e4f4dc327f2e3c10d6684e"
+    },
+    {
+      "path": "frontend/scripts/verify-site-design.mjs",
+      "sha256": "c5c452000b79740b4937073a6201f57c1b739d160764fedc0c6e8e1076c489c8"
+    },
+    {
+      "path": "frontend/src/app/api/zagreb/neighbourhood/route.ts",
+      "sha256": "cd06b3e1682d220a04ed98012da665f0cac89a75045c56238fe3e57aa81e14a5"
+    },
+    {
+      "path": "frontend/src/app/api/zagreb/profile/route.ts",
+      "sha256": "7bdc9c780cbdece9d7d92b6551a073bd1d485cbdd1bf9d026b40330f9f8ff45e"
+    },
+    {
+      "path": "frontend/src/app/api/zagreb/realtime-token/route.ts",
+      "sha256": "0b238176d0363821bc8182ec084598c71bf8f841822ee8ce92f359f8889b1236"
+    },
+    {
+      "path": "frontend/src/app/api/zagreb/transcribe/route.ts",
+      "sha256": "58f54010b3d16f0bdfbbf264266343f0d363376c4e162becf51fd1f02909dcf1"
+    },
+    {
+      "path": "frontend/src/app/globals.css",
+      "sha256": "c7a64c7ad16ff074499dd0fcc3fb896deef0ac3c34dfa32c681c5a6cf8b6dee9"
+    },
+    {
+      "path": "frontend/src/app/layout.tsx",
+      "sha256": "1bfbb1ae423e3020ac6fec22d381822838200b0bb6822e7dbfbbe18927623d09"
+    },
+    {
+      "path": "frontend/src/app/page.tsx",
+      "sha256": "c017d7ace2d9db4858b0bfcbefd090527dc5521471fee2802e459a416345ec0b"
+    },
+    {
+      "path": "frontend/src/features/zagreb/Zagreb.module.css",
+      "sha256": "a0877f3b6ed42b7541ade255177e119c847ac2647ac05bd4d32f7fa8b96c2667"
+    },
+    {
+      "path": "frontend/src/features/zagreb/ZagrebHome.tsx",
+      "sha256": "d16f82e41aef35750da791cfe515dfa92185df05defedbb6df46937e3f51b12d"
+    },
+    {
+      "path": "frontend/src/features/zagreb/ZagrebMap.tsx",
+      "sha256": "abe3ce4061a292071712e72fea89131dfee7ee99b8aac0c31329031d6d03fc47"
+    },
+    {
+      "path": "frontend/src/features/zagreb/data/ATTRIBUTION.md",
+      "sha256": "4b91ed6ad3330f31f00a26d7dc2dddcd12e110f2c8739e4b616005f2d396ee3b"
+    },
+    {
+      "path": "frontend/src/features/zagreb/data/regions.json",
+      "sha256": "3f1e793e0536389fec78913f4a6b193489773622849e5672a20106fe36789564"
+    },
+    {
+      "path": "frontend/src/features/zagreb/geo.test.ts",
+      "sha256": "9f2e0edbbcb94b28cd66f3eb695c1f011729783b4c94c42115bc40ed43c41609"
+    },
+    {
+      "path": "frontend/src/features/zagreb/geo.ts",
+      "sha256": "74893f0989a826985f3d6814e4c2823350b141f823a7ea9b2f59b599a640bc3c"
+    },
+    {
+      "path": "frontend/src/features/zagreb/mapCamera.test.ts",
+      "sha256": "af0b52bae38d050f445d25c02ba4f383440cda7ce18f93879f7e5101c002e30d"
+    },
+    {
+      "path": "frontend/src/features/zagreb/mapCamera.ts",
+      "sha256": "c78bf8529460ed3f358383d22252a912cda89d4707bac028dc92f95df779d76d"
+    },
+    {
+      "path": "frontend/src/features/zagreb/neighbourhoodResolver.ts",
+      "sha256": "501a4e5cc37413e0992d41f1dddaea8d6d99f2cf8ce7ce77979f823d6976bfb3"
+    },
+    {
+      "path": "frontend/src/features/zagreb/neighbourhoods.test.ts",
+      "sha256": "78dfc810a8414ce008d311c61a17395853b8c1794fade21c2f929025adaebcc4"
+    },
+    {
+      "path": "frontend/src/features/zagreb/neighbourhoods.ts",
+      "sha256": "1366d5312fc6c9d61de466a35b534826859dae60d18e3b948398a58e5af4a187"
+    },
+    {
+      "path": "frontend/src/features/zagreb/profileLogic.test.ts",
+      "sha256": "fc0e28d4dfeda87897f365405031f1925087d475ee65eed3c28c57e8b6348410"
+    },
+    {
+      "path": "frontend/src/features/zagreb/profileLogic.ts",
+      "sha256": "93070ff4986ce39fc335fcaa7f0b386732a7adc688e34fb03d0ef8edb48681d9"
+    },
+    {
+      "path": "frontend/src/features/zagreb/realtimeTurnController.test.ts",
+      "sha256": "85782c3d24aa5beb523b44f57f08c2dd8bccfd3b936dc163594111b3c222141a"
+    },
+    {
+      "path": "frontend/src/features/zagreb/realtimeTurnController.ts",
+      "sha256": "d66a55f543e56fb9e9522a36b35863e54bc86a9cce8c413f959019ddd1fc5cd4"
+    },
+    {
+      "path": "frontend/src/features/zagreb/realtimeVoiceLogic.test.ts",
+      "sha256": "d1d78543f0872590a2ec38c8eab73e4a1fc28fe25d550628381d28d7dfd0f17f"
+    },
+    {
+      "path": "frontend/src/features/zagreb/realtimeVoiceLogic.ts",
+      "sha256": "2d6d6e487e98a652ac4576807c2b9ab8576e832ee69e4218be0946339675655a"
+    },
+    {
+      "path": "frontend/src/features/zagreb/server/guard.ts",
+      "sha256": "b242f484677fdf0dd6982307bad7a4eb8a64fd28be4308bcdd50b96866127575"
+    },
+    {
+      "path": "frontend/src/features/zagreb/server/semanticProfile.test.ts",
+      "sha256": "6f28fdbf4780d1f784580fe63a20e301afadf52a8e3a5db7fa36e3250c87b493"
+    },
+    {
+      "path": "frontend/src/features/zagreb/server/semanticProfile.ts",
+      "sha256": "87f0f77c95d6a90e0352f2835053518c995bbf85c29f6064edf3a49136aefc01"
+    },
+    {
+      "path": "frontend/src/features/zagreb/useLayoutMotion.ts",
+      "sha256": "b5049d01b19f6195613109570ba1a5c3768f5b53f35e669ebc29b6e57d0aec5c"
+    },
+    {
+      "path": "frontend/src/features/zagreb/useRealtimeVoice.ts",
+      "sha256": "a825c8cc7d5ed22747e0022e187ff9db7742edff706394a3b5108b7f4e690e6f"
+    },
+    {
+      "path": "frontend/src/features/zagreb/useRecorder.ts",
+      "sha256": "daa389e485f1412fe4aeb3e5d53061e4f707f854591ea7d1093ec911335fad60"
+    },
+    {
+      "path": "shared/zagreb-neighbourhoods.json",
+      "sha256": "c784fd6e4a887c49c8dac524bdd51176e9418857af92fcdf0343482710f01a7f"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": ".mozak/evidence/site-design-rework/after-event-timing-map.png",
+      "sha256": "131c7857397c75117c78014ff9bbee15d9b6bc28f4b2755c8a26886fab92a429"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/after-event-timing-zoom.json",
+      "sha256": "e8d41349394b0c98662d3a754ace5e1a4ed09d6f341d39a76c5528427b359989"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/after-map.png",
+      "sha256": "131c7857397c75117c78014ff9bbee15d9b6bc28f4b2755c8a26886fab92a429"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/after-zoom.json",
+      "sha256": "e2e0e91acc79513f316222f3ad6ba2e1cb0165f231ca76fead0e38e83cf0b5eb"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/baseline-map.png",
+      "sha256": "fed72cdb3f3994dd6db619d4222c839cfae617da7f9b1fa0bfd262a221d16972"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/baseline-zoom.json",
+      "sha256": "63b8ce256dab2e9916c222e20f519923f2ead2cf33e4ee719eea43e6071f6121"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/browser/error.png",
+      "sha256": "542bb8d51411cf071c0a879c772614427e6b74a3e2cc80f81bbf5c2137c2cbc8"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/browser/failure.json",
+      "sha256": "8acd7ee62476435645860d2c00f34fd74ee324b224cfa29aed58bfd79d4ac4cc"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/browser/failure.png",
+      "sha256": "370aa6cb8d835759a8ba418b96cf259e26542632b3885102c0213b9331e9a88f"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/browser/first-detail-desktop.png",
+      "sha256": "c6cb1e8712397dfa0b8ef89e352b41ce5fe1c65e937d7bfffaf6f63e5a54a394"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/browser/maksimir-desktop.png",
+      "sha256": "caf2d03455d05dcea387d71435345224f240e9ab125a9f0f7200c89fb84b8370"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/browser/map-1440.png",
+      "sha256": "5dc14c4c13f188fd42a8178d90be8cc6c33717191ec97bdd1bf41feb1bc1a2f3"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/browser/map-320.png",
+      "sha256": "9d992e95992faea7531be312ae6c10402ce785dcd7c511a0d6b43e4202dd95ba"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/browser/map-390.png",
+      "sha256": "de90afcf580ee0d09899b54b60336c0a1ffe7c8a0389494b11d0358c0e2ab94b"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/browser/map-768.png",
+      "sha256": "1944215840265aa37c46059b7725e4ca5311a3cd72c2ab907f0087f13be83c40"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/browser/overview-desktop.png",
+      "sha256": "3b9e7dc78b0144467e9a97159ac57afc8817f13dfebd75616ffb0cbcdeded4fe"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/browser/results.json",
+      "sha256": "cb4ff7a26a030974962a61a1805bbbef611e65bd8ec3e9d5bd20dc67a854c516"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/browser/welcome-320.png",
+      "sha256": "91d6895c16a2b8fa18135437a894d3febcbd7f34524e3369aed6a1ae8873ad7e"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/browser/welcome-390.png",
+      "sha256": "5c17e80a7b4072187c0b41c8c9258247f0c2ad3a8d1176af8b7c68978f2da200"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/browser/welcome-desktop.png",
+      "sha256": "eac62f5a80c82ab904c46b5f3c27fbdbed190d865eec6c94931e9257b3ade552"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/build.txt",
+      "sha256": "ff70a0cc19c6d87b4d77457c1ff98f3cf04c1d441c2b0ab60b6e5beebf974513"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/contract.json",
+      "sha256": "0211bf24b1ed111c242b6fdeac55c4e1bd80d8a6971859d1c37f2c725ab18fb0"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/finalize-evidence.mjs",
+      "sha256": "15ca39bdf6f1694a369eca3cc50959473dbab6ea080bf7987e643b66c3e26db9"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/perf-zoom.mjs",
+      "sha256": "ff6892460a394594c13a43aef826e6a29d875ed1deb0e31088e3c0018b95383f"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/typecheck.txt",
+      "sha256": "40f0086b409c8018a6dccb1cbb523e69724aaf0d4b3bf0674ef5b7c419d660c9"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/unit-tests.txt",
+      "sha256": "c77e860a2e57b3c01a8f22c3571781688aa52a2e086b679affb8b7dda5e237d7"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/voice/initial-1440.png",
+      "sha256": "6159c89e2894cfb38dd063e226a1a8eb4b56ace02f676d166a290445fea5d986"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/voice/initial-320.png",
+      "sha256": "f89c0fb597b763473bd35ca998a471d38bd5bea831c1460690f16267243b209c"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/voice/initial-390.png",
+      "sha256": "7bc45c345828418f7514c5d1f5357ca38029556fd12766bcc6beacd1b8ab1f10"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/voice/initial-desktop.png",
+      "sha256": "7b8e53ac09a1bc845f3e45625a5b9c531157fe0ce6c5113f6cf46a3c7fd7fe1d"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/voice/live-results.json",
+      "sha256": "431a09bd40788c18b5d18dd3a62e5013584b7f66ed798d2a22d6dd48c42f25b2"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/voice/map-1440.png",
+      "sha256": "217db7849240f540d7fdf2a10f9263f02027d41e6deb33f8c38201d54f4052b6"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/voice/map-320.png",
+      "sha256": "e5495ae2da6654a3a60740a9fd34b968e1cfa134049f9453fdaf65c29685fb0c"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/voice/map-390.png",
+      "sha256": "deb91f3ea1a79aee911754aebf1eb3bd1a34b054df5773e86bb90f6f6d5e183f"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/voice/map-desktop.png",
+      "sha256": "217db7849240f540d7fdf2a10f9263f02027d41e6deb33f8c38201d54f4052b6"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/voice/mo-brezovica-desktop.png",
+      "sha256": "f2a9a0bdcd48ec4716a8682b4b1cefee7f21ddfded359c76b1492478c920acc2"
+    },
+    {
+      "path": ".mozak/evidence/site-design-rework/voice/safety-results.json",
+      "sha256": "2b5ee3750308c9281d6ddafd26b7cb97c602c0c88da25aa5ae756aa812a6fa00"
+    }
+  ]
+}

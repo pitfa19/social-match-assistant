@@ -1,0 +1,10 @@
+{
+  "checks": [
+    "no initial notes",
+    "no modal",
+    "solid edge-to-edge blue",
+    "truthful busy state with spinner"
+  ],
+  "errors": [],
+  "error": "AssertionError [ERR_ASSERTION]: notes reveal after first detail"
+}

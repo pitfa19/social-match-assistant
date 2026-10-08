@@ -1,0 +1,56 @@
+{
+  "label": "baseline",
+  "capturedAt": "2026-10-08T13:42:57.203Z",
+  "appUrl": "http://127.0.0.1:3101",
+  "environment": {
+    "viewport": "1440x960",
+    "browser": "Chromium1243 headless",
+    "answerApis": "fixtures",
+    "rendering": "actual application",
+    "note": "No CPU/network throttling. Frame deltas include idle settle window. Repeated fresh browser contexts. Not a human latency study."
+  },
+  "runs": [
+    {
+      "run": 1,
+      "clickToMapMs": 58,
+      "cameraMovementMs": 2033,
+      "endZoom": "14.60",
+      "frameMs": {
+        "median": 16.699999999999818,
+        "p95": 16.799999999999955,
+        "max": 16.800000000000182
+      },
+      "framesOver33ms": 0,
+      "tileRequests": 84,
+      "imgElements": 25
+    },
+    {
+      "run": 2,
+      "clickToMapMs": 59,
+      "cameraMovementMs": 2033,
+      "endZoom": "14.60",
+      "frameMs": {
+        "median": 16.699999999999818,
+        "p95": 16.799999999999727,
+        "max": 16.800000000000182
+      },
+      "framesOver33ms": 0,
+      "tileRequests": 84,
+      "imgElements": 25
+    },
+    {
+      "run": 3,
+      "clickToMapMs": 57,
+      "cameraMovementMs": 2033,
+      "endZoom": "14.60",
+      "frameMs": {
+        "median": 16.699999999999818,
+        "p95": 16.799999999999955,
+        "max": 16.800000000000182
+      },
+      "framesOver33ms": 0,
+      "tileRequests": 84,
+      "imgElements": 25
+    }
+  ]
+}

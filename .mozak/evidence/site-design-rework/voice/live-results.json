@@ -1,0 +1,98 @@
+{
+  "passed": true,
+  "micStarts": 1,
+  "events": [
+    {
+      "route": "/api/zagreb/profile",
+      "input": {
+        "step": 0,
+        "text": "Kad im kao programer. Volim miran život."
+      },
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "items": [
+          {
+            "text": "radi kao programer",
+            "topic": "tehnologija"
+          },
+          {
+            "text": "voli miran život",
+            "topic": "none"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/api/zagreb/profile",
+      "input": {
+        "step": 1,
+        "text": "Volim plazmu i dug šetnje u prirodi."
+      },
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "items": [
+          {
+            "text": "voli plazmu",
+            "topic": "none"
+          },
+          {
+            "text": "voli šetnje u prirodi",
+            "topic": "priroda"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/api/zagreb/profile",
+      "input": {
+        "step": 2,
+        "text": "Tražim brusilicu za šetnju. Mogu pomoćić s računalima."
+      },
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "items": [
+          {
+            "text": "traži brusilicu",
+            "topic": "stvari"
+          },
+          {
+            "text": "može pomoći s računalima",
+            "topic": "tehnologija"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/api/zagreb/neighbourhood",
+      "input": {
+        "text": "Nanima me kvart Maximir u Zagrebu."
+      },
+      "status": 200,
+      "body": {
+        "status": "selected",
+        "id": "maksimir"
+      }
+    }
+  ],
+  "layouts": [
+    {
+      "width": 320,
+      "scroll": 320,
+      "dialog": 0
+    },
+    {
+      "width": 390,
+      "scroll": 390,
+      "dialog": 0
+    },
+    {
+      "width": 1440,
+      "scroll": 1440,
+      "dialog": 0
+    }
+  ],
+  "errors": []
+}

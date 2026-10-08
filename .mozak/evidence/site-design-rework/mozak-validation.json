@@ -1,0 +1,18 @@
+{
+  "checks": [
+    {
+      "message": "contract validation passed",
+      "path": ".mozak/project.yml",
+      "status": "valid"
+    },
+    {
+      "message": "contract validation passed",
+      "path": ".mozak/idea.md",
+      "status": "valid"
+    }
+  ],
+  "command": "validate",
+  "project_root": "/home/pitfa/Documents/social-match-assistant",
+  "schema_version": 1,
+  "state": "valid"
+}

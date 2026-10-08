@@ -1,0 +1,102 @@
+{
+  "sequence_id": "site-design-rework",
+  "contract_sha256": "0211bf24b1ed111c242b6fdeac55c4e1bd80d8a6971859d1c37f2c725ab18fb0",
+  "requirements": [
+    {
+      "id": "page",
+      "status": "verified",
+      "checks": [
+        {
+          "id": "solid-fullpage-no-modal",
+          "passed": true,
+          "observation": "real",
+          "evidence": "browser/results.json: solid edge-to-edge blue and no modal; voice/safety-results.json: relative section at 320/390/1440"
+        },
+        {
+          "id": "notes-only-after-first-detail",
+          "passed": true,
+          "observation": "real",
+          "evidence": "browser/results.json: initial/empty notes absent, first detail reveal, last-note removal hides panel; voice/live-results.json: actual provider profile flow"
+        }
+      ]
+    },
+    {
+      "id": "svg-map",
+      "status": "verified",
+      "checks": [
+        {
+          "id": "verified-boundaries-license-and-catalogue",
+          "passed": true,
+          "observation": "inspection",
+          "evidence": "frontend/src/features/zagreb/data/regions.json provenance and ATTRIBUTION.md; unit-tests.txt: all 235 official shapes mapped by exact official codes, 3 group member unions"
+        },
+        {
+          "id": "selection-reset-interruption-no-tiles",
+          "passed": true,
+          "observation": "real",
+          "evidence": "browser/results.json: actual polygon click, MO Brezovica, group union, reset exact overview and interrupted retarget; after-event-timing-zoom.json: zero map tile requests"
+        },
+        {
+          "id": "landmark-orientation",
+          "passed": true,
+          "observation": "real",
+          "evidence": "browser/overview-desktop.png: visually reviewed Sava, district labels, north marker; browser/maksimir-desktop.png: actual selected polygon and stable-size label"
+        }
+      ]
+    },
+    {
+      "id": "organic-motion",
+      "status": "verified",
+      "checks": [
+        {
+          "id": "questions-notes-layout-feedback",
+          "passed": true,
+          "observation": "real",
+          "evidence": "browser/results.json: real question entrance animation and note fade, note removal; screenshots visually reviewed; useLayoutMotion.ts preserves offsets and avoids nested double movement"
+        },
+        {
+          "id": "loading-errors-and-reduced-motion",
+          "passed": true,
+          "observation": "real",
+          "evidence": "browser/results.json: busy spinner, 503 retains input, ambiguity no fabricated map, reduced-motion no running animations and immediate camera; voice/safety-results.json: permission denial and late-permission cleanup"
+        }
+      ]
+    },
+    {
+      "id": "behavior-preserved",
+      "status": "verified",
+      "checks": [
+        {
+          "id": "voice-and-typed-notes-map-flow",
+          "passed": true,
+          "observation": "real",
+          "evidence": "voice/live-results.json: 1 mic start, 4 silence-committed answers, 3 real semantic routes and Maksimir; verify-continuous-voice.mjs asserts ended tracks; voice/safety-results.json: real typed negation/third-party cases and MO Brezovica"
+        },
+        {
+          "id": "mobile-keyboard-long-content",
+          "passed": true,
+          "observation": "real",
+          "evidence": "browser/results.json: 320/390/768/1440 layouts, keyboard native select, 350-character note wrapping; voice/live-results.json: real flow mobile layouts no overflow"
+        }
+      ]
+    },
+    {
+      "id": "delivery",
+      "status": "verified",
+      "checks": [
+        {
+          "id": "performance-before-after",
+          "passed": true,
+          "observation": "real",
+          "evidence": "baseline-zoom.json and after-event-timing-zoom.json: 3 contexts each, actual rendered camera movement and tile requests; acceptance.md explicitly limits the comparison"
+        },
+        {
+          "id": "tests-build-preview-commit",
+          "passed": true,
+          "observation": "real",
+          "evidence": "unit-tests.txt:85 passed; typecheck.txt; build.txt; artifact-manifest.json: source/build/HTTP200 identity; scoped implementation commit 54168887aacf73ee7a964cb2fb276b65dbbe6927"
+        }
+      ]
+    }
+  ]
+}

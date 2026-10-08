@@ -1,0 +1,62 @@
+{
+  "label": "after-event-timing",
+  "capturedAt": "2026-10-08T14:04:01.030Z",
+  "appUrl": "http://127.0.0.1:3101",
+  "environment": {
+    "viewport": "1440x960",
+    "browser": "Chromium1243 headless",
+    "answerApis": "fixtures",
+    "rendering": "actual application",
+    "note": "No CPU/network throttling. Frame deltas include idle settle window. Repeated fresh browser contexts. Not a human latency study. Original baseline clickToMapMs began before Playwright actionability waits and is not comparable to corrected event-based clickToMapMs. Camera movement and tile request measurements are unchanged. Identical legacy profile fixtures are discarded by validation, so both runs contain no extracted facts."
+  },
+  "runs": [
+    {
+      "run": 1,
+      "measurementStartToMapMs": 941,
+      "harnessActionabilityWaitMs": 912,
+      "clickToMapMs": 30,
+      "cameraMovementMs": 717,
+      "endZoom": "14.92",
+      "frameMs": {
+        "median": 16.699999999999818,
+        "p95": 16.700000000000273,
+        "max": 16.800000000000182
+      },
+      "framesOver33ms": 0,
+      "tileRequests": 0,
+      "imgElements": 0
+    },
+    {
+      "run": 2,
+      "measurementStartToMapMs": 943,
+      "harnessActionabilityWaitMs": 913,
+      "clickToMapMs": 29,
+      "cameraMovementMs": 717,
+      "endZoom": "14.92",
+      "frameMs": {
+        "median": 16.699999999999818,
+        "p95": 16.799999999999727,
+        "max": 16.800000000000182
+      },
+      "framesOver33ms": 0,
+      "tileRequests": 0,
+      "imgElements": 0
+    },
+    {
+      "run": 3,
+      "measurementStartToMapMs": 943,
+      "harnessActionabilityWaitMs": 913,
+      "clickToMapMs": 30,
+      "cameraMovementMs": 717,
+      "endZoom": "14.92",
+      "frameMs": {
+        "median": 16.699999999999818,
+        "p95": 16.799999999999727,
+        "max": 16.800000000000182
+      },
+      "framesOver33ms": 0,
+      "tileRequests": 0,
+      "imgElements": 0
+    }
+  ]
+}
