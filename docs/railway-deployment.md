@@ -39,3 +39,11 @@ railway deployment list --service frontend --json
 Deploy a tested, coherent snapshot. Do not upload a changing working tree while another session is midway through the map redesign. Never use `--no-gitignore`. `.dockerignore` and `.railwayignore` exclude env files, recordings, private source content, local databases, dependencies and build artifacts.
 
 Verify public frontend HTTP 200, health 200, source bridge counts/aliases, typed geography route, and private backend denial without its token. No import or paid collection endpoint is exposed through the frontend bridge. Verify full voice/profile calls separately before claiming live AI acceptance.
+
+## Hosted example offers (owner-authorized October 8, 2026, 16:16 UTC)
+
+The current frontend supports three fictional Trešnjevka examples: pipe repair, dog walking and microphone rental. `HOSTED_DEMO_OFFERS=1` is an explicit **server-only** opt-in for the production runtime. It is disabled by default; `LOCAL_DEMO_OFFERS=1` alone still cannot enable it in production. The owner requested clean advertisement text without visible demo tags. Their internal source and synthetic provenance remain intact.
+
+The overlay is in memory and never imports examples into the real PostgreSQL corpus. Keep the existing private backend connection, credentials and public-preview expiry unchanged. Set `HOSTED_DEMO_OFFERS=0` and redeploy the frontend to disable these examples. Ordinary real-result filtering still excludes synthetic database rows. Deploy the strict-neighbourhood-compatible backend before the updated frontend.
+
+Public acceptance: run `APP_URL=https://kvartnakvadrat.up.railway.app node scripts/verify-demo-api.mjs` from `frontend/`. To explicitly run three provider-backed extraction requests as part of a full browser check, add `LIVE_PROFILE=1 WITH_MICROPHONE=1 APP_URL=https://kvartnakvadrat.up.railway.app` when running `scripts/verify-demo-offers.mjs` with an installed Chromium binary. The default browser check stubs extraction and must not be reported as provider acceptance.
