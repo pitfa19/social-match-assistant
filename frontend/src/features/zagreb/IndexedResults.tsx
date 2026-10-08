@@ -54,11 +54,10 @@ export function IndexedResults({ areaId, notes }: { areaId: string; notes: Note[
       {data.indexAvailable && !data.searched && <p role="status">Za povezivanje objava dodaj u profil što te zanima, što tražiš ili nudiš.</p>}
       {data.indexAvailable && data.searched && !data.results.length && <p role="status" data-testid="index-empty">Još nema objava koje odgovaraju tvom profilu i odabranom kvartu u prikupljenim podacima. Objave nepoznatog kvarta ne prikazujemo.</p>}
       {!!data.results.length && <>
-        <ul className={styles.matchList}>{data.results.map((r) => <li key={r.id} data-testid="matched-post">
-          <span className={styles.matchMeta}>{r.source === "demo" ? "Demo · Izmišljeni oglas" : r.source === "facebook" ? "Facebook" : r.source === "reddit" ? "Reddit" : "Zajednica"} · {r.areaBasis === "explicit_text" ? `Objava spominje ${area?.name}` : area?.name}</span>
+        <ul className={styles.matchList}>{data.results.map((r) => <li key={r.id} data-testid="matched-post" data-source={r.source}>
+          <span className={styles.matchMeta}>{r.source === "demo" ? "Oglas" : r.source === "facebook" ? "Facebook" : r.source === "reddit" ? "Reddit" : "Zajednica"} · {r.areaBasis === "explicit_text" ? `Objava spominje ${area?.name}` : area?.name}</span>
           <h3>{r.url ? <a href={r.url} target="_blank" rel="noopener noreferrer">{r.title} ↗</a> : r.title}</h3>
           <p>{r.body}</p>
-          {r.source === "demo" && <p className={styles.matchesHint}>Sintetički podatak za demonstraciju. Osoba i ponuda nisu stvarne.</p>}
         </li>)}</ul>
         <p className={styles.matchesHint}>Povezano prema riječima u profilu i objavi. Provjeri lokaciju i dostupnost kod izvora.</p>
       </>}

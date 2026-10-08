@@ -3,10 +3,12 @@ import { chromium, expect } from '@playwright/test';
 
 const browser = await chromium.launch({ headless: true, ...(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {}) });
 const liveProfile = process.env.LIVE_PROFILE === '1';
+const withMicrophone = process.env.WITH_MICROPHONE === '1';
+const expectedCount = withMicrophone ? 3 : 2;
 const profile = [
   { text: 'Gradski treper', topic: 'none', role: 'description' },
   { text: 'Zanima me glazba', topic: 'glazba', role: 'interest' },
-  { text: 'Tražim nekoga tko će mi prošetat psa i popraviti cijev u stanu', topic: 'none', role: 'request' },
+  { text: 'Tražim nekoga tko će mi prošetat psa i popraviti cijev u stanu' + (withMicrophone ? '. Tražim i mikrofon.' : ''), topic: 'none', role: 'request' },
 ];
 try {
   const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
@@ -36,11 +38,16 @@ try {
   if (response.status() !== 200) throw new Error(`Matching API status ${response.status()}`);
   const data = await response.json();
   const demos = data.results.filter(r => r.source === 'demo');
-  if (demos.length !== 2 || demos.some(r => r.recordKind !== 'synthetic' || r.area !== 'tresnjevka' || r.url !== null)) throw new Error('Expected exactly two labelled local demo offers');
+  if (demos.length !== expectedCount || demos.some(r => r.recordKind !== 'synthetic' || r.area !== 'tresnjevka' || r.url !== null)) throw new Error(`Expected exactly ${expectedCount} internally synthetic local offers`);
+  if (withMicrophone && !demos.some(r => r.id === 'demo-microphone-rental-tresnjevka')) throw new Error('Microphone rental missing');
   const section = page.getByTestId('indexed-results');
   await expect(section).toHaveAttribute('aria-busy', 'false');
-  const cards = section.getByTestId('matched-post').filter({ hasText: 'Demo · Izmišljeni oglas' });
-  await expect(cards).toHaveCount(2);
+  const cards = section.locator('[data-testid="matched-post"][data-source="demo"]');
+  await expect(cards).toHaveCount(expectedCount);
+  for (const card of await cards.all()) {
+    await expect(card).not.toContainText(/demo|izmišljen|sintetičk|nisu stvarne/i);
+    await expect(card).toContainText('Oglas · Trešnjevka');
+  }
   for (const width of [1440, 375, 320]) {
     await page.setViewportSize({ width, height: 1000 });
     await cards.first().scrollIntoViewIfNeeded();

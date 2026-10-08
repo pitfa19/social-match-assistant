@@ -11,8 +11,8 @@ export type DemoOffer = IndexedCandidate & { recordKind: "synthetic" };
 
 const DEMO_PIPE: DemoOffer = {
   id: "demo-pipe-repair-tresnjevka",
-  title: "[DEMO] Ivo nudi popravak cijevi u stanu",
-  body: "Izmišljeni demo oglas: Ivo, majstor za sitne vodoinstalaterske popravke (curenje cijevi, zamjena brtvi). Nije stvarna osoba.",
+  title: "Ivo nudi popravak cijevi u stanu",
+  body: "Majstor sam s Trešnjevke i nudim sitne vodoinstalaterske popravke u stanu: popravak cijevi koje cure i zamjenu brtvi. Termin po dogovoru.",
   source: "demo",
   url: null,
   area: DEMO_AREA_ID,
@@ -23,8 +23,20 @@ const DEMO_PIPE: DemoOffer = {
 
 const DEMO_DOG: DemoOffer = {
   id: "demo-dog-walking-tresnjevka",
-  title: "[DEMO] Maja nudi šetanje pasa u susjedstvu",
-  body: "Izmišljeni demo oglas: Maja, susjeda koja nudi šetnje pasa radnim danom. Nije stvarna osoba.",
+  title: "Maja nudi šetanje pasa u susjedstvu",
+  body: "Susjeda sam s Trešnjevke i nudim šetanje pasa radnim danom. Ako ne stigneš prošetati svog psa, mogu uskočiti. Vrijeme i trajanje šetnje po dogovoru.",
+  source: "demo",
+  url: null,
+  area: DEMO_AREA_ID,
+  areaBasis: "structured",
+  unknown: ["kontakt", "cijena"],
+  recordKind: "synthetic",
+};
+
+const DEMO_MICROPHONE: DemoOffer = {
+  id: "demo-microphone-rental-tresnjevka",
+  title: "Luka iznajmljuje mikrofon na Trešnjevci",
+  body: "Nudim mikrofon za najam na Trešnjevci, za snimanje vokala i glazbe. Moguć je kratkoročni najam, a preuzimanje i cijena su po dogovoru.",
   source: "demo",
   url: null,
   area: DEMO_AREA_ID,
@@ -47,6 +59,8 @@ const WALK = /\b(setat\w*|prosetat\w*|setac\w*|setnj\w*|setanj\w*|setam\w*|setaj
 const PIPE = /\b(cijev|cijevi|cijevima|cijevu|cijevcic\w*|vodovod\w*|pipe|pipes)\b/;
 const PIPE_FIX = /\b(popravi\w*|popravak|popravk\w*|poprav\w*|sanira\w*|sanacij\w*|zamijeni\w*|zamjen\w*|curi\w*|cure|pukl\w*|puce\w*|puknu\w*|odcep\w*|fix\w*|repair\w*|leak\w*)\b/;
 const PLUMBER = /\b(vodoinstalater\w*|instalater\w*|plumber)\b/;
+const MICROPHONE = /\b(mikrofon\w*|microphone\w*)\b/;
+const PURCHASE = /\b(kup\w*|kupnj\w*|buy\w*|purchas\w*)\b/;
 
 function clauses(text: string): string[] {
   return text.split(/[.;!?,\n]+|\bali\b|\bwhile\b|\bbut\b/i).map(fold).filter(Boolean);
@@ -59,16 +73,19 @@ export function matchDemoOffers(input: MatchInput): DemoOffer[] {
   if (input.areaId !== DEMO_AREA_ID) return [];
   let pipe = false;
   let dog = false;
+  let microphone = false;
   for (const fact of input.facts) {
     if (fact.role !== "request") continue;
     for (const c of clauses(fact.text)) {
       if (NEGATION.test(c)) continue;
       if (wantsPipeRepair(c)) pipe = true;
       if (wantsDogWalking(c)) dog = true;
+      if (MICROPHONE.test(c) && !PURCHASE.test(c)) microphone = true;
     }
   }
   const out: DemoOffer[] = [];
   if (pipe) out.push({ ...DEMO_PIPE, unknown: [...DEMO_PIPE.unknown] });
   if (dog) out.push({ ...DEMO_DOG, unknown: [...DEMO_DOG.unknown] });
+  if (microphone) out.push({ ...DEMO_MICROPHONE, unknown: [...DEMO_MICROPHONE.unknown] });
   return out;
 }

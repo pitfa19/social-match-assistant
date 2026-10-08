@@ -34,14 +34,25 @@ test("combined needs return both, separate and stable", () => {
   assert.equal(split.length, 2);
 });
 
-test("candidates are clearly synthetic with no contact or links", () => {
-  for (const c of matchDemoOffers(input(["šetnja psa", "popravak cijevi"]))) {
+test("microphone request matches rental, not music alone, purchase, negation or wrong area", () => {
+  for (const text of ["Tražim mikrofon", "trazim mikrofon za rent", "Trebam najam mikrofona", "mikrofon za snimanje vokala"]) {
+    assert.deepEqual(ids(input([text])), ["demo-microphone-rental-tresnjevka"]);
+  }
+  for (const text of ["Želim kupiti mikrofon", "ne trebam mikrofon", "tražim glazbu"]) assert.deepEqual(ids(input([text])), []);
+  assert.deepEqual(ids(input(["mikrofon"], "interest")), []);
+  assert.deepEqual(ids(input(["mikrofon"], "offer")), []);
+  assert.deepEqual(ids(input(["mikrofon"], "request", "maksimir")), []);
+  assert.equal(matchDemoOffers(input(["Tražim nekoga da prošetat psa i popraviti cijev u stanu, tražim i mikrofon"])).length, 3);
+});
+
+test("candidates retain synthetic metadata without visible demo wording or contact links", () => {
+  for (const c of matchDemoOffers(input(["šetnja psa", "popravak cijevi", "mikrofon"]))) {
     assert.ok(c.id.startsWith("demo-"));
     assert.equal(c.source, "demo");
     assert.equal(c.url, null);
     assert.equal(c.areaBasis, "structured");
     assert.equal(c.recordKind, "synthetic");
-    assert.match(c.title, /DEMO/);
+    assert.doesNotMatch(c.title + c.body, /demo|izmišljen|sintetičk|nije stvarna/i);
     assert.doesNotMatch(c.title + c.body, /@|https?:|\+?\d{6,}/);
   }
 });

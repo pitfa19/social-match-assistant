@@ -7,6 +7,10 @@ for (const [name, body, expected] of [
   ['both needs ascii', request('trazim nekoga tko ce mi prosetat psa, i popraviti cijev u stanu'), 2],
   ['dog only', request('Trebam šetača za psa'), 1],
   ['pipe only', request('Treba mi popravak cijevi'), 1],
+  ['microphone only', request('Tražim mikrofon'), 1],
+  ['microphone rental', request('trazim mikrofon za rent'), 1],
+  ['three needs', request('šetanje psa, popravak cijevi i mikrofon'), 3],
+  ['microphone purchase', request('Želim kupiti mikrofon'), 0],
   ['wrong neighbourhood', request('šetanje psa i popravak cijevi', 'request', 'maksimir'), 0],
   ['music only', request('Zanima me glazba', 'interest'), 0],
   ['offer not request', request('Nudim šetanje pasa i popravak cijevi', 'offer'), 0],
@@ -22,6 +26,7 @@ for (const [name, body, expected] of [
   assert.ok(demo.every(r => r.recordKind === 'synthetic' && r.area === 'tresnjevka' && r.url === null));
   if (name === 'dog only') assert.equal(demo[0].id, 'demo-dog-walking-tresnjevka');
   if (name === 'pipe only') assert.equal(demo[0].id, 'demo-pipe-repair-tresnjevka');
+  if (name.startsWith('microphone') && expected === 1) assert.equal(demo[0].id, 'demo-microphone-rental-tresnjevka');
   checks.push({ name, status: response.status, demoIds: demo.map(r => r.id) });
 }
 for (const [name, body, origin, expected] of [
