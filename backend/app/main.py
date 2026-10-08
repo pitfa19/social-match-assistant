@@ -80,3 +80,9 @@ async def reddit_comments(req: reddit.CommentsRequest, settings: Settings = Depe
 @app.get("/pilot/reddit/comments/jobs/{job_id}")
 async def reddit_comments_job(job_id: UUID, settings: Settings = Depends(get_settings), transport=Depends(get_transport)):
     return await reddit.comments_job_results(str(job_id), settings, transport)
+
+
+# ---- Matching store, retrieval and benchmark (local PostgreSQL, no provider calls) ----
+from .matching.routes import router as matching_router  # noqa: E402
+
+app.include_router(matching_router)
