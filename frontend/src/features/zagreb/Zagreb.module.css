@@ -4,7 +4,7 @@
 .header { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; width: 100%; max-width: 100rem; margin-inline: auto; }
 .brand { display: flex; align-items: center; flex: none; }
 .brandLogo { display: block; width: clamp(4.5rem, 8vw, 6rem); height: auto; object-fit: contain; }
-.slogan { margin: 0; font-size: clamp(.9rem, 1.5vw, 1.15rem); font-weight: 450; letter-spacing: -.025em; text-wrap: balance; text-align: right; }
+.slogan { margin: 0; font-size: clamp(.75rem, 1.1vw, .9rem); font-weight: 500; line-height: 1.4; letter-spacing: .025em; white-space: nowrap; text-align: right; }
 .overlay { position: relative; display: flex; flex: 1; width: 100%; max-width: 90rem; margin: 2rem auto; min-height: 0; }
 .split { display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; width: 100%; min-width: 0; gap: clamp(2rem, 6vw, 6rem); }
 .split[data-cols="2"] { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); }
@@ -166,7 +166,6 @@
   .page::before { background-position: 62% center; }
   .question { font-size: clamp(2rem, 6.5vw, 3.5rem); }
   .header { gap: 1rem; }
-  .slogan { max-width: 12ch; }
   .mapFrame, .map { min-height: 29rem; }
   .split[data-map="true"] > .notesCol { position: static; grid-row: 2; }
   .split[data-map="true"][data-cols="2"] > .mapCol, .split[data-map="true"][data-cols="2"] > .matches { grid-column: 1; }
