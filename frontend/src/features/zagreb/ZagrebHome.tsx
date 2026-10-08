@@ -162,7 +162,11 @@ export function ZagrebHome() {
         <div className={styles.brand}>
           <Image className={styles.brandLogo} src="/kvart-na-kvadrat-logo.png" alt="Kvart na kvadrat" width={320} height={429} priority />
         </div>
-        <h1 className={styles.slogan}>Vaš omiljeni susjed.</h1>
+        <h1 className={styles.slogan}>
+          <span className={styles.sloganWord}>Vaš</span>{" "}
+          <em className={`${styles.sloganWord} ${styles.sloganAccent}`}>omiljeni</em>{" "}
+          <span className={styles.sloganWord}>susjed.</span>
+        </h1>
       </header>
       <section className={styles.overlay} data-expanded="true" aria-label="Upoznajmo se">
         <div className={styles.split} data-cols={hasNotes ? "2" : "1"} data-map={mapShown}>
