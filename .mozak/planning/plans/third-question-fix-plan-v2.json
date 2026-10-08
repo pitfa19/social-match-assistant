@@ -1,0 +1,26 @@
+{
+  "contract_version": 1,
+  "id": "third-question-fix",
+  "version": 2,
+  "supersedes": {"id": "third-question-fix", "version": 1},
+  "input_set_id": "third-question-fix-inputs-20261008",
+  "goals": [
+    {
+      "id": "third-question-fix",
+      "version": 2,
+      "supersedes_version": 1,
+      "title": "Accept third-question answers and verify sequential onboarding publicly",
+      "status": "completed",
+      "priority": 1,
+      "input_ids": ["fix-third-answer"],
+      "recovery_attempts": 0,
+      "evidence": [
+        {"path": ".mozak/evidence/third-question-fix/acceptance.md", "sha256": "2fb1dc3b5e32e6117df40320cb812c433c950128061838ada5ed24e096ecdb9d"},
+        {"path": ".mozak/evidence/third-question-fix/checkpoint.json", "sha256": "c7001e3d0df437009a307318b5648e2ed00bb334aae6ec49fcccd907d54acd82"},
+        {"path": ".mozak/evidence/third-question-fix/artifacts.sha256", "sha256": "a540574c84e95b55ff5063ebbf3d4716445b7d3b42877734ea465fd63baa2026"}
+      ]
+    }
+  ],
+  "dependencies": [],
+  "recovery": {"max_attempts_per_goal": 2, "allowed_failed_transition": "blocked"}
+}

@@ -1,0 +1,66 @@
+{
+  "base": "https://kvartnakvadrat.up.railway.app",
+  "observedAt": "2026-10-08T15:03:30.337Z",
+  "rows": [
+    {
+      "text": "društvo",
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "items": [
+          {
+            "text": "traži društvo",
+            "topic": "druzenje",
+            "role": "request"
+          }
+        ],
+        "coverage": [
+          2
+        ]
+      }
+    },
+    {
+      "text": "Mogu pomoći s računalima.",
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "items": [
+          {
+            "text": "nudi pomoć s računalima",
+            "topic": "tehnologija",
+            "role": "offer"
+          }
+        ],
+        "coverage": [
+          2
+        ]
+      }
+    },
+    {
+      "text": "Ne znam",
+      "status": 200,
+      "body": {
+        "status": "empty",
+        "items": [],
+        "coverage": []
+      }
+    },
+    {
+      "text": "Ništa trenutno.",
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "items": [
+          {
+            "text": "trenutno ništa ne traži niti nudi",
+            "topic": "none",
+            "role": "request"
+          }
+        ],
+        "coverage": [
+          2
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "sequence_id": "third-question-fix",
+  "contract_sha256": "ce5d2c2f1eae3903d22427894347e760b5f00e18223dcb38d3c59a0d2f55ed5d",
+  "requirements": [
+    {
+      "id": "reproduce-and-fix",
+      "status": "verified",
+      "checks": [
+        {"id": "real-rejection-and-corrected-third-answer", "passed": true, "observation": "real", "evidence": "before.json records real HTTP 200 empty coverage for Ne znam. local/results.json records the same real empty-coverage response advancing through step 3 to Maksimir without invented notes. public/results.json verifies public sequential progression. acceptance.md distinguishes real observations from supplementary fixtures."},
+        {"id": "grounded-facts-and-adaptive-skip-regression", "passed": true, "observation": "real", "evidence": "public/results.json verifies uncertainty creates no notes. adaptive-regression/results.json records real all-in-one extraction, one-call skipping, valid area selection, private indexed search availability and third-party/negation safety. unit-tests.txt adds reducer boundary coverage."}
+      ]
+    },
+    {
+      "id": "delivery",
+      "status": "verified",
+      "checks": [
+        {"id": "sequential-typing-and-voice-to-map", "passed": true, "observation": "real", "evidence": "local/results.json and public/results.json each pass 9 checks including normal four typed turns, a real streaming third voice answer without manual stop, valid area completion and ended microphone tracks. Synthetic input audio travels through actual providers. Screenshots accompany results."},
+        {"id": "tests-build-publication-public-acceptance", "passed": true, "observation": "real", "evidence": "unit-tests.txt has 99 passing tests. typecheck.txt and build.txt succeeded. deployment-start.json and deployment-status.json identify successful deployment 6797481c-5e5e-43ca-973e-f317b48718b0 of source eb24f1c40ae28546e70291aa34cfd0bbac78bbe0. public/results.json and adaptive-regression/results.json verify the deployed application with 9 and 29 checks respectively."}
+      ]
+    }
+  ]
+}

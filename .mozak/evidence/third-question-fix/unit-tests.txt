@@ -1,0 +1,147 @@
+
+> social-match-assistant-frontend@0.1.0 test
+> node --experimental-strip-types --test src/features/search/logic.test.ts src/features/zagreb/geo.test.ts src/features/zagreb/neighbourhoods.test.ts src/features/zagreb/profileLogic.test.ts src/features/zagreb/realtimeVoiceLogic.test.ts src/features/zagreb/realtimeTurnController.test.ts src/features/zagreb/server/semanticProfile.test.ts src/features/zagreb/mapCamera.test.ts src/features/zagreb/adaptiveIndexed.test.ts
+
+(node:159023) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/pitfa/Documents/social-match-assistant/frontend/src/features/search/logic.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/pitfa/Documents/social-match-assistant/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ fixtures: 15+ synthetic, no urls, all sources present (2.334877ms)
+✔ parseBudget distinguishes empty, invalid, ok (0.546512ms)
+✔ rental total is rent + utilities, unknown when utilities missing (0.216074ms)
+✔ budget applies to rent + utilities and hides unknown prices (0.835046ms)
+✔ invalid budget is not applied and notes it (0.560157ms)
+✔ area and category are hard filters (0.592949ms)
+✔ lexical match with inflection, works without profile (0.686238ms)
+✔ profile used only when enabled (3.433141ms)
+✔ tokenize drops stopwords and diacritics (0.230295ms)
+✔ draft is grounded and has no invented facts (1.983024ms)
+✔ saved store handles broken storage (0.586379ms)
+(node:159024) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/pitfa/Documents/social-match-assistant/frontend/src/features/zagreb/adaptiveIndexed.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/pitfa/Documents/social-match-assistant/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ one grounded answer can cover the whole flow with no second model call (4.774224ms)
+✔ partial coverage skips only answered topics and retains early area (0.206444ms)
+✔ occupation/topic does not by itself imply interest or offer (0.265958ms)
+✔ successful empty extraction accepts the current answer without inventing future coverage (0.202243ms)
+✔ third question accepts uncertainty and does not loop on absent semantic coverage (0.210961ms)
+✔ coverage and area require real quoted self evidence (0.671549ms)
+✔ negated or third-party location never skips the area question (0.39809ms)
+✔ unsupported location and generic ambiguity remain unresolved (0.446759ms)
+✔ stale answers ignored and deleted facts stay excluded from matching (0.890359ms)
+✔ index planner prioritises actionable intent, splits mixed intent into at most two queries (3.703146ms)
+✔ URLs and synthetic benchmark records cannot masquerade as live results (0.682988ms)
+✔ input cannot choose corpus, endpoint, unbounded facts or invalid geography (0.39513ms)
+✔ fixed indexed bridge makes bounded parallel reads, dedupes and never sends a scoring/collection request (26.88011ms)
+✔ partial upstream failure is not a fake empty success (0.905431ms)
+(node:159030) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/pitfa/Documents/social-match-assistant/frontend/src/features/zagreb/geo.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/pitfa/Documents/social-match-assistant/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ project: Zagreb centre lands in expected z12 tile (2.175026ms)
+✔ visibleTiles: covers viewport and centre tile is present (0.564244ms)
+✔ neighbourhoods: unique ids and all inside greater Zagreb (0.365965ms)
+✔ easeInOut endpoints (0.188872ms)
+(node:159031) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/pitfa/Documents/social-match-assistant/frontend/src/features/zagreb/mapCamera.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/pitfa/Documents/social-match-assistant/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ every official catalogue code has exactly one real polygon (6.44849ms)
+✔ unknown geometry returns overview instead of inventing a boundary (1.166161ms)
+✔ fit frames both constituent regions and caps tiny regions (0.396874ms)
+✔ critical spring settles without overshoot from rest (0.508396ms)
+✔ retarget keeps current position and velocity, then reaches new target (1.059883ms)
+✔ sources are pinned, attributed and river is sourced (0.314201ms)
+(node:159042) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/pitfa/Documents/social-match-assistant/frontend/src/features/zagreb/neighbourhoods.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/pitfa/Documents/social-match-assistant/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ catalogue: expected official counts (2.666679ms)
+✔ catalogue: ids unique, numeric coordinates inside greater Zagreb, sane zoom (1.053168ms)
+✔ catalogue: hierarchy is consistent (0.693741ms)
+✔ catalogue: provenance records official sources and limits (1.578907ms)
+✔ legacy ids keep working with previous zoom (0.46262ms)
+✔ every location is selectable explicitly by its official name (1.700834ms)
+✔ diacritics, case and filler words (0.985168ms)
+✔ colloquial groups resolve to the group, not an invented unit (0.222564ms)
+✔ duplicate names between a district and its own committee resolve to the district (0.699245ms)
+✔ generic names are never resolved alone, but qualified alias works (1.268358ms)
+✔ no alias collisions remain unhandled (4.661059ms)
+✔ streets, landmarks and unknown places are not inferred (0.248455ms)
+✔ choice planning never exceeds 256 and covers every place (0.4102ms)
+✔ hard cap holds even if a caller asks for a larger one (1.672007ms)
+✔ flat plan is used only when it fits the cap (0.669666ms)
+✔ hierarchy: every location reachable in at most two capped stages (1.624673ms)
+✔ decide: explicit alias skips Decisions entirely (0.318523ms)
+✔ decide: ambiguous alias asks for clarification without Decisions (0.31032ms)
+✔ decide: hierarchical path sends only capped stages and validates answers (1.058828ms)
+✔ every one of the 238 entries is reachable through an unambiguous qualified alias (4.088248ms)
+✔ kind qualifier is preserved: MO Maksimir is the committee, bare Maksimir the district (0.190111ms)
+✔ multi-place and negative answers never resolve explicitly (0.252029ms)
+✔ decide: NaN, missing or string confidence is rejected (0.594818ms)
+(node:159043) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/pitfa/Documents/social-match-assistant/frontend/src/features/zagreb/profileLogic.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/pitfa/Documents/social-match-assistant/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ questions come in the approved order (1.773563ms)
+✔ blank answers do not advance (1.947734ms)
+✔ clauses are verbatim sentences, never truncated, capped in count (4.975674ms)
+✔ negated clauses stay as facts, never split from their negation (3.479571ms)
+✔ negative self fact is kept without a positive sport topic (1.464874ms)
+✔ mapDecisions: self predicate gates clauses, topic none keeps fact untagged, bad topics dropped (0.283373ms)
+✔ facts and topics are added and advance the step; duplicates collapse (0.543108ms)
+✔ deleted items never come back through later answers (0.496704ms)
+(node:159049) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/pitfa/Documents/social-match-assistant/frontend/src/features/zagreb/realtimeTurnController.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/pitfa/Documents/social-match-assistant/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ EVIDENCE: trailing commit of the same answer after pause is never delivered as the next question (11.324088ms)
+✔ EVIDENCE: flush commit arriving AFTER the handler settled is still swallowed (resume waits) (0.808447ms)
+✔ flush never answered (no speech in flight): timeout settles it, no hang (0.374996ms)
+✔ stale final: commit during a long handler is dropped, not queued (5.374349ms)
+✔ duplicate final inside the window is dropped (2.572732ms)
+✔ stop during awaited callback: no resume, no further delivery, no more frames (0.403338ms)
+✔ handler rejection still resumes (0.320391ms)
+✔ silence / no speech never submits (0.232993ms)
+✔ manual pause holds past handler completion until released (0.672471ms)
+✔ frames before session_started are not sent (1.170388ms)
+✔ server error events surface typed failures (0.391704ms)
+(node:159077) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/pitfa/Documents/social-match-assistant/frontend/src/features/zagreb/realtimeVoiceLogic.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/pitfa/Documents/social-match-assistant/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ delivers a normal commit (4.067736ms)
+✔ silence alone never submits (0.500423ms)
+✔ commits while suspended are dropped (0.154189ms)
+✔ trailing duplicate of the same answer is dropped (0.204579ms)
+✔ suspend with buffered speech flushes and swallows the flush commit (0.201777ms)
+✔ flush timeout releases a resume even if no commit arrives (0.169927ms)
+✔ suspend always flushes, even with no partial seen (speech may be in flight) (0.136985ms)
+✔ resume is not remembered across a fresh suspend (0.100147ms)
+✔ server events are classified (0.181407ms)
+✔ url carries VAD 1.5 s, Croatian and a token, never an api key (0.415524ms)
+✔ audio chunk message follows the documented shape (0.261981ms)
+✔ normalize strips punctuation and case (0.085614ms)
+(node:159083) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/pitfa/Documents/social-match-assistant/frontend/src/features/zagreb/server/semanticProfile.test.ts is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/pitfa/Documents/social-match-assistant/frontend/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ request is stored:false strict json_schema (1.336426ms)
+✔ accepts grounded concise fact (2.619294ms)
+✔ rejects evidence not in input (0.201562ms)
+✔ drops facts about other people (0.862249ms)
+✔ negation never becomes topic (0.314046ms)
+✔ rejects fact that loses negation of its evidence (0.173271ms)
+✔ evidence must be exact quote: case and diacritics matter, whitespace and NFC do not (1.333911ms)
+✔ request sets low reasoning and generous token budget (0.225813ms)
+✔ bad schema, refusal, incomplete, bad JSON are errors (0.294872ms)
+✔ caps count and length, dedupes (0.315996ms)
+ℹ tests 99
+ℹ suites 0
+ℹ pass 99
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 406.842171

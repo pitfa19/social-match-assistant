@@ -1,0 +1,205 @@
+{
+  "base": "http://127.0.0.1:3103",
+  "passed": true,
+  "checks": [
+    "blank answer stays disabled",
+    "real third uncertainty advances to neighbourhood",
+    "uncertainty does not invent profile notes",
+    "normal four typed turns reach map",
+    "real spoken third answer advances without manual stop",
+    "third voice turn followed by area reaches map",
+    "microphone tracks stop on completion",
+    "three successful empty extractions consume exactly three turns",
+    "no browser errors"
+  ],
+  "events": [
+    {
+      "route": "/api/zagreb/profile",
+      "status": 200,
+      "input": {
+        "step": 0,
+        "text": "Ja sam programer."
+      },
+      "body": {
+        "status": "ok",
+        "items": [
+          {
+            "text": "programer",
+            "topic": "none",
+            "role": "description"
+          }
+        ],
+        "coverage": [
+          0
+        ]
+      }
+    },
+    {
+      "route": "/api/zagreb/profile",
+      "status": 200,
+      "input": {
+        "step": 1,
+        "text": "Volim knjige."
+      },
+      "body": {
+        "status": "ok",
+        "items": [
+          {
+            "text": "voli knjige",
+            "topic": "knjige",
+            "role": "interest"
+          }
+        ],
+        "coverage": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "route": "/api/zagreb/profile",
+      "status": 200,
+      "input": {
+        "step": 2,
+        "text": "Ne znam"
+      },
+      "body": {
+        "status": "empty",
+        "items": [],
+        "coverage": []
+      }
+    },
+    {
+      "route": "/api/zagreb/neighbourhood",
+      "status": 200,
+      "input": {
+        "text": "Maksimir"
+      },
+      "body": {
+        "status": "selected",
+        "id": "maksimir"
+      }
+    },
+    {
+      "route": "/api/zagreb/profile",
+      "status": 200,
+      "input": {
+        "step": 0,
+        "text": "Ja sam programer."
+      },
+      "body": {
+        "status": "ok",
+        "items": [
+          {
+            "text": "programer",
+            "topic": "none",
+            "role": "description"
+          }
+        ],
+        "coverage": [
+          0
+        ]
+      }
+    },
+    {
+      "route": "/api/zagreb/profile",
+      "status": 200,
+      "input": {
+        "step": 1,
+        "text": "Volim knjige."
+      },
+      "body": {
+        "status": "ok",
+        "items": [
+          {
+            "text": "voli knjige",
+            "topic": "knjige",
+            "role": "interest"
+          }
+        ],
+        "coverage": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "route": "/api/zagreb/profile",
+      "status": 200,
+      "input": {
+        "step": 2,
+        "text": "Tražim bržu vozu za Šetnju. Mogu pomoći s računalima."
+      },
+      "body": {
+        "status": "ok",
+        "items": [
+          {
+            "text": "traži bržu vozu za šetnju",
+            "topic": "none",
+            "role": "request"
+          },
+          {
+            "text": "može pomoći s računalima",
+            "topic": "tehnologija",
+            "role": "offer"
+          }
+        ],
+        "coverage": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "route": "/api/zagreb/neighbourhood",
+      "status": 200,
+      "input": {
+        "text": "Maksimir"
+      },
+      "body": {
+        "status": "selected",
+        "id": "maksimir"
+      }
+    },
+    {
+      "route": "/api/zagreb/profile",
+      "status": 200,
+      "input": {
+        "step": 0,
+        "text": "Ne znam"
+      },
+      "body": {
+        "status": "empty",
+        "items": [],
+        "coverage": []
+      }
+    },
+    {
+      "route": "/api/zagreb/profile",
+      "status": 200,
+      "input": {
+        "step": 1,
+        "text": "Ne znam"
+      },
+      "body": {
+        "status": "empty",
+        "items": [],
+        "coverage": []
+      }
+    },
+    {
+      "route": "/api/zagreb/profile",
+      "status": 200,
+      "input": {
+        "step": 2,
+        "text": "Ne znam"
+      },
+      "body": {
+        "status": "empty",
+        "items": [],
+        "coverage": []
+      }
+    }
+  ],
+  "errors": []
+}
