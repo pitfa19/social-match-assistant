@@ -1,0 +1,6 @@
+{
+  "PUBLIC_PREVIEW_UNTIL": "2026-10-08T22:00:00Z",
+  "APP_REQUIRE_AUTH": "true",
+  "BACKEND_URL": "http://backend.railway.internal:8000",
+  "RAILWAY_PUBLIC_DOMAIN": "kvartnakvadrat.up.railway.app"
+}

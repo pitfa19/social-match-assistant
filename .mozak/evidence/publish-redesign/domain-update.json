@@ -1,0 +1,11 @@
+{
+  "domain": {
+    "id": "51d99dea-03e5-4531-9555-4a24c2973494",
+    "domain": "kvartnakvadrat.up.railway.app",
+    "type": "service",
+    "targetPort": 3000,
+    "syncStatus": "ACTIVE",
+    "createdAt": "2026-10-08T14:02:52.362+00:00",
+    "updatedAt": "2026-10-08T14:17:37.891+00:00"
+  }
+}

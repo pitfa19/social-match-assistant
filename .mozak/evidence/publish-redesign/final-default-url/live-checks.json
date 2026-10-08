@@ -1,0 +1,51 @@
+{
+  "observed_at": "2026-10-08T14:25:40.135Z",
+  "base": "https://kvartnakvadrat.up.railway.app",
+  "results": [
+    {
+      "name": "public page without credentials",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "name": "health",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "name": "persistent source registry through private backend",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "name": "Croatian neighbourhood alias",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "name": "two Sesvete sources",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "name": "typed map selection",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "name": "cross-site write denied",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "name": "no public import bridge",
+      "status": 404,
+      "passed": true
+    }
+  ],
+  "limits": [
+    "No Facebook content collected",
+    "Ordered Facebook URL mappings remain unverified",
+    "Voice and paid-model live regressions not covered here"
+  ]
+}

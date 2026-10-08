@@ -2,7 +2,7 @@ import { chromium } from '@playwright/test';
 import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
 const base=process.env.BASE_URL||'http://127.0.0.1:3101';
-const dir='../.mozak/evidence/site-design-rework/browser';await mkdir(dir,{recursive:true});
+const dir=process.env.EVIDENCE_DIR||'../.mozak/evidence/site-design-rework/browser';await mkdir(dir,{recursive:true});
 const browser=await chromium.launch({headless:true,executablePath:'/home/pitfa/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome'});
 const checks=[],errors=[];
 const check=(name,value)=>{assert.ok(value,name);checks.push(name);};

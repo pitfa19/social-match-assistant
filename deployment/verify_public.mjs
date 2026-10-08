@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
 
-const base = process.env.PREVIEW_URL || 'https://frontend-production-af62.up.railway.app';
+const base = process.env.PREVIEW_URL || 'https://kvartnakvadrat.up.railway.app';
 const output = process.argv[2];
 if (!output) throw new Error('Evidence directory required');
 const results = [];

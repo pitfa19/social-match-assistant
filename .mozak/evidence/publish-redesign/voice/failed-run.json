@@ -1,0 +1,81 @@
+{
+  "events": [
+    {
+      "route": "/api/zagreb/profile",
+      "input": {
+        "step": 0,
+        "text": "Radim kao programer. Volim miran život."
+      },
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "items": [
+          {
+            "text": "radi kao programer",
+            "topic": "tehnologija"
+          },
+          {
+            "text": "voli miran život",
+            "topic": "none"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/api/zagreb/profile",
+      "input": {
+        "step": 1,
+        "text": "Volim glazbu i dug šetnje u prirodi."
+      },
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "items": [
+          {
+            "text": "voli glazbu",
+            "topic": "glazba"
+          },
+          {
+            "text": "voli duge šetnje u prirodi",
+            "topic": "priroda"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/api/zagreb/profile",
+      "input": {
+        "step": 2,
+        "text": "Tražim društvo za šetnju. Mogu pomoći s računalima."
+      },
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "items": [
+          {
+            "text": "traži društvo za šetnju",
+            "topic": "druzenje"
+          },
+          {
+            "text": "može pomoći s računalima",
+            "topic": "tehnologija"
+          }
+        ]
+      }
+    },
+    {
+      "route": "/api/zagreb/neighbourhood",
+      "input": {
+        "text": "Zanima me kvart Maximir u Zagrebu."
+      },
+      "status": 200,
+      "body": {
+        "status": "clarify",
+        "candidates": []
+      }
+    }
+  ],
+  "errors": [],
+  "state": "k²\nkvart na kvadrat\nZagreb\nvaš omiljeni susjed\nSASTAVLJAMO TVOJU PRIČU\nO tebi\n9\nTehnologija\n×\nvoli miran život\n×\nvoli glazbu\n×\nGlazba\n×\nvoli duge šetnje u prirodi\n×\nPriroda i životinje\n×\ntraži društvo za šetnju\n×\nDruženje i zajednica\n×\nmože pomoći s računalima\n×\n\nSamo ono što si podijelio. Klikni bilješku da je ukloniš.\n\nDodirni za pauzu\n\n4 / 4\n\nKoji kvart te zanima?\n\nNisam siguran koji kvart misliš. Navedi ga imenom.\n\nIdemo\nManje traženja. Više povezivanja.\nGlasom ili tipkanjem. Tvojim tempom.",
+  "error": "TimeoutError: page.waitForFunction: Timeout 45000ms exceeded."
+}

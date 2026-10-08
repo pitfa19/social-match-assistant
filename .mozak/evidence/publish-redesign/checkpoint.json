@@ -1,0 +1,16 @@
+{
+  "sequence_id": "publish-redesign",
+  "contract_sha256": "2358a296626aa19ab6e2f6b3e3f222bbd6c73915619016a9787aceccb19dff01",
+  "requirements": [
+    {"id":"deployment","status":"verified","checks":[
+      {"id":"coherent-snapshot-public-latest","passed":true,"observation":"real","evidence":"deployment-state.json: SUCCESS 30932e10; immutable c46e8a0 upload; browser/results.json and reviewed screenshots demonstrate deployed new design"},
+      {"id":"public-page-map-notes-provider-flow","passed":true,"observation":"real","evidence":"live-checks.json:8 HTTPS checks; browser/results.json:37 deployed UI checks with fixture answer APIs; safety/safety-results.json:actual typed semantic and MO Brezovica flow. Voice-to-map does not pass due to Maximir transcription, explicitly retained in acceptance.md and both failed-run.json files."}
+    ]},
+    {"id":"alias","status":"verified","checks":[
+      {"id":"kvartnakvadrat-https-works","passed":true,"observation":"real","evidence":"domain-update.json and domain-active.json:exact requested hostname ACTIVE; live-checks.json:https public page and health HTTP200"}
+    ]},
+    {"id":"preservation","status":"verified","checks":[
+      {"id":"backend-registry-and-access-policy-preserved","passed":true,"observation":"real","evidence":"backend-state.json:unchanged successful deployment; public-policy.json:original expiry,auth and private backend retained; live-checks.json:registry and cross-site/import restrictions pass. Future expiry transition not time-travel-tested."}
+    ]}
+  ]
+}
