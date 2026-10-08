@@ -2,13 +2,13 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Pronađi svoje podudaranje u Zagrebu",
+  title: "Pričaj sa svojim gradom",
   description:
-    "Demo asistent koji ti pomaže pronaći prave ponude i zahtjeve u Zagrebu te pripremiti objavu. Sintetički podaci, bez živih integracija.",
+    "Lokalni demo za Zagreb: reci koji te kvart zanima i karta te vodi tamo.",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f6f0e1",
+  themeColor: "#0a4ea3",
   width: "device-width",
   initialScale: 1,
 };

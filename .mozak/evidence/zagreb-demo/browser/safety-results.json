@@ -1,0 +1,21 @@
+{
+  "checks": [
+    {
+      "name": "Server request guards reject cross-origin, empty, oversized, invalid audio",
+      "passed": true
+    },
+    {
+      "name": "Closing during permission request stops late microphone and sends no clip",
+      "passed": true
+    },
+    {
+      "name": "Provider errors stay visible, retry enabled, no map movement",
+      "passed": true
+    },
+    {
+      "name": "Supplied secret values are absent from source and browser bundles",
+      "passed": true
+    }
+  ],
+  "errorPathUsesFixture": true
+}

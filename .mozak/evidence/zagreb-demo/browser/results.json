@@ -1,0 +1,35 @@
+{
+  "checks": [
+    {
+      "name": "Croatian hero, two actions, real map tiles",
+      "passed": true
+    },
+    {
+      "name": "Single question, full-page orb, focus trap and Escape",
+      "passed": true
+    },
+    {
+      "name": "Actual microphone recording -> ElevenLabs -> Decisions -> map zoom (synthetic speech)",
+      "passed": true
+    },
+    {
+      "name": "Unknown neighbourhood asks clarification without moving map",
+      "passed": true
+    },
+    {
+      "name": "Pretraži honestly marked unavailable",
+      "passed": true
+    },
+    {
+      "name": "Mobile layout and reduced motion",
+      "passed": true
+    },
+    {
+      "name": "No page runtime exceptions",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "syntheticVoiceInput": true,
+  "realProviderCalls": true
+}
