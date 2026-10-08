@@ -7,4 +7,4 @@ COPY backend/app ./app
 COPY backend/migrations ./migrations
 COPY shared /app/shared
 USER app
-CMD ["sh", "-c", "python -m app.bootstrap && exec uvicorn app.main:app --host :: --port ${PORT:-8000}"]
+CMD ["sh", "-c", "python -m app.bootstrap && exec python -m app.serve"]
