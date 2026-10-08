@@ -1,0 +1,201 @@
+{
+  "local_import": {
+    "inserted": 121,
+    "updated": 0,
+    "unchanged": 0
+  },
+  "railway_import": {
+    "inserted": 121,
+    "updated": 0,
+    "unchanged": 0
+  },
+  "record_count": 121,
+  "matching_content_hashes": true,
+  "railway_indexed_count": 121,
+  "corpus": "main",
+  "groups_with_text": 16,
+  "groups": [
+    {
+      "source_id": "fb-lost-found-zagreb",
+      "canonical_url": "https://www.facebook.com/groups/najamzagreb",
+      "job_id": "16d5dc7e-f6ef-4a38-84b2-09de15f2305c",
+      "status": "completed",
+      "returned": 10,
+      "indexed": 10,
+      "dropped": {},
+      "truncated": false
+    },
+    {
+      "source_id": "fb-malesnica",
+      "canonical_url": "https://www.facebook.com/groups/1132750643466592",
+      "job_id": "5e0b314b-d4cd-4618-87d5-58bc8bb2eac3",
+      "status": "completed",
+      "returned": 10,
+      "indexed": 10,
+      "dropped": {},
+      "truncated": false
+    },
+    {
+      "source_id": "fb-pet-friendly-najam",
+      "canonical_url": "https://www.facebook.com/groups/750286368918633",
+      "job_id": "f65fe1d0-9c2d-49ab-a2d0-e6eb4c44b095",
+      "status": "completed",
+      "returned": 10,
+      "indexed": 3,
+      "dropped": {
+        "no_text": 7
+      },
+      "truncated": false
+    },
+    {
+      "source_id": "fb-poljanice",
+      "canonical_url": "https://www.facebook.com/groups/186793328606455",
+      "job_id": "397d89af-132f-4f13-bb85-6da986537842",
+      "status": "completed",
+      "returned": 10,
+      "indexed": 9,
+      "dropped": {
+        "no_text": 1
+      },
+      "truncated": false
+    },
+    {
+      "source_id": "fb-pomoc-azilima",
+      "canonical_url": "https://www.facebook.com/groups/542405539794608",
+      "job_id": "129e2840-5a0a-43ae-ae06-b25dfe62aa67",
+      "status": "completed",
+      "returned": 10,
+      "indexed": 6,
+      "dropped": {
+        "no_text": 4
+      },
+      "truncated": false
+    },
+    {
+      "source_id": "fb-pomoc-siromasnima",
+      "canonical_url": "https://www.facebook.com/groups/568616104332913",
+      "job_id": "e1c7ff7f-7c98-4cc8-a9ac-3b4c7962bf4c",
+      "status": "completed",
+      "returned": 10,
+      "indexed": 8,
+      "dropped": {
+        "no_text": 2
+      },
+      "truncated": false
+    },
+    {
+      "source_id": "fb-pomoc-zivotinjama",
+      "canonical_url": "https://www.facebook.com/groups/251668374517350",
+      "job_id": "a0a418ce-0a04-412a-8050-14546f280edb",
+      "status": "completed",
+      "returned": 10,
+      "indexed": 10,
+      "dropped": {},
+      "truncated": false
+    },
+    {
+      "source_id": "fb-prodaja-karata",
+      "canonical_url": "https://www.facebook.com/groups/102898883982315",
+      "job_id": "dc1ee905-f07e-474c-b618-3543b9318d0d",
+      "status": "completed",
+      "returned": 10,
+      "indexed": 4,
+      "dropped": {
+        "no_text": 6
+      },
+      "truncated": false
+    },
+    {
+      "source_id": "fb-ravnice",
+      "canonical_url": "https://www.facebook.com/groups/1207227144192273",
+      "job_id": "53d6f751-426f-479f-a4f1-c5e68a552e5b",
+      "status": "completed",
+      "returned": 10,
+      "indexed": 6,
+      "dropped": {
+        "no_text": 4
+      },
+      "truncated": false
+    },
+    {
+      "source_id": "fb-sesvete-i-moj-kvart",
+      "canonical_url": "https://www.facebook.com/groups/454624366267949",
+      "job_id": "18d78284-ee85-4a8f-a194-7b2bb8c34247",
+      "status": "completed",
+      "returned": 10,
+      "indexed": 7,
+      "dropped": {
+        "no_text": 3
+      },
+      "truncated": false
+    },
+    {
+      "source_id": "fb-sesvete-moj-kvart",
+      "canonical_url": "https://www.facebook.com/groups/252041578799247",
+      "job_id": "70d8e9d8-6f8d-49a1-b7bc-48f0e9fab073",
+      "status": "completed",
+      "returned": 10,
+      "indexed": 7,
+      "dropped": {
+        "no_text": 3
+      },
+      "truncated": false
+    },
+    {
+      "source_id": "fb-sopot",
+      "canonical_url": "https://www.facebook.com/groups/355894824617064",
+      "job_id": "2b2398ca-9437-4a64-99a0-ad67b046b80c",
+      "status": "completed",
+      "returned": 10,
+      "indexed": 5,
+      "dropped": {
+        "no_text": 5
+      },
+      "truncated": false
+    },
+    {
+      "source_id": "fb-stanovi-zagreb",
+      "canonical_url": "https://www.facebook.com/groups/petfriendlynajam",
+      "job_id": "354eafa8-ed5d-4e54-a43d-8778a26dab2f",
+      "status": "completed",
+      "returned": 10,
+      "indexed": 10,
+      "dropped": {},
+      "truncated": false
+    },
+    {
+      "source_id": "fb-trnsko",
+      "canonical_url": "https://www.facebook.com/groups/163289540928768",
+      "job_id": "7c058184-897b-46a1-99c4-10a8bf993189",
+      "status": "completed",
+      "returned": 10,
+      "indexed": 9,
+      "dropped": {
+        "no_text": 1
+      },
+      "truncated": false
+    },
+    {
+      "source_id": "fb-utrina",
+      "canonical_url": "https://www.facebook.com/groups/420204031510084",
+      "job_id": "76911be2-55bd-4306-b462-9c4ab65079d5",
+      "status": "completed",
+      "returned": 10,
+      "indexed": 10,
+      "dropped": {},
+      "truncated": false
+    },
+    {
+      "source_id": "fb-vrbani",
+      "canonical_url": "https://www.facebook.com/groups/509647112473045",
+      "job_id": "9ed9b218-a094-41cd-bd17-fb1ed64467c6",
+      "status": "completed",
+      "returned": 10,
+      "indexed": 7,
+      "dropped": {
+        "no_text": 3
+      },
+      "truncated": false
+    }
+  ]
+}
