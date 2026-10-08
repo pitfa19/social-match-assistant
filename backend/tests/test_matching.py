@@ -397,3 +397,99 @@ def test_plan_single_snapshot_under_concurrent_insert(conn, cluster, monkeypatch
     late = conn.execute("SELECT id FROM posts WHERE external_id='late'").fetchone()["id"]
     assert all(late not in c for c in p["_candidates"].values())
     assert benchmark.plan(conn, benchmark.FIXTURE_CORPUS, NOW)["totals"]["brute_pairs"] > 177   # next snapshot sees it
+
+
+# ---- strict neighbourhood evidence (opt-in) ----
+def _strict(**kw):
+    d = dict(kind="request", text="stan", city="Zagreb", neighbourhood_id="trnje", require_neighbourhood_evidence=True)
+    d.update(kw)
+    return Query(**d)
+
+
+def _seed_strict(conn):
+    import_records(conn, "s", [
+        post("hit", title="Stan u Trnje", source="facebook", record_kind="live_imported"),
+        post("hit2", title="x", body="Iznajmljujem stan, Gradska četvrt Trnje", source="facebook", record_kind="live_imported"),
+        post("unk", title="stan na prodaju", source="facebook", record_kind="live_imported"),
+        post("wrong", title="stan Maksimir", source="facebook", record_kind="live_imported"),
+        post("wrongid", title="stan Trnje", neighbourhood_id="maksimir", record_kind="live_imported"),
+        post("struct", title="stan", neighbourhood_id="trnje", record_kind="live_imported"),
+        post("synth", title="stan Trnje", neighbourhood_id="trnje", record_kind="synthetic"),
+        post("ambig", title="stan Centar", record_kind="live_imported"),
+        post("late", title="stan", body="x " * 100 + "Trnje", record_kind="live_imported"),
+    ])
+
+
+@pytest.mark.parametrize("mode", ["brute", "indexed"])
+def test_strict_hit_and_exclusions(conn, mode):
+    _seed_strict(conn)
+    rows = (retrieval.brute(conn, "s", _strict(), NOW) if mode == "brute"
+            else retrieval.indexed(conn, "s", _strict(), NOW)["candidates"])
+    got = {r["external_id"]: r["neighbourhood_basis"] for r in rows}
+    assert got == {"hit": "explicit_text", "hit2": "explicit_text", "struct": "structured", "late": "explicit_text"}
+
+
+def test_default_semantics_unchanged(conn):
+    _seed_strict(conn)
+    q = Query(kind="request", text="stan", neighbourhood_id="trnje")
+    ids = {r["external_id"] for r in retrieval.brute(conn, "s", q, NOW)}
+    assert {"unk", "wrong", "synth", "hit"} <= ids and "wrongid" not in ids
+    assert Query(kind="request", text="x").require_neighbourhood_evidence is False
+
+
+def test_strict_requires_catalogue_area():
+    for kw in ({"neighbourhood_id": None}, {"neighbourhood_id": "nowhere"}):
+        with pytest.raises(Exception):
+            _strict(**kw)
+    with pytest.raises(Exception):
+        _strict(require_neighbourhood_evidence="yes")
+
+
+def test_strict_ambiguous_names_not_accepted(conn):
+    from app.matching import neighbourhood as nbh
+    assert "centar" not in nbh.usable_aliases(nbh.get_place("mo-centar"))
+    assert "trnje" in nbh.usable_aliases(nbh.get_place("trnje"))      # district wins over same-named committee
+    assert "trnje" not in nbh.usable_aliases(nbh.get_place("mo-trnje"))
+    assert "mo trnje" in nbh.usable_aliases(nbh.get_place("mo-trnje"))
+
+
+def test_strict_cap_not_starved_by_citywide(conn):
+    import_records(conn, "k", [post(f"c{i}", title="stan Zagreb centar", record_kind="live_imported") for i in range(30)]
+                   + [post("t", title="stan Trešnjevka", record_kind="live_imported")])
+    q = _strict(neighbourhood_id="tresnjevka")
+    ix = retrieval.indexed(conn, "k", q, NOW, max_candidates=5)
+    assert [r["external_id"] for r in ix["candidates"]] == ["t"] and not ix["truncated"]
+
+
+def test_strict_query_location_words_stripped(conn):
+    import_records(conn, "k", [post("t", title="bicikl Trnje", record_kind="live_imported"),
+                          post("u", title="Trnje parking", record_kind="live_imported")])
+    ix = retrieval.indexed(conn, "k", _strict(text="bicikl u Trnje Zagreb"), NOW)
+    assert [r["external_id"] for r in ix["candidates"]] == ["t"]
+    assert retrieval.indexed(conn, "k", _strict(text="Trnje Zagreb"), NOW)["candidates"] == []
+
+
+def test_strict_http_contract_and_preserved_fields(client, conn):
+    _seed_strict(conn)
+    before = conn.execute("SELECT content_hash, neighbourhood_id, city FROM posts WHERE external_id='hit'").fetchone()
+    body = {"corpus": "s", "now": NOW.isoformat(), "query": {"kind": "request", "text": "stan u Trnje",
+            "neighbourhood_id": "trnje", "require_neighbourhood_evidence": True}}
+    for mode in ("indexed", "brute"):
+        j = client.post("/matching/retrieve", json={**body, "mode": mode}).json()
+        assert j["neighbourhood_evidence"]["id"] == "trnje" and j["neighbourhood_evidence"]["required"] is True
+        r = {x["external_id"]: x for x in j["results"]}
+        assert r["hit"]["neighbourhood_match"] == {"id": "trnje", "name": "Trnje", "basis": "explicit_text"}
+        assert r["hit"]["neighbourhood_id"] is None and r["hit"]["city"] is None
+        assert r["struct"]["neighbourhood_match"]["basis"] == "structured"
+    assert conn.execute("SELECT content_hash, neighbourhood_id, city FROM posts WHERE external_id='hit'").fetchone() == before
+    bad = {**body, "query": {"kind": "request", "text": "stan", "require_neighbourhood_evidence": True}}
+    assert client.post("/matching/retrieve", json=bad).status_code == 422
+    plain = client.post("/matching/retrieve", json={"corpus": "s", "query": {"kind": "request", "text": "stan"}}).json()
+    assert "neighbourhood_evidence" not in plain and "neighbourhood_match" not in plain["results"][0]
+
+
+def test_strict_catalogue_names_all_resolvable():
+    from app.matching import neighbourhood as nbh
+    for e in json.loads(nbh.CATALOGUE.read_text())["entries"]:
+        if not e.get("generic"):
+            assert nbh.usable_aliases(e) or e["kind"] == "local_committee", e["id"]

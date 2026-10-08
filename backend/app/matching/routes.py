@@ -5,7 +5,7 @@ from pathlib import Path
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt
 
-from . import benchmark, decisions, retrieval
+from . import benchmark, decisions, neighbourhood as nbh, retrieval
 from .db import get_db
 from .store import ImportRequest, Query, import_records
 
@@ -73,25 +73,32 @@ class RetrieveRequest(BaseModel):
     now: datetime | None = None
 
 
-def _clip(r):
-    return {**{k: r[k] for k in ("id", "external_id", "source", "record_kind", "kind", "title", "city",
+def _clip(r, place=None):
+    extra = {"neighbourhood_match": nbh.match_info(place, r["neighbourhood_basis"])} if place else {}
+    return {**extra, **{**{k: r[k] for k in ("id", "external_id", "source", "record_kind", "kind", "title", "city",
                                   "neighbourhood_id", "price_eur", "url", "unknown_fields")},
             "posted_at": r["posted_at"], "expires_at": r["expires_at"], "body": r["body"][:300],
-            "untrusted_content": True}
+            "untrusted_content": True}}
 
 
 @router.post("/retrieve")
 def retrieve(req: RetrieveRequest, conn=Depends(get_db)):
     now = req.now or _now()
+    strict = req.query.require_neighbourhood_evidence
+    place = nbh.get_place(req.query.neighbourhood_id) if strict else None
+    ev = ({"neighbourhood_evidence": {
+        "required": True, "id": place["id"], "name": place["name"],
+        "note": "Post text mentions the area (or structured field). Not a verified physical location."}}
+        if strict else {})
     if req.mode == "brute":
         rows = retrieval.brute(conn, req.corpus, req.query, now)
         shown = rows[: req.max_candidates]
         return {"mode": "brute", "eligible": len(rows), "returned": len(shown), "truncated": len(rows) > len(shown),
-                "results": [_clip(r) for r in shown]}
+                "results": [_clip(r, place) for r in shown], **ev}
     ix = retrieval.indexed(conn, req.corpus, req.query, now, req.max_candidates)
     return {"mode": "indexed", "terms": ix["terms"], "tsquery": ix["tsquery"], "returned": len(ix["candidates"]),
-            "truncated": ix["truncated"], "results": [_clip(r) for r in ix["candidates"]],
-            "note": "Lexical candidates only. Not relevance scores."}
+            "truncated": ix["truncated"], "results": [_clip(r, place) for r in ix["candidates"]],
+            "note": "Lexical candidates only. Not relevance scores.", **ev}
 
 
 class BenchRequest(BaseModel):

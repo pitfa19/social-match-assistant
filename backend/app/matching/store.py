@@ -4,7 +4,7 @@ import json
 from datetime import datetime, timezone
 from typing import Any, Literal
 
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, field_validator, model_validator
 
 from .text import fold
 
@@ -84,6 +84,16 @@ class Query(BaseModel):
     city: str | None = None
     neighbourhood_id: str | None = None
     max_price_eur: float | None = Field(None, ge=0)
+    # Opt-in. Unknown location is excluded unless the stored text names the selected catalogue area (or it is structured).
+    require_neighbourhood_evidence: StrictBool = False
+
+    @model_validator(mode="after")
+    def _strict_needs_area(self):
+        if self.require_neighbourhood_evidence:
+            from .neighbourhood import get_place
+            if not self.neighbourhood_id or get_place(self.neighbourhood_id) is None:
+                raise ValueError("require_neighbourhood_evidence needs a catalogue neighbourhood_id")
+        return self
 
 
 OPPOSITE = {"request": "offer", "offer": "request"}
