@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "test": "node --experimental-strip-types --test src/features/search/logic.test.ts src/features/zagreb/geo.test.ts src/features/zagreb/neighbourhoods.test.ts src/features/zagreb/profileLogic.test.ts src/features/zagreb/realtimeVoiceLogic.test.ts src/features/zagreb/realtimeTurnController.test.ts src/features/zagreb/server/semanticProfile.test.ts"
+    "test": "node --experimental-strip-types --test src/features/search/logic.test.ts src/features/zagreb/geo.test.ts src/features/zagreb/neighbourhoods.test.ts src/features/zagreb/profileLogic.test.ts src/features/zagreb/realtimeVoiceLogic.test.ts src/features/zagreb/realtimeTurnController.test.ts src/features/zagreb/server/semanticProfile.test.ts src/features/zagreb/mapCamera.test.ts"
   },
   "dependencies": {
     "next": "16.4.0",

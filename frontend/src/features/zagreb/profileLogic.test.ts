@@ -6,7 +6,7 @@ import {
 
 test("questions come in the approved order", () => {
   assert.deepEqual([...QUESTIONS], [
-    "Kako bi se opisao/la?",
+    "Kako bi se opisao?",
     "Što te zanima?",
     "Što trenutno tražiš ili možeš ponuditi?",
     "Koji kvart te zanima?",

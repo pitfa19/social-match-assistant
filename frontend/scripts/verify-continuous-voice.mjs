@@ -2,7 +2,7 @@ import { chromium } from '@playwright/test';
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import assert from 'node:assert/strict';
 const base = process.env.BASE_URL || 'http://127.0.0.1:3101';
-const dir = '../.mozak/evidence/continuous-voice/browser';
+const dir = process.env.EVIDENCE_DIR || '../.mozak/evidence/continuous-voice/browser';
 await mkdir(dir, {recursive:true});
 const browser = await chromium.launch({headless:true, executablePath:process.env.CHROME_PATH || '/home/pitfa/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome', args:['--autoplay-policy=no-user-gesture-required']});
 const context = await browser.newContext({viewport:{width:1440,height:960},reducedMotion:'reduce'});

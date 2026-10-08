@@ -1,9 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ZagrebMap, type MapHighlight, type MapTarget } from "./ZagrebMap";
+import { ZagrebMap, type MapTarget } from "./ZagrebMap";
 import { findNeighbourhood } from "./neighbourhoods";
 import { useRealtimeVoice } from "./useRealtimeVoice";
+import { useLayoutMotion } from "./useLayoutMotion";
 import {
   applyAnswer, finish, initialState, isBlank, PROFILE_STEPS, QUESTIONS, removeNote,
   type Extracted, type ProfileState,
@@ -19,7 +20,6 @@ export function ZagrebHome() {
   const [profile, setProfile] = useState<ProfileState>(initialState);
   const profileRef = useRef<ProfileState>(initialState);
   const [target, setTarget] = useState<MapTarget | null>(null);
-  const [highlight, setHighlight] = useState<MapHighlight | null>(null);
   const [placeName, setPlaceName] = useState("");
   const [selectedId, setSelectedId] = useState("");
   const abortRef = useRef<AbortController | null>(null);
@@ -27,6 +27,10 @@ export function ZagrebHome() {
   const inputRef = useRef<HTMLInputElement>(null);
   const notesRef = useRef<HTMLUListElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const pageRef = useRef<HTMLElement>(null);
+  const removingRef = useRef(new Set<string>());
+  const hasNotes = profile.notes.length > 0;
+  useLayoutMotion(pageRef, `${profile.step}:${profile.notes.map((note) => note.key).join(",")}`);
 
   const setProfileBoth = useCallback((next: ProfileState) => {
     profileRef.current = next;
@@ -84,8 +88,6 @@ export function ZagrebHome() {
         setPlaceName(hit.name);
         setSelectedId(hit.id);
         setTarget({ lat: hit.lat, lng: hit.lng, zoom: hit.zoom });
-        // This is an approximate area, not an administrative boundary.
-        setHighlight({ lat: hit.lat, lng: hit.lng, label: hit.name, radiusM: 700 });
         setProfileBoth(finish(profileRef.current));
       }
       setTyped("");
@@ -109,21 +111,29 @@ export function ZagrebHome() {
     if (done) headingRef.current?.focus({ preventScroll: true });
   }, [done]);
 
-  const remove = (key: string) => {
+  const remove = async (key: string, button: HTMLButtonElement) => {
+    if (removingRef.current.has(key)) return;
+    removingRef.current.add(key);
+    const item = button.closest("li");
+    if (item && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      await item.animate([{ opacity: 1, transform: "translateY(0)" }, { opacity: 0, transform: "translateY(6px)" }],
+        { duration: 150, easing: "ease-out", fill: "forwards" }).finished.catch(() => {});
+    }
     setProfileBoth(removeNote(profileRef.current, key));
-    requestAnimationFrame(() => notesRef.current?.focus({ preventScroll: true }));
+    removingRef.current.delete(key);
+    requestAnimationFrame(() => (notesRef.current ?? inputRef.current ?? headingRef.current)?.focus({ preventScroll: true }));
   };
   const busy = phase === "thinking";
   const listening = voice.state === "listening";
   const micLabel = voice.active ? "Pauziraj mikrofon" : "Pokreni mikrofon";
-  const status = busy ? "Bilježim…" : notice || voice.error?.message || (
+  const status = busy ? (step < PROFILE_STEPS ? "Bilježim…" : "Pronalazim tvoj kvart…") : notice || voice.error?.message || (
     voice.state === "starting" ? "Spajam mikrofon…" :
     voice.state === "paused" ? "Pripremam sljedeće pitanje…" :
     listening ? "Slušam. Kratka tišina šalje odgovor." : "Pokreni mikrofon jednom ili upiši odgovor."
   );
 
   const questionBlock = (
-    <div data-testid="onboarding-step" data-step={done ? "done" : String(step)} aria-live="polite">
+    <div key={step} className={styles.questionBlock} data-testid="onboarding-step" data-step={done ? "done" : String(step)} aria-live="polite">
       {done ? (
         <h2 id="q" ref={headingRef} tabIndex={-1} className={styles.title}>Tvoj kvart: {placeName}</h2>
       ) : (
@@ -136,43 +146,59 @@ export function ZagrebHome() {
   );
 
   return (
-    <main className={styles.page}>
-      <h1 className={styles.slogan}>Pričaj sa svojim gradom</h1>
+    <main ref={pageRef} className={styles.page} data-stage={mapShown ? "map" : hasNotes ? "conversation" : "welcome"}>
+      <header className={styles.header}>
+        <div className={styles.brand}><span className={styles.brandMark} aria-hidden="true">k²</span><span>kvart na kvadrat<span className={styles.brandDetail}>Zagreb</span></span></div>
+        <h1 className={styles.slogan}>vaš omiljeni susjed</h1>
+      </header>
       <section className={styles.overlay} data-expanded="true" aria-label="Upoznajmo se">
-        <div className={styles.split} data-cols="2">
-          <section className={styles.notesCol} aria-label="Bilješke o tebi">
-            {mapShown && questionBlock}
-            <h2 className={styles.stepNo}>O tebi</h2>
+        <div className={styles.split} data-cols={hasNotes ? "2" : "1"} data-map={mapShown}>
+          {hasNotes && <section className={styles.notesCol} aria-label="Bilješke o tebi" data-layout-key="notes">
+            <div className={styles.notesHeading}><span className={styles.eyebrow}>SASTAVLJAMO TVOJU PRIČU</span><h2>O tebi<span className={styles.noteCount}>{profile.notes.length}</span></h2></div>
             <ul ref={notesRef} tabIndex={-1} className={styles.notes} data-testid="profile-notes" aria-label="Tvoje bilješke">
               {profile.notes.map((n) => (
-                <li key={n.key}>
+                <li key={n.key} data-layout-key={`note-${n.key}`} className={styles.noteItem}>
                   <button type="button" className={styles.noteBtn} data-kind={n.kind}
                     data-testid={n.kind === "fact" ? "profile-fact" : "profile-topic"}
-                    aria-label={`Ukloni: ${n.text}`} onClick={() => remove(n.key)}>
+                    aria-label={`Ukloni: ${n.text}`} onClick={(event) => { void remove(n.key, event.currentTarget); }}>
                     <span>{n.text}</span><span className={styles.noteX} aria-hidden="true">×</span>
                   </button>
                 </li>
               ))}
             </ul>
-            <p className={styles.notesHint}>{profile.notes.length ? "Klikni bilješku da je ukloniš." : "Tvoji interesi i ideje pojavit će se ovdje."}</p>
-          </section>
+            <p className={styles.notesHint}>Samo ono što si podijelio. Klikni bilješku da je ukloniš.</p>
+          </section>}
           {mapShown ? (
-            <div className={styles.mapCol}>
+            <div className={styles.mapCol} data-layout-key="map">
+              {questionBlock}
+              <p className={styles.mapIntro}>Tvoj dio grada. Odaberi područje i pogledaj susjedstvo.</p>
               <div className={styles.mapFrame}>
-                <ZagrebMap target={target} selectedId={selectedId} highlight={highlight} />
-                <p className={styles.place} role="status">{placeName}</p>
+                <ZagrebMap target={target} selectedId={selectedId} onSelect={(id) => {
+                  const hit = findNeighbourhood(id);
+                  if (hit) { setSelectedId(hit.id); setPlaceName(hit.name); setTarget({ lat: hit.lat, lng: hit.lng, zoom: hit.zoom }); }
+                }} />
               </div>
             </div>
           ) : (
-            <div className={styles.content}>
+            <div className={styles.content} data-layout-key="conversation">
+              <div className={styles.orbArea}>
               <button type="button" className={styles.orb}
                 data-state={busy ? "thinking" : listening ? "listening" : "idle"}
                 data-voice-state={voice.state} aria-label={micLabel} aria-pressed={voice.active}
                 disabled={busy && !voice.active}
-                onClick={() => { setNotice(""); if (voice.active) voice.stop(); else void voice.start(); }} />
+                onClick={() => { setNotice(""); if (voice.active) voice.stop(); else void voice.start(); }}>
+                <span className={styles.orbCore} aria-hidden="true"><span /><span /><span /><span /><span /></span>
+              </button>
+              <span className={styles.micCaption}>{voice.active ? "Dodirni za pauzu" : "Dodirni i pričaj"}</span>
+              </div>
               {questionBlock}
-              <p className={styles.live} role="status" aria-live="polite">{status}</p>
-              {voice.partial && <p className={styles.live} data-testid="live-transcript" aria-label="Prijepis uživo">{voice.partial}</p>}
+              <div className={styles.statusArea}>
+                <p className={styles.live} data-error={phase === "error" || !!voice.error} role="status" aria-live="polite">
+                  {(busy || voice.state === "starting" || voice.state === "paused") && <span className={styles.spinner} aria-hidden="true" />}
+                  {listening && !busy && <span className={styles.listeningDot} aria-hidden="true" />}{status}
+                </p>
+                {voice.partial && <p className={styles.transcript} data-testid="live-transcript" aria-label="Prijepis uživo">{voice.partial}</p>}
+              </div>
               <form className={styles.typeRow} onSubmit={(e) => {
                 e.preventDefault();
                 if (busy) return;
@@ -190,6 +216,7 @@ export function ZagrebHome() {
           )}
         </div>
       </section>
+      <footer className={styles.footer}><span>Manje traženja. Više povezivanja.</span><span>{mapShown ? "Tvoj Zagreb" : "Glasom ili tipkanjem. Tvojim tempom."}</span></footer>
     </main>
   );
 }

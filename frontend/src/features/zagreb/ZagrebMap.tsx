@@ -1,92 +1,128 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { CITY_VIEW } from "./neighbourhoods";
-import { easeInOut, project, visibleTiles } from "./geo";
+import { useEffect, useId, useRef, useState } from "react";
+import { findNeighbourhood, NEIGHBOURHOODS } from "./neighbourhoods";
+import { fitBounds, OVERVIEW, springStep, type Camera } from "./mapCamera";
+import geometry from "./data/regions.json";
 import styles from "./Zagreb.module.css";
 
 export type MapTarget = { lat: number; lng: number; zoom: number };
-
-type View = MapTarget;
-
-/** Minimal slippy map on public OpenStreetMap tiles, animated by rAF. */
+/** Kept as a compatible input. Radius is never drawn as an administrative boundary. */
 export type MapHighlight = { lat: number; lng: number; label: string; radiusM: number };
+const districts = geometry.regions.filter(r => r.kind === "district");
+const localAreas = geometry.regions.filter(r => r.kind === "local_committee");
+const byId = new Map(geometry.regions.map(r => [r.id, r]));
 
-export function ZagrebMap({ target, selectedId, highlight }: { target: MapTarget | null; selectedId: string; highlight?: MapHighlight | null }) {
-  const box = useRef<HTMLDivElement>(null);
-  const [size, setSize] = useState({ w: 0, h: 0 });
-  const [view, setView] = useState<View>(CITY_VIEW);
-  const viewRef = useRef<View>(CITY_VIEW);
+export function ZagrebMap({ target, selectedId, onSelect }: { target: MapTarget | null; selectedId: string; highlight?: MapHighlight | null; onSelect?: (id: string) => void }) {
+  const root = useRef<HTMLDivElement>(null);
+  const layer = useRef<SVGGElement>(null);
+  const labels = useRef<SVGGElement>(null);
+  const camera = useRef<Camera>({ ...OVERVIEW });
+  const velocity = useRef<Camera>({ x: 0, y: 0, scale: 0 });
+  const [explored, setExplored] = useState(selectedId);
+  const [overview, setOverview] = useState(false);
+  const [level, setLevel] = useState(findNeighbourhood(selectedId)?.kind === "local_committee" ? "local_committee" : "district");
+  const [hover, setHover] = useState("");
+  const descriptionId = useId();
+  const selectId = useId();
+  const chosen = findNeighbourhood(explored);
+  const ids = chosen?.kind === "colloquial_group" ? chosen.memberIds : chosen ? [chosen.id] : [];
+  const selectedRegions = ids.flatMap(id => { const region = byId.get(id); return region ? [region] : []; });
+  const signature = ids.join(",");
 
   useEffect(() => {
-    const el = box.current;
-    if (!el) return;
-    const ro = new ResizeObserver(() => setSize({ w: el.clientWidth, h: el.clientHeight }));
-    ro.observe(el);
-    setSize({ w: el.clientWidth, h: el.clientHeight });
-    return () => ro.disconnect();
-  }, []);
+    setExplored(selectedId);
+    setOverview(false);
+    setLevel(findNeighbourhood(selectedId)?.kind === "local_committee" ? "local_committee" : "district");
+  }, [selectedId]);
 
   useEffect(() => {
-    const goal = target ?? CITY_VIEW;
-    const from = { ...viewRef.current };
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const duration = reduce ? 0 : 2200;
-    const t0 = performance.now();
+    const goal = overview ? { ...OVERVIEW } : fitBounds(selectedRegions.map(r => r.bounds));
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let raf = 0;
-    const step = (now: number) => {
-      const t = duration === 0 ? 1 : Math.min(1, (now - t0) / duration);
-      const e = easeInOut(t);
-      const next = {
-        lat: from.lat + (goal.lat - from.lat) * e,
-        lng: from.lng + (goal.lng - from.lng) * e,
-        zoom: from.zoom + (goal.zoom - from.zoom) * e,
-      };
-      viewRef.current = next;
-      setView(next);
-      if (t < 1) raf = requestAnimationFrame(step);
+    let last = performance.now();
+    const draw = () => {
+      const { x, y, scale } = camera.current;
+      if (layer.current) layer.current.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+      // Keep labels quiet and readable instead of magnifying them with the terrain.
+      if (labels.current) {
+        labels.current.style.fontSize = `${Math.min(16, 23 / scale)}px`;
+        labels.current.style.strokeWidth = `${2 / scale}px`;
+      }
+      if (root.current) {
+        root.current.dataset.camera = `${x.toFixed(2)},${y.toFixed(2)},${scale.toFixed(3)}`;
+        root.current.dataset.zoom = (12.4 + Math.log2(scale)).toFixed(2);
+      }
     };
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
-  }, [target]);
+    const snap = () => { cancelAnimationFrame(raf); camera.current = { ...goal }; velocity.current = { x: 0, y: 0, scale: 0 }; draw(); if(root.current) root.current.dataset.moving = "false"; };
+    const step = (now: number) => {
+      const dt = (now - last) / 1000;
+      last = now;
+      let settled = true;
+      for (const key of ["x", "y", "scale"] as const) {
+        const [value, speed] = springStep(camera.current[key], velocity.current[key], goal[key], dt);
+        camera.current[key] = value;
+        velocity.current[key] = speed;
+        const tolerance = key === "scale" ? .00015 : .08;
+        if (Math.abs(value - goal[key]) > tolerance || Math.abs(speed) > tolerance * 10) settled = false;
+      }
+      draw();
+      if (settled) snap(); else raf = requestAnimationFrame(step);
+    };
+    const changed = () => { if (motion.matches) snap(); };
+    if (motion.matches) snap();
+    else { if(root.current) root.current.dataset.moving = "true"; raf = requestAnimationFrame(step); }
+    motion.addEventListener("change", changed);
+    return () => { cancelAnimationFrame(raf); motion.removeEventListener("change", changed); };
+    // Geometry is immutable. Retarget only on actual region or overview changes, not hover.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [signature, overview]);
 
-  let marker: { x: number; y: number; r: number } | null = null;
-  if (highlight && size.w) {
-    const c = project(view.lat, view.lng, view.zoom);
-    const h = project(highlight.lat, highlight.lng, view.zoom);
-    const mpp = (156543.03392 * Math.cos((highlight.lat * Math.PI) / 180)) / Math.pow(2, view.zoom);
-    marker = { x: h.x - c.x + size.w / 2, y: h.y - c.y + size.h / 2, r: Math.max(24, highlight.radiusM / mpp) };
-  }
+  const select = (id: string) => {
+    const entry = findNeighbourhood(id);
+    if (!entry) return;
+    setExplored(entry.id);
+    setOverview(false);
+    setLevel(entry.kind === "local_committee" ? "local_committee" : "district");
+    onSelect?.(entry.id);
+  };
+  const reset = () => { setOverview(true); setHover(""); };
+  const regions = level === "local_committee" ? localAreas : districts;
 
-  const tiles = size.w ? visibleTiles(view.lat, view.lng, view.zoom, size.w, size.h) : [];
-
-  return (
-    <div ref={box} className={styles.map} data-testid="zagreb-map" data-zoom={view.zoom.toFixed(2)} data-lat={view.lat.toFixed(4)} data-lng={view.lng.toFixed(4)} data-selected={selectedId} role="img" aria-label="Karta Zagreba">
-      {tiles.map((t) => (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          key={t.key}
-          className={styles.tile}
-          src={`https://tile.openstreetmap.org/${t.z}/${t.x}/${t.y}.png`}
-          alt=""
-          draggable={false}
-          referrerPolicy="strict-origin-when-cross-origin"
-          style={{ left: t.left, top: t.top, width: t.size + 0.5, height: t.size + 0.5 }}
-        />
-      ))}
-      {highlight && marker && (
-        <div
-          className={styles.highlight}
-          data-testid="map-highlight"
-          data-label={highlight.label}
-          style={{ left: marker.x - marker.r, top: marker.y - marker.r, width: marker.r * 2, height: marker.r * 2 }}
-        >
-          <span className={styles.highlightLabel}>{highlight.label} (približno područje)</span>
-        </div>
-      )}
-      <a className={styles.attribution} href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">
-        © OpenStreetMap contributors
-      </a>
+  return <div ref={root} className={styles.map} data-testid="zagreb-map" data-selected={chosen?.id ?? ""} data-lat={(chosen?.lat ?? target?.lat ?? 45.8131).toFixed(4)} data-lng={(chosen?.lng ?? target?.lng ?? 15.9775).toFixed(4)} aria-label="Karta zagrebačkih područja">
+    <div className={styles.mapToolbar}>
+      <div className={styles.mapLevels} aria-label="Razina karte" role="group">
+        <button type="button" aria-pressed={level === "district"} onClick={() => setLevel("district")}>Četvrti</button>
+        <button type="button" aria-pressed={level === "local_committee"} onClick={() => setLevel("local_committee")}>Mjesni odbori</button>
+      </div>
+      <button type="button" className={styles.mapReset} onClick={reset}>Cijeli Zagreb <span aria-hidden="true">↗</span></button>
     </div>
-  );
+    <div className={styles.mapViewport}>
+      <svg className={styles.mapSvg} viewBox="0 0 1200 1000" aria-label="Područja Zagreba" aria-describedby={descriptionId}>
+        <g ref={layer} style={{ transformOrigin: "0 0" }}>
+          <g aria-hidden="true" className={styles.mapBase}>{districts.map(r => <path key={r.id} d={r.path} fillRule="evenodd" vectorEffect="non-scaling-stroke" />)}</g>
+          <g>{regions.map(r => <path key={r.id} d={r.path} className={styles.mapRegion} fillRule="evenodd" vectorEffect="non-scaling-stroke"
+            role="button" tabIndex={-1} aria-label={`${r.name}, ${r.kind === "district" ? "gradska četvrt" : "mjesni odbor"}`} aria-pressed={ids.includes(r.id)} data-region={r.id}
+            onPointerMove={() => setHover(r.name)} onPointerLeave={() => setHover("")} onClick={() => select(r.id)}
+            onKeyDown={event => { if(event.key === "Enter" || event.key === " ") { event.preventDefault(); select(r.id); } }}><title>{r.name}</title></path>)}</g>
+          <path className={styles.river} d={geometry.riverPath} fill="none" vectorEffect="non-scaling-stroke" aria-label="Sava" pointerEvents="none" />
+          <g data-testid={selectedRegions.length ? "map-highlight" : undefined} data-label={chosen?.name} className={styles.selectedBoundary} aria-hidden="true" pointerEvents="none">
+            {selectedRegions.map(r => <path key={r.id} d={r.path} fillRule="evenodd" vectorEffect="non-scaling-stroke" />)}
+          </g>
+          <g ref={labels} className={styles.mapLabels} aria-hidden="true" pointerEvents="none">{districts.filter(r => overview || ids.includes(r.id) || chosen?.districtId === r.id).map(r => <text key={r.id} x={r.anchor[0]} y={r.anchor[1]}>{r.name}</text>)}</g>
+        </g>
+      </svg>
+      <span className={styles.north} aria-hidden="true">N ↑</span>
+      <span className={styles.mapHover} aria-hidden="true">{hover || (overview ? "Zagreb · 17 gradskih četvrti" : chosen?.name)}</span>
+    </div>
+    <label htmlFor={selectId} className={styles.mapSelectLabel}>Odaberi područje</label>
+    <select id={selectId} className={styles.mapSelect} value={chosen?.id ?? ""} onChange={event => select(event.target.value)}>
+      <option value="" disabled>Odaberi područje</option>
+      {(["district", "local_committee", "colloquial_group"] as const).map(kind => <optgroup key={kind} label={kind === "district" ? "Gradske četvrti" : kind === "local_committee" ? "Mjesni odbori" : "Uvriježena područja (skup četvrti)"}>
+        {NEIGHBOURHOODS.filter(n => n.kind === kind).map(n => <option key={n.id} value={n.id}>{n.name}{n.kind === "local_committee" ? ` · ${findNeighbourhood(n.districtId ?? "")?.name ?? ""}` : ""}</option>)}
+      </optgroup>)}
+    </select>
+    <p id={descriptionId} className={styles.mapDisclaimer} role="status">{chosen?.kind === "colloquial_group" ? "Uvriježeno područje: prikazan skup službenih gradskih četvrti, ne zasebna upravna granica." : chosen ? `${chosen.kind === "local_committee" ? "Mjesni odbor" : "Gradska četvrt"} · ${chosen.name}. Pojednostavljene službene granice.` : "Granica za ovo područje nije dostupna. Odaberi službenu četvrt ili mjesni odbor."}</p>
+    <div className={styles.mapCredits}><a className={styles.attribution} href={geometry.provenance.dataset} target="_blank" rel="noreferrer">Granice: Grad Zagreb · OD</a><a className={styles.attribution} href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">Sava: © OpenStreetMap · ODbL</a></div>
+  </div>;
 }

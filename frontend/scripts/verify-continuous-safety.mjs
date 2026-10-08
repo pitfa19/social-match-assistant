@@ -1,7 +1,7 @@
 import { chromium } from '@playwright/test';
 import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
-const base='http://127.0.0.1:3101',dir='../.mozak/evidence/continuous-voice/browser';
+const base=process.env.BASE_URL||'http://127.0.0.1:3101',dir=process.env.EVIDENCE_DIR||'../.mozak/evidence/continuous-voice/browser';
 await mkdir(dir,{recursive:true});
 const b=await chromium.launch({headless:true,executablePath:'/home/pitfa/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome'});
 const results={};
@@ -16,11 +16,11 @@ try {
     const v=await p.evaluate(()=>{
       const section=document.querySelector('section[aria-label="Upoznajmo se"]');
       const voice=document.querySelector('[data-voice-state]').getBoundingClientRect();
-      const notes=document.querySelector('section[aria-label="Bilješke o tebi"]').getBoundingClientRect();
-      return {width:innerWidth,scroll:document.documentElement.scrollWidth,position:getComputedStyle(section).position,voiceTop:voice.top,notesTop:notes.top};
+      const notes=document.querySelector('section[aria-label="Bilješke o tebi"]')?.getBoundingClientRect();
+      return {width:innerWidth,scroll:document.documentElement.scrollWidth,position:getComputedStyle(section).position,voiceTop:voice.top,notesTop:notes?.top ?? null};
     });
     assert.ok(v.scroll<=width);assert.notEqual(v.position,'fixed');
-    if(width<760)assert.ok(v.voiceTop<v.notesTop);
+    assert.equal(v.notesTop,null); // Notes are intentionally absent before the first extracted detail.
     layouts.push(v);await p.screenshot({path:`${dir}/initial-${width}.png`,fullPage:true});
   }
   results.layouts=layouts;

@@ -1,7 +1,7 @@
 // Pure, dependency-free logic for the Zagreb introduction flow. Used by client and server.
 
 export const QUESTIONS = [
-  "Kako bi se opisao/la?",
+  "Kako bi se opisao?",
   "Što te zanima?",
   "Što trenutno tražiš ili možeš ponuditi?",
   "Koji kvart te zanima?",
