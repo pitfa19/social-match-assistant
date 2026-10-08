@@ -11,11 +11,11 @@ Ljudi koji u Zagrebu traže sobu, povremeni posao, praktičnu pomoć ili predmet
 
 ### Što AI konkretno radi u rješenju i zašto je važan?
 
-AI pretvara korisnikov opis u profil koji korisnik potvrđuje, razumije sadržaj neujednačenih objava te procjenjuje koje prilike odgovaraju njegovoj namjeri. Objašnjava podudaranje i priprema nacrt objave iz potvrđenih činjenica. Važan je zato što ljudi istu potrebu izražavaju različitim riječima: razumjeti značenje i kontekst nije isto što i pronaći istu ključnu riječ. AI je planirana jezgra povezivanja korisnikove namjere s prilikama, a u današnjem demou još nije povezan. U ciljnom proizvodu nije samo chatbot dodan na sučelje. Cijenu, lokaciju i druge izričite granice ipak provjerava obična programska logika prije AI rangiranja.
+AI pretvara korisnikov opis u profil koji korisnik potvrđuje, razumije sadržaj neujednačenih objava te procjenjuje koje prilike odgovaraju njegovoj namjeri. Objašnjava podudaranje i priprema nacrt objave iz potvrđenih činjenica. Važan je zato što ljudi istu potrebu izražavaju različitim riječima: razumjeti značenje i kontekst nije isto što i pronaći istu ključnu riječ. AI je planirana jezgra povezivanja korisnikove namjere s prilikama, a u današnjem demou još nije povezan. U ciljnom proizvodu nije samo chatbot dodan na sučelje. Cijenu, lokaciju i druge izričite granice ipak provjerava obična programska logika prije AI rangiranja. Današnji demo već omogućuje determinističku pretragu, ali bez AI-ja.
 
 ### Što gradimo i kako se koristi?
 
-Gradimo web-aplikaciju na hrvatskom koja pomaže korisniku pronaći ono što mu odgovara i napisati bolju objavu za ono što treba ili nudi. Korisnik se predstavi tekstom ili glasom, potvrdi svoj profil i odabere „Pretraži”. Dobiva pregled relevantnih prilika s razlozima podudaranja, a po potrebi izrađuje i uređuje vlastiti zahtjev ili ponudu. Kontaktiranje i objavljivanje ostaju pod njegovom kontrolom. Ovo je ciljni tijek. Trenutačni frontend demonstrira ga na sintetičkim podacima, bez povezanog AI-ja.
+Gradimo web-aplikaciju na hrvatskom koja pomaže korisniku pronaći ono što mu odgovara i napisati bolju objavu za ono što treba ili nudi. Korisnik se predstavi tekstom ili glasom, potvrdi svoj profil i odabere „Pretraži”. Dobiva pregled relevantnih prilika s razlozima podudaranja, a po potrebi izrađuje i uređuje vlastiti zahtjev ili ponudu. Kontaktiranje i objavljivanje ostaju pod njegovom kontrolom. Ovo je ciljni tijek. Trenutačni frontend demonstrira ga na sintetičkim podacima, bez povezanog AI-ja. Glasovni unos zasad omogućuje samo lokalno snimanje i reprodukciju, ne transkripciju.
 
 ---
 
@@ -101,7 +101,7 @@ Pretraga prvo koristi postojeće indeksirane zapise. Po potrebi pokreće ograni�
 
 Studentica navede da traži sobu na Trešnjevci do **450 € ukupno s režijama**. Aplikacija zabilježi samo te potvrđene uvjete. U dostupnim primjerima soba od 430 € s uključenim režijama prolazi budžetski filtar. Soba od 500 € ne prolazi. Oglas od 400 € bez podatka o režijama označava se kao neizvjestan, ne kao siguran rezultat unutar budžeta.
 
-AI bi trebao razumjeti da „tražimo cimericu” može sadržavati priliku za sobu, iako naslov ne kaže „iznajmljuje se soba”. Korisnici bi prikazivao zašto je objava relevantna i koji podatak nedostaje. Po želji bi pripremao objavu s njezinim potvrđenim uvjetima, bez izmišljanja zaposlenja, jamca ili datuma useljenja.
+AI bi trebao razumjeti da „tražimo cimericu” može sadržavati priliku za sobu, iako naslov ne kaže „iznajmljuje se soba”. Prikazivao bi joj zašto je objava relevantna i koji podatak nedostaje. Po želji bi pripremao objavu s njezinim potvrđenim uvjetima, bez izmišljanja zaposlenja, jamca ili datuma useljenja.
 
 **Vrijednost nije „AI joj je pronašao stan”, nego „dobila je pregled prema svojim uvjetima i jasan sljedeći korak”.**
 
