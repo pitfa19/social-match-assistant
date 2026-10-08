@@ -1,0 +1,11 @@
+{
+  "sequence_id": "repo-onboarding-2026-10-08",
+  "owner_request": "Set up the private social-match-assistant repo and MOZAK onboard, just that part.",
+  "authorization": "Local setup files, private GitHub repository creation and documentation push. Registration requires separately pinned approval after exact review.",
+  "exclusions": ["Application implementation", "Provider activation", "Paid API usage", "Deployment", "Live social data ingestion"],
+  "requirements": [
+    {"id": "local-onboarding", "checks": [{"id": "mozak-validation", "real_required": true}]},
+    {"id": "private-github", "checks": [{"id": "remote-private-and-pushed", "real_required": true}]},
+    {"id": "mozak-registration", "checks": [{"id": "fresh-registered-context", "real_required": true}]}
+  ]
+}

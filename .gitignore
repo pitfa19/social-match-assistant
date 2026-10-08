@@ -1,0 +1,31 @@
+# Credentials and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*
+
+# Future application build output
+node_modules/
+.next/
+out/
+dist/
+coverage/
+playwright-report/
+test-results/
+
+# Private source data and recordings
+private-data/
+recordings/
+uploads/
+*.wav
+*.mp3
+*.m4a
+*.webm
+
+# Local state
+.DS_Store
+*.log
+supabase/.temp/
+supabase/.branches/

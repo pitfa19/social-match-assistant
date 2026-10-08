@@ -1,0 +1,13 @@
+version: 1
+framework_contract_version: 1
+project:
+  id: social-match-assistant
+  name: "social-match-assistant"
+repository:
+  revision: 0000000000000000000000000000000000000000
+owned_paths:
+  - .mozak
+  - docs
+  - README.md
+  - AGENTS.md
+  - .gitignore
