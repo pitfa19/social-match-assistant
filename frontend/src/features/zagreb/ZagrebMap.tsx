@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { CITY_VIEW } from "./neighbourhoods";
-import { easeInOut, visibleTiles } from "./geo";
+import { easeInOut, project, visibleTiles } from "./geo";
 import styles from "./Zagreb.module.css";
 
 export type MapTarget = { lat: number; lng: number; zoom: number };
@@ -10,7 +10,9 @@ export type MapTarget = { lat: number; lng: number; zoom: number };
 type View = MapTarget;
 
 /** Minimal slippy map on public OpenStreetMap tiles, animated by rAF. */
-export function ZagrebMap({ target, selectedId }: { target: MapTarget | null; selectedId: string }) {
+export type MapHighlight = { lat: number; lng: number; label: string; radiusM: number };
+
+export function ZagrebMap({ target, selectedId, highlight }: { target: MapTarget | null; selectedId: string; highlight?: MapHighlight | null }) {
   const box = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ w: 0, h: 0 });
   const [view, setView] = useState<View>(CITY_VIEW);
@@ -48,6 +50,14 @@ export function ZagrebMap({ target, selectedId }: { target: MapTarget | null; se
     return () => cancelAnimationFrame(raf);
   }, [target]);
 
+  let marker: { x: number; y: number; r: number } | null = null;
+  if (highlight && size.w) {
+    const c = project(view.lat, view.lng, view.zoom);
+    const h = project(highlight.lat, highlight.lng, view.zoom);
+    const mpp = (156543.03392 * Math.cos((highlight.lat * Math.PI) / 180)) / Math.pow(2, view.zoom);
+    marker = { x: h.x - c.x + size.w / 2, y: h.y - c.y + size.h / 2, r: Math.max(24, highlight.radiusM / mpp) };
+  }
+
   const tiles = size.w ? visibleTiles(view.lat, view.lng, view.zoom, size.w, size.h) : [];
 
   return (
@@ -64,6 +74,16 @@ export function ZagrebMap({ target, selectedId }: { target: MapTarget | null; se
           style={{ left: t.left, top: t.top, width: t.size + 0.5, height: t.size + 0.5 }}
         />
       ))}
+      {highlight && marker && (
+        <div
+          className={styles.highlight}
+          data-testid="map-highlight"
+          data-label={highlight.label}
+          style={{ left: marker.x - marker.r, top: marker.y - marker.r, width: marker.r * 2, height: marker.r * 2 }}
+        >
+          <span className={styles.highlightLabel}>{highlight.label} (približno područje)</span>
+        </div>
+      )}
       <a className={styles.attribution} href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">
         © OpenStreetMap contributors
       </a>

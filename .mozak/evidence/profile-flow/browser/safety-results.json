@@ -1,0 +1,22 @@
+{
+  "checks": [
+    {
+      "name": "Profile API rejects cross-origin, invalid step, empty and oversized inputs",
+      "passed": true
+    },
+    {
+      "name": "Live extraction preserves negative preferences without positive tag or third-party inference",
+      "passed": true
+    },
+    {
+      "name": "Profile error preserves question and answer for retry",
+      "passed": true
+    },
+    {
+      "name": "Microphone denial keeps typed fallback usable",
+      "passed": true
+    }
+  ],
+  "errorResponseMocked": true,
+  "liveNegationCheck": true
+}

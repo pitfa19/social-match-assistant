@@ -1,0 +1,31 @@
+{
+  "checks": [
+    {
+      "name": "Auto-open first question, notes left, no microphone or map",
+      "passed": true
+    },
+    {
+      "name": "Real Decisions creates grounded self-notes and removable items",
+      "passed": true
+    },
+    {
+      "name": "Interest topics appear and removals survive subsequent answers",
+      "passed": true
+    },
+    {
+      "name": "Ambiguous kvart stays on question without map",
+      "passed": true
+    },
+    {
+      "name": "Live voice selects Maksimir, reveals highlighted map right and preserves notes",
+      "passed": true
+    },
+    {
+      "name": "Reload clears personal notes and returns to start, mobile reduced motion",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "realProviderCalls": true,
+  "voiceInput": "synthetic Croatian"
+}
