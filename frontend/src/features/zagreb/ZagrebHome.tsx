@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { ZagrebMap, type MapTarget } from "./ZagrebMap";
 import { findNeighbourhood } from "./neighbourhoods";
 import { useRealtimeVoice } from "./useRealtimeVoice";
@@ -158,7 +159,9 @@ export function ZagrebHome() {
   return (
     <main ref={pageRef} className={styles.page} data-stage={mapShown ? "map" : hasNotes ? "conversation" : "welcome"}>
       <header className={styles.header}>
-        <div className={styles.brand}><span className={styles.brandMark} aria-hidden="true">k²</span><span>kvart na kvadrat<span className={styles.brandDetail}>Zagreb</span></span></div>
+        <div className={styles.brand}>
+          <Image className={styles.brandLogo} src="/kvart-na-kvadrat-logo.png" alt="Kvart na kvadrat" width={320} height={429} priority />
+        </div>
         <h1 className={styles.slogan}>vaš omiljeni susjed</h1>
       </header>
       <section className={styles.overlay} data-expanded="true" aria-label="Upoznajmo se">

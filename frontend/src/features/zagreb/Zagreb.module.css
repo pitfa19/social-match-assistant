@@ -1,8 +1,7 @@
 .page { --tram: #084caa; --paper: #f5f8ff; --quiet: #c3d7f6; min-height: 100dvh; display: flex; flex-direction: column; padding: clamp(1.25rem, 3vw, 3rem) clamp(1.25rem, 4vw, 4.5rem); background: var(--tram); color: var(--paper); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-optical-sizing: auto; }
 .header { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; width: 100%; max-width: 100rem; margin-inline: auto; }
-.brand { display: flex; align-items: center; gap: .85rem; font-size: .72rem; font-weight: 600; letter-spacing: .19em; line-height: 1.5; }
-.brandMark { font-size: 3rem; font-weight: 700; line-height: 1; letter-spacing: -.13em; padding-right: .3rem; }
-.brandDetail { display: block; font-size: .7rem; font-weight: 400; color: var(--quiet); letter-spacing: .015em; }
+.brand { display: flex; align-items: center; flex: none; }
+.brandLogo { display: block; width: clamp(4.5rem, 8vw, 6rem); height: auto; object-fit: contain; }
 .slogan { margin: 0; font-size: clamp(.9rem, 1.5vw, 1.15rem); font-weight: 450; letter-spacing: -.025em; text-wrap: balance; text-align: right; }
 .overlay { position: relative; display: flex; flex: 1; width: 100%; max-width: 90rem; margin: 2rem auto; min-height: 35rem; }
 .split { display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; width: 100%; min-width: 0; gap: clamp(2rem, 6vw, 6rem); }
@@ -143,7 +142,7 @@
   .searchRow input { flex-basis: 55%; }
   .searchRow button { width: 100%; }
 }
-@media (max-width: 380px) { .brandDetail { max-width: 12ch; } .typeRow { gap: .25rem; } .input { padding-inline: .75rem; } .go { padding-inline: .85rem; } .footer { flex-direction: column; gap: .3rem; } }
+@media (max-width: 380px) { .typeRow { gap: .25rem; } .input { padding-inline: .75rem; } .go { padding-inline: .85rem; } .footer { flex-direction: column; gap: .3rem; } }
 @media (prefers-reduced-motion: reduce) { .page *, .page *::before { animation: none !important; transition: none !important; } }
 @media (prefers-reduced-transparency: reduce) { .noteBtn, .typeRow, .noteCount { background: #155bb6; } .mapHover { background: #084caa; backdrop-filter: none; } }
 @media (prefers-contrast: more) { .page { --quiet: #fff; } .noteBtn, .typeRow { border-color: #fff; } }
