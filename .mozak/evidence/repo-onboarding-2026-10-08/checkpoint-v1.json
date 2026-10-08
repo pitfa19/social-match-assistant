@@ -1,0 +1,12 @@
+{
+  "sequence_id": "repo-onboarding-2026-10-08",
+  "contract_sha256": "42060332a98c33b33489db9ea3b28b0b9bc5a128f94e72f5b98376afa396091c",
+  "state": "INCOMPLETE: exact MOZAK refresh approval required",
+  "requirements": [
+    {"id": "local-onboarding", "status": "verified", "checks": [{"id": "mozak-validation", "passed": true, "observation": "real", "evidence": "mozak project validate /home/pitfa/Documents/social-match-assistant returned state valid on 2026-10-08. Credential and private-data ignore checks passed."}]},
+    {"id": "private-github", "status": "verified", "checks": [{"id": "remote-private-and-pushed", "passed": true, "observation": "real", "evidence": "gh repo view pitfa19/social-match-assistant returned isPrivate true and default branch main. Local HEAD and remote main both d0ba06213c30ca81a73f4f2b819110dd947d0df3 before this checkpoint commit."}]},
+    {"id": "mozak-registration", "status": "blocked", "checks": [{"id": "fresh-registered-context", "passed": false, "observation": "real", "evidence": "project context reports unregistered. Discovery review proposes refresh with exactly one addition, no removals and no changed pins. Exact owner approval not yet supplied, no refresh executed."}]}
+  ],
+  "resume": "Present the current exact review, obtain pinned owner approval, refresh, validate and read fresh context. Do not implement the application.",
+  "additional_authorised_work": "Two read-only research leads are active outside the repository for Decisions retrieval and Meta Pages/Groups feasibility. Their findings remain proposals."
+}
