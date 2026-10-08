@@ -6,6 +6,7 @@ Status: setup-only repository. No dependencies installed, app code scaffolded, p
 
 - ElevenLabs voice transcription now, behind a replaceable Transcriber interface. A local speech-to-text implementation is a future option, not yet selected or benchmarked.
 - OpenAI Decisions for categorising source records and evaluating relevance of retrieved candidates.
+- Mindcase selected by the owner. Proposed Facebook/Reddit collection role is inferred, not a confirmed provider replacement. See [the integration proposal](mindcase.md). No live collection was run.
 - Proposed Next.js, React, TypeScript and Tailwind web interface with Next.js API endpoints.
 - Proposed Supabase PostgreSQL and Auth for storage, retrieval and private accounts.
 - Proposed OpenAI Responses for profile extraction and post drafting. This additional role requires confirmation.
@@ -27,7 +28,7 @@ src/app/(ui)/      frontend pages
 src/frontend/     forms, cards, voice recorder
 src/app/api/       backend HTTP endpoints
 src/backend/      providers, matching, persistence
-src/integrations/ facebook/, reddit/, fixtures/
+src/integrations/ mindcase/, facebook/, reddit/, fixtures/
 src/shared/       root-owned schemas and contracts
 supabase/         backend-owned migrations and access policies
 tests/            individually assigned test files
@@ -37,4 +38,4 @@ Future frontend, social integrations and backend leads have non-overlapping path
 
 ## Approval gates
 
-Current authorization: repo/MOZAK setup plus two read-only research leads. No application implementation, provider activation, paid requests, live ingestion or deployment is authorised. Exact MOZAK registration review requires separately pinned owner approval. Verify organiser preparation rules before implementing a competition solution.
+Current authorization: completed repo/MOZAK setup, read-only research and recording the owner's Mindcase provider selection with an integration proposal. No application implementation, provider activation, paid requests, live ingestion or deployment is authorised. MOZAK registration is completed. Verify organiser preparation rules before implementing a competition solution.

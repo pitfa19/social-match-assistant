@@ -16,6 +16,7 @@ Intended data sources: authorised Facebook content, authorised Reddit content an
 
 - ElevenLabs for voice transcription now, replaceable with a local model later.
 - OpenAI Decisions for categorisation and relevance scoring.
+- Mindcase selected for the project. Its proposed collection-layer role, verified public schemas and outstanding live-test gates are in [the Mindcase proposal](docs/mindcase.md).
 - Proposed web/backend/database: Next.js, TypeScript, Tailwind and Supabase.
 - Responses for extraction and post drafting is proposed and still needs confirmation.
 
