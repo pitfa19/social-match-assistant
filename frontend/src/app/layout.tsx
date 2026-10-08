@@ -2,9 +2,16 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Pričaj sa svojim gradom",
-  description:
-    "Lokalni demo za Zagreb: reci koji te kvart zanima i karta te vodi tamo.",
+  title: "kvart na kvadrat",
+  description: "vaš omiljeni susjed",
+  applicationName: "kvart na kvadrat",
+  openGraph: {
+    title: "kvart na kvadrat",
+    description: "vaš omiljeni susjed",
+    siteName: "kvart na kvadrat",
+    locale: "hr_HR",
+    type: "website",
+  },
 };
 
 export const viewport: Viewport = {

@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "url": "http://127.0.0.1:3101",
+  "checkedAt": "2026-10-08T14:02:01.887Z",
+  "results": [
+    {
+      "width": 320,
+      "title": "kvart na kvadrat",
+      "slogan": "vaš omiljeni susjed",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "title": "kvart na kvadrat",
+      "slogan": "vaš omiljeni susjed",
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "title": "kvart na kvadrat",
+      "slogan": "vaš omiljeni susjed",
+      "overflow": false
+    }
+  ]
+}
