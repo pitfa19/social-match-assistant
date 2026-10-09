@@ -1,8 +1,10 @@
 import { json, rateLimited, readCapped, sameOriginOnly, TooLarge } from "../../../../features/zagreb/server/guard";
-import { fetchIndexedMatches, validateMatchInput } from "../../../../features/zagreb/server/indexedMatches";
-import { withLocalDemoOffers } from "../../../../features/zagreb/server/devDemoMatches";
+import { validateMatchInput } from "../../../../features/zagreb/server/indexedMatches";
+import { matchDemoOffers } from "../../../../features/zagreb/server/demoOffers";
 
 export const runtime = "nodejs";
+
+/** Demo search. Serves labelled synthetic offers only. It does not call the MCP server or any live source. */
 export async function POST(request: Request): Promise<Response> {
   const denied = sameOriginOnly(request);
   if (denied) return denied;
@@ -11,9 +13,6 @@ export async function POST(request: Request): Promise<Response> {
   try { input = validateMatchInput(JSON.parse(new TextDecoder().decode(await readCapped(request, 12000)))); }
   catch (e) { return json({ error: e instanceof TooLarge ? "Upit je predug." : "Neispravan upit." }, e instanceof TooLarge ? 413 : 400); }
   if (!input) return json({ error: "Neispravan upit." }, 400);
-  const base = process.env.BACKEND_URL, token = process.env.BACKEND_ACCESS_TOKEN;
-  if (!base || !token) return json({ error: "Pretraga trenutačno nije dostupna." }, 503);
-  const result = await fetchIndexedMatches(input, { base, token, corpus: process.env.MATCHING_CORPUS },
-    AbortSignal.any([request.signal, AbortSignal.timeout(8000)]));
-  return json(withLocalDemoOffers(input, result, process.env));
+  return json({ results: matchDemoOffers(input), sources: [], truncated: false, searched: true,
+    indexAvailable: true, sourcesAvailable: false });
 }

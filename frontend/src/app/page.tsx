@@ -1,5 +1,5 @@
-import { ZagrebHome } from "../features/zagreb/ZagrebHome";
+import { Landing } from "../features/landing/Landing";
 
 export default function Page() {
-  return <ZagrebHome />;
+  return <Landing />;
 }

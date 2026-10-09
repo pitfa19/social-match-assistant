@@ -30,3 +30,7 @@ uploads/
 *.log
 supabase/.temp/
 supabase/.branches/
+
+# Local index
+*.db
+*.db-journal

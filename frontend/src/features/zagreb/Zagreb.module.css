@@ -185,3 +185,31 @@
 @media (prefers-reduced-motion: reduce) { .page *, .page *::before, .page *::after { animation: none !important; transition: none !important; } }
 @media (prefers-reduced-transparency: reduce) { .content, .notesCol, .mapCol, .matches, .mapHover { background: #faf7ef; backdrop-filter: none; } .noteBtn, .typeRow, .noteCount { background: #f0eee4; } }
 @media (prefers-contrast: more) { .page { --quiet: #243e34; } .content, .notesCol, .mapCol, .matches { background: #faf7ef; } .noteBtn, .typeRow { border-color: #243e34; } }
+/* Consistency pass with the landing page: solid readable surfaces, clear focus, safe small screens. */
+.page { --quiet: #435a4f; background: #f7f5ee; }
+.page::before { opacity: .28; }
+.content { background: #fffdf8; backdrop-filter: none; box-shadow: 0 24px 60px #173229224; border-color: #264b4033; }
+.notesCol, .mapCol, .matches { background: #fffdf8; border-color: #264b4033; }
+.headerEnd { display: flex; align-items: center; gap: .75rem; flex: none; }
+.demoBadge { padding: .3rem .8rem; border: 1px solid #264b4040; border-radius: 99px; background: #fffdf8; font-size: .78rem; font-weight: 600; color: #243e34; white-space: nowrap; }
+.slogan { margin: 0; flex: 1; min-width: 0; }
+.brand { min-height: 2.75rem; }
+.stepNo, .eyebrow { font-size: .75rem; color: var(--quiet); }
+.micCaption, .notesHint, .mapDisclaimer, .matchesHint, .matchMeta, .attribution, .footer { font-size: .8rem; }
+.go { font-size: .95rem; }
+.mapLevels button, .mapReset { font-size: .85rem; }
+.north { font-size: .75rem; }
+.mapSelectLabel { font-size: .85rem; }
+.page :is(button, a, select, input, summary):focus-visible { outline: 3px solid #b4490f; outline-offset: 3px; }
+.input:focus-visible { outline: none; }
+.typeRow:focus-within { border-color: #b4490f; box-shadow: 0 0 0 3px #b4490f33; }
+.matches p, .matches h3 { max-width: 70ch; }
+.sloganAccent { color: #8a3f0c; }
+@media (max-width: 640px) {
+  .slogan, .demoBadge { display: none; }
+  .header { justify-content: space-between; }
+  .page { padding: 1rem; }
+  .content { padding: 1.5rem 1rem; }
+  .mapFrame, .map { min-height: 26rem; }
+}
+@media (max-width: 400px) { .brandLogo { width: 3.5rem; } .question { font-size: clamp(1.75rem, 8vw, 2.2rem); } }
