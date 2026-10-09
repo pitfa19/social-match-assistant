@@ -40,7 +40,7 @@ Details in [docs/safety.md](docs/safety.md).
 ## Try the demo without any keys
 
 ```bash
-cd backend && .venv/bin/python -m pytest -q          # 40+ tests, no network
+cd backend && .venv/bin/python -m pytest -q          # 58 tests, no network
 cd ../frontend && npm ci && npm run dev              # http://localhost:3000
 ```
 
