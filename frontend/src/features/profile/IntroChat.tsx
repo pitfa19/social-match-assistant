@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { Dialog } from "./Dialog";
 import { SendIcon } from "../../components/Icons";
 import VoiceRecorder from "../../components/VoiceRecorder";
 import { INTRO_STEPS, buildDraft } from "./draft";
+import s from "./IntroChat.module.css";
 
 type Props = {
   onClose: () => void;
@@ -14,6 +15,8 @@ type Props = {
 
 type Phase = "chat" | "review";
 
+const IMMERSIVE = { backdrop: s.backdrop, sheet: s.sheet, title: s.sr, close: s.close, body: s.body, testId: "intro-screen" };
+
 export function IntroChat({ onClose, onSave }: Props) {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -21,11 +24,6 @@ export function IntroChat({ onClose, onSave }: Props) {
   const [phase, setPhase] = useState<Phase>("chat");
   const [draft, setDraft] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const logRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    logRef.current?.scrollTo({ top: logRef.current.scrollHeight });
-  }, [step, phase]);
 
   const current = INTRO_STEPS[step];
 
@@ -41,14 +39,20 @@ export function IntroChat({ onClose, onSave }: Props) {
     }
   }
 
+  function back() {
+    if (step === 0) return;
+    setStep(step - 1);
+    setInput(answers[INTRO_STEPS[step - 1].id] ?? "");
+  }
+
   function submit(e: FormEvent) {
     e.preventDefault();
-    advance(input.trim());
+    if (input.trim()) advance(input.trim());
   }
 
   function confirm() {
     if (!draft.trim()) {
-      setError("Profil je prazan. Dodaj barem jednu rečenicu ili se vrati na razgovor.");
+      setError("Profil je prazan. Dodaj rečenicu ili se vrati.");
       return;
     }
     const err = onSave(draft.trim());
@@ -56,70 +60,64 @@ export function IntroChat({ onClose, onSave }: Props) {
   }
 
   return (
-    <Dialog title="Predstavi se" titleId="intro-title" onClose={onClose}>
+    <Dialog title="Predstavi se" titleId="intro-title" onClose={onClose} immersive={IMMERSIVE}>
       {phase === "chat" ? (
-        <div className="chat">
-          <p className="demo-note">Demo razgovor · bez AI-ja</p>
-          {step > 0 && (
-            <details className="prev">
-              <summary>Razgovor</summary>
-              <div className="chat-log" ref={logRef}>
-                {INTRO_STEPS.slice(0, step).map((s) => (
-                  <div key={s.id} className="chat-turn">
-                    <p className="bubble bubble-q">{s.question}</p>
-                    <p className="bubble bubble-a">{answers[s.id] ? answers[s.id] : <em>Preskočeno</em>}</p>
-                  </div>
-                ))}
-              </div>
-            </details>
-          )}
-          <p className="bubble bubble-q current-q" aria-live="polite">
-            {current.question}
+        <form className={s.form} onSubmit={submit}>
+          <p className={s.step}>
+            {step + 1}/{INTRO_STEPS.length}
           </p>
-          <form className="chat-form" onSubmit={submit}>
-            <label htmlFor="intro-input" className="sr-only">
-              {current.question}
-            </label>
-            <textarea
-              id="intro-input"
-              data-testid="intro-input"
-              data-autofocus
-              className="field"
-              rows={3}
-              value={input}
-              placeholder={current.hint}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" && !e.shiftKey && input.trim()) {
-                  e.preventDefault();
-                  advance(input.trim());
-                }
-              }}
-            />
-            <div className="chat-actions">
+          <h3 className={s.q} data-testid="intro-question" aria-live="polite">
+            {current.question}
+          </h3>
+          <label htmlFor="intro-input" className={s.sr}>
+            {current.question}
+          </label>
+          <textarea
+            id="intro-input"
+            data-testid="intro-input"
+            data-autofocus
+            className={s.input}
+            rows={2}
+            value={input}
+            placeholder={current.hint}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey && input.trim()) {
+                e.preventDefault();
+                advance(input.trim());
+              }
+            }}
+          />
+          <div className={s.row}>
+            <div className={s.voice}>
               <VoiceRecorder />
-              <span className="step-count">
-                {step + 1}/{INTRO_STEPS.length}
-              </span>
-              <button type="button" className="btn btn-quiet btn-sm" onClick={() => advance("")}>
-                Preskoči
-              </button>
-              <button type="submit" data-testid="intro-next" className="btn btn-primary" disabled={!input.trim()}>
-                Dalje <SendIcon />
-              </button>
             </div>
-          </form>
-        </div>
+            <span className={s.spacer} />
+            {step > 0 && (
+              <button type="button" className={`${s.btn} ${s.quiet}`} onClick={back}>
+                Natrag
+              </button>
+            )}
+            <button type="button" className={`${s.btn} ${s.quiet}`} onClick={() => advance("")}>
+              Preskoči
+            </button>
+            <button type="submit" data-testid="intro-next" className={`${s.btn} ${s.next}`} disabled={!input.trim()}>
+              Dalje <SendIcon />
+            </button>
+          </div>
+          <p className={s.tiny}>Demo · bez AI-ja</p>
+        </form>
       ) : (
-        <div className="review">
-          <label htmlFor="draft" className="label">
+        <div className={s.form}>
+          <h3 className={s.q} data-testid="intro-question">Je li ovo točno?</h3>
+          <label htmlFor="draft" className={s.sr}>
             Nacrt profila
           </label>
           <textarea
             id="draft"
             data-testid="draft-text"
             data-autofocus
-            className="field field-draft"
+            className={s.draft}
             rows={6}
             value={draft}
             onChange={(e) => {
@@ -128,19 +126,20 @@ export function IntroChat({ onClose, onSave }: Props) {
             }}
           />
           {error && (
-            <p role="alert" className="error">
+            <p role="alert" className={s.err}>
               {error}
             </p>
           )}
-          <p className="demo-note">Tvoje riječi, uredi ih. Sprema se tek nakon potvrde.</p>
-          <div className="chat-actions">
-            <button type="button" className="btn btn-quiet" onClick={() => setPhase("chat")}>
-              Natrag na razgovor
+          <div className={s.row}>
+            <span className={s.spacer} />
+            <button type="button" className={`${s.btn} ${s.quiet}`} onClick={() => setPhase("chat")}>
+              Natrag
             </button>
-            <button type="button" className="btn btn-primary" onClick={confirm} data-testid="draft-confirm">
+            <button type="button" className={`${s.btn} ${s.next}`} onClick={confirm} data-testid="draft-confirm">
               Potvrdi i spremi
             </button>
           </div>
+          <p className={s.tiny}>Sprema se tek nakon potvrde.</p>
         </div>
       )}
     </Dialog>

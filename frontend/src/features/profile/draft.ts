@@ -8,26 +8,26 @@ export const INTRO_STEPS: IntroStep[] = [
   {
     id: "goal",
     heading: "Trenutni cilj",
-    question: "Što trenutno tražiš ili nudiš? Opiši svojim riječima.",
-    hint: "Na primjer: tražim stan za dvoje, nudim sate gitare.",
+    question: "Što trenutno tražiš ili nudiš?",
+    hint: "Npr. tražim stan, nudim sate gitare",
   },
   {
     id: "where",
     heading: "Mjesto i vrijeme",
-    question: "Gdje u Zagrebu i kada ti odgovara?",
-    hint: "Kvart, dani u tjednu, rokovi. Preskoči ako nije važno.",
+    question: "Gdje i kada ti odgovara?",
+    hint: "Kvart, dani, rokovi",
   },
   {
     id: "limits",
     heading: "Važno i neprihvatljivo",
-    question: "Što ti je važno, a što nikako ne dolazi u obzir?",
-    hint: "Budžet, uvjeti, dogovori. Ne moraš ništa osobno otkrivati.",
+    question: "Što ti je važno, a što isključuješ?",
+    hint: "Budžet, uvjeti",
   },
   {
     id: "extra",
     heading: "Dodatno",
-    question: "Želiš li dodati još nešto što pomaže pri traženju?",
-    hint: "Neobavezno.",
+    question: "Želiš li još nešto dodati?",
+    hint: "Neobavezno",
   },
 ];
 

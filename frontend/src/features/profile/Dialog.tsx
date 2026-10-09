@@ -14,10 +14,12 @@ type Props = {
   wide?: boolean;
   /** When set, the dialog does not render its own header close button. */
   hideClose?: boolean;
+  /** Full-screen presentation: custom classes replace the default sheet chrome. */
+  immersive?: { backdrop: string; sheet: string; title: string; close: string; body: string; testId?: string };
 };
 
 /** Accessible modal: focus trap, Escape, scroll lock, focus restore. */
-export function Dialog({ title, titleId, onClose, children, wide, hideClose }: Props) {
+export function Dialog({ title, titleId, onClose, children, wide, hideClose, immersive }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const closeRef = useRef(onClose);
   closeRef.current = onClose;
@@ -66,6 +68,24 @@ export function Dialog({ title, titleId, onClose, children, wide, hideClose }: P
       previous?.focus?.();
     };
   }, []);
+
+  if (immersive) {
+    return (
+      <div className={immersive.backdrop} data-testid={immersive.testId}>
+        <div ref={ref} className={immersive.sheet} role="dialog" aria-modal="true" aria-labelledby={titleId} tabIndex={-1}>
+          <h2 id={titleId} className={immersive.title}>
+            {title}
+          </h2>
+          {!hideClose && (
+            <button type="button" className={immersive.close} onClick={onClose} aria-label="Zatvori">
+              <CloseIcon />
+            </button>
+          )}
+          <div className={immersive.body}>{children}</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="dlg-backdrop" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>

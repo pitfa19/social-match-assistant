@@ -40,6 +40,22 @@ try {
     await expect(page.getByRole('dialog').getByRole('note').first()).toContainText('Demo pretraga · sintetički zapisi');
     await page.getByRole('button', { name: 'Zatvori', exact: true }).click();
   });
+  await check('Introduction is edge-to-edge green with one large question', async () => {
+    await page.getByRole('button', { name: 'Predstavi se', exact: true }).click();
+    const screen = page.getByTestId('intro-screen');
+    await expect(screen).toBeVisible();
+    const geometry = await screen.evaluate(el => ({ rect: { x: el.getBoundingClientRect().x, y: el.getBoundingClientRect().y, width: el.getBoundingClientRect().width, height: el.getBoundingClientRect().height }, bg: getComputedStyle(el).backgroundColor, vw: innerWidth, vh: innerHeight }));
+    expect(geometry.rect.x).toBe(0);
+    expect(geometry.rect.y).toBe(0);
+    expect(geometry.rect.width).toBe(geometry.vw);
+    expect(geometry.rect.height).toBeGreaterThanOrEqual(geometry.vh);
+    expect(geometry.bg).toBe('rgb(20, 48, 31)');
+    expect(await page.getByTestId('intro-question').evaluate(el => parseFloat(getComputedStyle(el).fontSize))).toBeGreaterThanOrEqual(48);
+    await expect(page.getByTestId('intro-question')).toHaveCount(1);
+    await page.screenshot({ path: `${out}/intro-desktop.png`, fullPage: true });
+    await page.keyboard.press('Escape');
+    await expect(page.getByRole('button', { name: 'Predstavi se', exact: true })).toBeFocused();
+  });
   await check('Introduction requires explicit textual profile confirmation', async () => {
     await page.getByRole('button', { name: 'Predstavi se', exact: true }).click();
     const answers = ['Tražim sobu i mogu pomoći s računalima.', 'Trešnjevka, navečer.', 'Ukupno najviše 450 eura.', 'Ne želim automatsku objavu.'];
@@ -130,6 +146,10 @@ try {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await page.screenshot({ path: `${out}/hero-mobile.png`, fullPage: true });
     await page.getByRole('button', { name: 'Predstavi se', exact: true }).click();
+    await expect(page.getByTestId('intro-screen')).toBeVisible();
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    expect(await page.getByTestId('intro-question').evaluate(el => parseFloat(getComputedStyle(el).fontSize))).toBeGreaterThanOrEqual(32);
+    await page.screenshot({ path: `${out}/intro-mobile.png`, fullPage: true });
     await page.keyboard.press('Escape');
     await expect(page.getByRole('dialog')).toHaveCount(0);
     await expect(page.getByRole('button', { name: 'Predstavi se', exact: true })).toBeFocused();
