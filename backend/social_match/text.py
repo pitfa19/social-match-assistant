@@ -52,10 +52,10 @@ def expand(words: list[str]) -> list[str]:
     return out
 
 
-def build_tsquery(text: str) -> tuple[str | None, list[str]]:
-    """OR-query of prefix stems (tsquery syntax). Returns (query or None, expanded terms)."""
+def fts_query(text: str) -> tuple[str | None, list[str]]:
+    """OR-query of prefix stems in SQLite FTS5 syntax. Returns (query or None, expanded terms)."""
     terms = expand(tokens(text))
     stems = sorted({stem(t) for t in terms if t.isalnum()})
     if not stems:
         return None, terms
-    return " | ".join(f"{s}:*" for s in stems), terms
+    return " OR ".join(f'"{s}"*' for s in stems), terms

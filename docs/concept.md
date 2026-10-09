@@ -1,24 +1,27 @@
 # Concept
 
-Status: product direction recorded from owner discussion, not accepted implementation planning or market validation.
+A Croatia-first, Zagreb-focused assistant that connects what a person needs or offers with what their neighbourhood already posts.
 
 ## Two profiles, two actions
 
-The person/current-goal profile contains explicit needs, offered skills, budget, location, availability and hard constraints. The item/request/offer profile contains explicit category, terms, location, dates and missing information. Users can correct both.
+- **You and your current goal:** needs, skills, budget, location, availability and hard limits.
+- **An item, request or offer:** category, terms, place, dates and what is still unknown.
 
-**Find what fits:** retrieve suitable opportunities, exclude hard-constraint violations, distinguish unknowns and explain matches.
+Both are editable, and nothing inferred is saved until the user confirms it.
 
-**Help me publish:** profile the user's request/offer, compare authorised examples or labelled fixtures, suggest a category and prepare a post from confirmed facts. The user reviews, contacts and publishes.
+**Find what fits** retrieves posts, applies hard constraints, separates unknowns and explains each match.
+**Help me publish** turns confirmed facts into a clear draft the user reviews and posts themselves.
 
-## Three intended sources
+## Sources
 
-1. Authorised Facebook content.
-2. Authorised Reddit content.
-3. Requests/offers contributed by our own users.
+1. Public community posts the operator is authorised to use (Facebook groups, Reddit).
+2. Requests and offers contributed by users.
+3. Labelled synthetic examples for demos and tests.
 
-Profiles personalise matching. Requests/offers create the opportunity supply. Initial synthetic source examples must be labelled, never presented as real feeds.
+## For agents
 
-## Croatia and Zagreb
+The same capabilities are exposed as an MCP server so an AI agent can scrape, classify, index and search on a user's behalf. See [mcp.md](mcp.md).
 
-Use Croatian input and local constraints. Potential examples: a Zagreb room search, adult digital-skills help, a small gig or tool borrowing. Demand, business model and pilot partnerships are hypotheses. Choose the main story from genuine user/team experience before implementation.
+## Open questions
 
+Demand, a business model and source permissions are hypotheses. Nothing in this repository claims they are validated.

@@ -8,7 +8,7 @@ from typing import Any
 
 from .text import fold, tokens
 
-CATALOGUE = Path(__file__).resolve().parents[3] / "shared" / "zagreb-neighbourhoods.json"
+CATALOGUE = Path(__file__).resolve().parents[2] / "shared" / "zagreb-neighbourhoods.json"
 # Words that wrap a place name without being part of it. Dropped from the lexical query in strict mode.
 LOCATION_NOISE = {"zagreb", "zagrebu", "kvart", "kvartu", "kvarta"}
 # Strict-only role/biography filler produced by profile extraction. Never content words for a post match.
@@ -58,7 +58,7 @@ def usable_aliases(place: dict[str, Any]) -> list[str]:
 
 
 def evidence_regex(place: dict[str, Any]) -> str | None:
-    """PostgreSQL regex over text_folded: whole-word match of any usable alias."""
+    """Regex over folded text: whole-word match of any usable alias."""
     alts = ["[^a-z0-9]+".join(re.escape(t) for t in k.split()) for k in usable_aliases(place)]
     if not alts:
         return None
@@ -73,17 +73,14 @@ def strip_location_terms(text: str, place: dict[str, Any]) -> str:
     return " ".join(t for t in tokens(text) if t not in drop)
 
 
-def strict_sql(place: dict[str, Any]) -> tuple[str, str, dict[str, Any]]:
-    """(extra_select, extra_where, params). Applied before any candidate cap."""
+def has_evidence(place: dict[str, Any], folded_text: str) -> bool:
+    """True when the folded post text names the area (whole word, usable alias only)."""
     rx = evidence_regex(place)
-    text_clause = "p.text_folded ~ %(nb_rx)s" if rx else "FALSE"
-    select = (", CASE WHEN p.neighbourhood_id = %(nb)s THEN 'structured' ELSE 'explicit_text' END AS neighbourhood_basis")
-    where = (f"AND p.record_kind <> 'synthetic' AND (p.neighbourhood_id = %(nb)s OR {text_clause})")
-    return select, where, {"nb_rx": rx}
+    return bool(rx and re.search(rx, folded_text))
 
 
 def match_info(place: dict[str, Any], basis: str) -> dict[str, str]:
     return {"id": place["id"], "name": place["name"], "basis": basis}
 
 
-__all__ = ["get_place", "usable_aliases", "evidence_regex", "strip_location_terms", "strict_sql", "match_info", "fold"]
+__all__ = ["get_place", "usable_aliases", "evidence_regex", "has_evidence", "strip_location_terms", "match_info", "fold"]
